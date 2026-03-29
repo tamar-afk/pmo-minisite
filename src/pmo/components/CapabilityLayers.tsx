@@ -18,6 +18,7 @@ import {
   Zap,
   type LucideIcon,
 } from 'lucide-react'
+import { SectionChip } from './SectionChip'
 
 const springLayer = { type: 'spring' as const, stiffness: 280, damping: 28 }
 
@@ -316,7 +317,7 @@ export default function CapabilityLayers() {
     <section
       ref={ref}
       id="pm-capabilities"
-      className="relative overflow-hidden bg-[#ececf0] px-6 py-14 md:px-12 md:py-20 lg:py-24"
+      className="relative overflow-hidden bg-[#ececf0] px-6 py-10 md:px-12 md:py-14 lg:py-16"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f7f7f9_0%,#ececf0_50%,#e8e8ed_100%)]"
@@ -330,13 +331,10 @@ export default function CapabilityLayers() {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
-          <p className="mb-2 text-[13px] font-medium tracking-[0.02em] text-[rgba(12,12,15,0.45)]">
-            Behind every agent is a platform built for the full depth of project management.
-          </p>
-          <span className="inline-flex rounded-full border border-[rgba(12,12,15,0.08)] bg-white/80 px-[14px] py-1.5 text-[12px] font-medium tracking-[0.04em] text-[rgba(12,12,15,0.48)] shadow-sm backdrop-blur-sm">
-            Built for real project management
-          </span>
-          <h2 className="mt-4 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[38px] lg:text-[42px]">
+          <div className="mb-3 flex justify-center">
+            <SectionChip>Built for real project management</SectionChip>
+          </div>
+          <h2 className="mt-1 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[38px] lg:text-[42px]">
             Everything you need to deliver complex projects{' '}
             <span className="bg-gradient-to-r from-[#6161FF] to-[#8b8bff] bg-clip-text text-transparent">
               at scale.
@@ -348,7 +346,7 @@ export default function CapabilityLayers() {
           </p>
         </motion.div>
 
-        <div className="mx-auto mt-12 max-w-[1000px] md:mt-14">
+        <div className="mx-auto mt-8 max-w-[1000px] md:mt-10">
           {LAYERS.map((layer, i) => (
             <LayerPanel
               key={layer.id}
@@ -366,13 +364,13 @@ export default function CapabilityLayers() {
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.35, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 text-center text-[12px] tracking-[0.06em] text-[rgba(15,15,20,0.45)]"
+          className="mt-8 text-center text-[12px] tracking-[0.06em] text-[rgba(15,15,20,0.45)]"
         >
           200+ use cases · 190 industries · works the way your team works
         </motion.p>
 
         <motion.div
-          className="mt-8 flex justify-center"
+          className="mt-6 flex justify-center"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.4, duration: 0.4 }}

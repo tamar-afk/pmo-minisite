@@ -246,7 +246,7 @@ sections.push(
       ['Title', 'monday.com for PMO'],
       [
         'Meta description',
-        'Deliver projects with a full team behind you. AI-powered project management with agents that work alongside your team in monday.com.',
+        'Drive your projects forward with a full team behind you. AI-powered project management with agents that work alongside your team in monday.com.',
       ],
     ],
     ['Field', 'Copy'],
@@ -273,7 +273,7 @@ sections.push(
   h2('Hero'),
   tableCopy(
     [
-      ['H1 line 1', 'Deliver projects, with'],
+      ['H1 line 1', 'Drive your projects forward, with'],
       ['H1 line 2', 'a full team behind you'],
       [
         'Body',
@@ -531,7 +531,7 @@ sections.push(
     [
       [
         'Headline',
-        'Join 250,000+ teams who rely on monday to reach their goals',
+        'Loved by users. Trusted by organizations.',
       ],
       [
         'Quote',
@@ -542,20 +542,6 @@ sections.push(
       ['G2 line 1', 'Most popular work management software on G2'],
       ['G2 line 2', 'Backed by 14K+ customer reviews.'],
       ['Footer strip', 'Enterprise-ready AI work platform'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Logo rows'),
-  tableCopy(
-    [
-      [
-        'Top row',
-        'NBCUniversal, Unilever, Adobe, Netflix, Uber, Coca-Cola, Canva, Hulu, Lionsgate',
-      ],
-      [
-        'Bottom row',
-        'Lyft, Tesla, Nike, IKEA, Spotify, PayPal, Dropbox, Salesforce, HubSpot, Airbnb',
-      ],
     ],
     ['Field', 'Copy'],
   ),
@@ -644,7 +630,7 @@ sections.push(
       ],
       [
         'Gartner card body',
-        'Named a Leader in the 2025 Gartner® Magic Quadrant™ for Adaptive Project Management and Reporting (APMR)—furthest on Completeness of Vision and highest on Ability to Execute, two years running.',
+        'Leader in the 2025 Gartner® Magic Quadrant™ for APMR—furthest on vision, highest on execution.',
       ],
       ['Gartner CTA', 'Get the report'],
       [

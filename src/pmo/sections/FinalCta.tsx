@@ -5,7 +5,7 @@ export function FinalCta() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden border-t border-[rgba(12,12,15,0.06)] bg-white px-4 py-24 md:px-8 lg:px-12"
+      className="relative overflow-hidden border-t border-[rgba(12,12,15,0.06)] bg-white px-4 py-16 md:px-8 lg:px-12"
     >
       <motion.div
         aria-hidden

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { SectionChip } from '../components/SectionChip'
 import { SectionReveal } from '../components/SectionReveal'
 import { McpCardStack } from '../components/McpCardStack'
 import { springSnappy, springSoft } from '../motion'
@@ -17,16 +18,12 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 export function McpSection() {
   return (
-    <section id="mcp" className="mcp-section px-4 py-24 md:px-8 lg:px-12">
+    <section id="mcp" className="mcp-section px-4 py-14 md:px-8 md:py-16 lg:px-12">
       <div className="relative z-[1] mx-auto max-w-[900px] text-center">
         <SectionReveal>
-          <motion.span
-            className="inline-flex rounded-full border border-[rgba(12,12,15,0.08)] bg-white px-[14px] py-1.5 text-[12px] font-medium tracking-[0.04em] text-[rgba(12,12,15,0.5)] shadow-[0_1px_2px_rgba(12,12,15,0.04)]"
-            whileHover={{ scale: 1.02 }}
-            transition={springSnappy}
-          >
-            monday MCP
-          </motion.span>
+          <div className="mb-1 flex justify-center">
+            <SectionChip>Your AI tools</SectionChip>
+          </div>
           <h2 className="mt-5 text-[32px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[44px]">
             Your projects, connected to any AI tool
           </h2>
@@ -37,12 +34,12 @@ export function McpSection() {
         </SectionReveal>
       </div>
 
-      <div className="relative z-[1] mt-12 w-full">
+      <div className="relative z-[1] mt-8 w-full">
         <McpCardStack />
       </div>
 
       <motion.div
-        className="relative z-[1] mx-auto mt-10 flex max-w-[720px] flex-wrap justify-center gap-3"
+        className="relative z-[1] mx-auto mt-7 flex max-w-[720px] flex-wrap justify-center gap-3"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}

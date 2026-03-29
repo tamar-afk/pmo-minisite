@@ -37,12 +37,13 @@ export const mondayGartnerApmrGraphic =
  * AI PM feature tab art (Plan → Align → Execute → Track → Report).
  * Same Cloudinary assets as [monday.com/ap/project-management/ai-var](https://monday.com/ap/project-management/ai-var).
  */
+/** Tab art max ~440px CSS — fetch at 640w to match display size */
 export const mondayAiPmFeatureTabImages = {
-  plan: `${CLOUDINARY}/${mondayTransform(1280)}/v1771152734/Generator_featured%20images/pm-feb-26/features/pm-feature-plan.avif`,
-  align: `${CLOUDINARY}/${mondayTransform(1280)}/v1771156858/Generator_featured%20images/pm-feb-26/features/pm-feature-align.avif`,
-  execute: `${CLOUDINARY}/${mondayTransform(1280)}/v1771152735/Generator_featured%20images/pm-feb-26/features/pm-feature-execute.avif`,
-  track: `${CLOUDINARY}/${mondayTransform(1280)}/Generator_featured%20images/pm-feb-26/pm-feb-26-Track.avif`,
-  report: `${CLOUDINARY}/${mondayTransform(1280)}/v1771152734/Generator_featured%20images/pm-feb-26/features/pm-feature-report.avif`,
+  plan: `${CLOUDINARY}/${mondayTransform(640)}/v1771152734/Generator_featured%20images/pm-feb-26/features/pm-feature-plan.avif`,
+  align: `${CLOUDINARY}/${mondayTransform(640)}/v1771156858/Generator_featured%20images/pm-feb-26/features/pm-feature-align.avif`,
+  execute: `${CLOUDINARY}/${mondayTransform(640)}/v1771152735/Generator_featured%20images/pm-feb-26/features/pm-feature-execute.avif`,
+  track: `${CLOUDINARY}/${mondayTransform(640)}/Generator_featured%20images/pm-feb-26/pm-feb-26-Track.avif`,
+  report: `${CLOUDINARY}/${mondayTransform(640)}/v1771152734/Generator_featured%20images/pm-feb-26/features/pm-feature-report.avif`,
 } as const
 
 /** Composite strip of monday agent illustrations (local). */

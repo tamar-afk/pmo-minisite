@@ -72,20 +72,4 @@
     animation-play-state: paused;
   }
 
-  @keyframes social-marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-social-marquee {
-    animation: social-marquee 32s linear infinite;
-  }
-
-  .group:hover .animate-social-marquee {
-    animation-play-state: paused;
-  }
 }

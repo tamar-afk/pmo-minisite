@@ -25,7 +25,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t border-[rgba(15,15,20,0.08)] bg-white px-4 py-14 md:px-8 md:py-16 lg:px-12"
+      className="border-t border-[rgba(15,15,20,0.08)] bg-white px-4 py-10 md:px-8 md:py-12 lg:px-12"
     >
       <motion.div
         className="mx-auto max-w-[1280px]"
@@ -34,7 +34,7 @@ export function Footer() {
         viewport={{ once: true, amount: 0.12 }}
         variants={staggerContainer(0.06)}
       >
-        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
+        <div className="grid gap-8 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <motion.div variants={staggerItem}>
             <MondayWMLogo onDark={false} />
             <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-[rgba(15,15,20,0.55)]">
@@ -64,7 +64,7 @@ export function Footer() {
 
         <motion.div
           variants={staggerItem}
-          className="mt-14 flex flex-col gap-4 border-t border-[rgba(15,15,20,0.08)] pt-8 md:flex-row md:items-center md:justify-between"
+          className="mt-10 flex flex-col gap-3 border-t border-[rgba(15,15,20,0.08)] pt-6 md:flex-row md:items-center md:justify-between"
         >
           <p className="text-[12px] text-[rgba(15,15,20,0.45)]">
             © {new Date().getFullYear()} monday.com. All rights reserved.

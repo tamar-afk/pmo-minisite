@@ -34,7 +34,7 @@ export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-[#f4f4f5] px-4 py-20 md:px-8 lg:px-12">
+    <section id="faq" className="bg-[#f4f4f5] px-4 py-14 md:px-8 md:py-16 lg:px-12">
       <div className="mx-auto max-w-[720px]">
         <motion.h2
           className="text-center text-[28px] font-bold text-[#0f0f14] md:text-[32px]"
@@ -45,7 +45,7 @@ export function FAQSection() {
         >
           Frequently asked questions
         </motion.h2>
-        <div className="mt-10">
+        <div className="mt-8">
           {faqs.map((item, i) => {
             const isOpen = open === i
             return (
@@ -60,7 +60,7 @@ export function FAQSection() {
                 <motion.button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 py-4 text-left text-[15px] font-semibold text-[#0f0f14]"
+                  className="flex w-full items-start justify-between gap-4 py-3.5 text-left text-[15px] font-semibold text-[#0f0f14]"
                   whileHover={{ color: '#6161FF' }}
                   transition={springSnappy}
                 >

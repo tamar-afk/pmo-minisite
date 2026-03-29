@@ -225,7 +225,7 @@ export function AIAgents() {
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <section id="agents" className="border-b border-[rgba(12,12,15,0.05)] bg-white px-6 py-24 md:px-12 md:py-[140px]">
+    <section id="agents" className="border-b border-[rgba(12,12,15,0.05)] bg-white px-6 py-14 md:px-12 md:py-20">
       <div className="mx-auto max-w-[1280px] text-center">
         <motion.div
           initial="hidden"
@@ -240,7 +240,7 @@ export function AIAgents() {
           <motion.div
             variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: springSnappy } }}
           >
-            <SectionChip>AI agents</SectionChip>
+            <SectionChip>Your agents</SectionChip>
           </motion.div>
           <motion.h2
             variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: springSnappy } }}
@@ -258,7 +258,7 @@ export function AIAgents() {
         </motion.div>
 
         <div
-          className="mt-12 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:thin] snap-x snap-mandatory md:justify-center md:overflow-visible md:snap-none"
+          className="mt-8 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:thin] snap-x snap-mandatory md:justify-center md:overflow-visible md:snap-none"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {agents.map((a) => (

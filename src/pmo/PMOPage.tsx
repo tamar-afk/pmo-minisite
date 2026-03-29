@@ -1,4 +1,6 @@
 import { Nav } from './components/Nav'
+import { PageScrollReveal } from './components/PageScrollReveal'
+import { ScrollProgress } from './components/ScrollProgress'
 import { SectionDivider } from './components/SectionDivider'
 import { AIAgents } from './sections/AIAgents'
 import { BuildProjectAppSection } from './sections/BuildProjectAppSection'
@@ -16,30 +18,53 @@ import { ResourceManagementSection } from './sections/ResourceManagementSection'
 export function PMOPage() {
   return (
     <div className="min-h-screen bg-[var(--canvas)]">
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
         <SectionDivider />
-        <FeatureTabsSection />
+        <PageScrollReveal>
+          <FeatureTabsSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <AIAgents />
+        <PageScrollReveal>
+          <AIAgents />
+        </PageScrollReveal>
         <SectionDivider />
-        <ResourceManagementSection />
+        <PageScrollReveal>
+          <ResourceManagementSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <SocialProofSection />
+        <PageScrollReveal>
+          <SocialProofSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <PlatformBentoSection />
+        <PageScrollReveal>
+          <PlatformBentoSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <CapabilityLayers />
+        <PageScrollReveal>
+          <CapabilityLayers />
+        </PageScrollReveal>
         <SectionDivider />
-        <BuildProjectAppSection />
+        <PageScrollReveal>
+          <BuildProjectAppSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <McpSection />
+        <PageScrollReveal>
+          <McpSection />
+        </PageScrollReveal>
         <SectionDivider />
-        <FinalCta />
+        <PageScrollReveal>
+          <FinalCta />
+        </PageScrollReveal>
         <SectionDivider />
-        <FAQSection />
-        <Footer />
+        <PageScrollReveal>
+          <FAQSection />
+        </PageScrollReveal>
+        <PageScrollReveal>
+          <Footer />
+        </PageScrollReveal>
       </main>
     </div>
   )

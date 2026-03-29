@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { SectionChip } from '../components/SectionChip'
 import { springSnappy, springSoft, staggerContainer, staggerItem } from '../motion'
 
 const tiles = [
@@ -63,7 +64,7 @@ export function BuildProjectAppSection() {
   return (
     <section
       id="for-teams"
-      className="relative scroll-mt-24 overflow-hidden bg-[#f7f7f8] px-4 py-20 md:px-8 md:py-28 lg:px-12"
+      className="relative scroll-mt-24 overflow-hidden bg-[#f7f7f8] px-4 py-14 md:px-8 md:py-20 lg:px-12 lg:py-22"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_50%_at_50%_-15%,rgba(97,97,255,0.09),transparent_55%)]"
@@ -82,6 +83,9 @@ export function BuildProjectAppSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.22 }}
         >
+          <motion.div variants={staggerItem} className="mb-3 flex justify-center">
+            <SectionChip>Your apps</SectionChip>
+          </motion.div>
           <motion.h2
             variants={staggerItem}
             className="mx-auto max-w-[18ch] text-[clamp(1.75rem,4.5vw,2.35rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#0f0f14] sm:max-w-none md:text-[40px] md:leading-[1.06]"
@@ -98,7 +102,7 @@ export function BuildProjectAppSection() {
         </motion.div>
 
         <motion.div
-          className="mx-auto mt-12 max-w-[560px] lg:mt-14"
+          className="mx-auto mt-8 max-w-[560px] lg:mt-10"
           variants={staggerContainer(0.14)}
           initial="hidden"
           whileInView="show"
@@ -146,7 +150,7 @@ export function BuildProjectAppSection() {
         </motion.div>
 
         <motion.div
-          className="group relative mt-14 md:mt-16"
+          className="group relative mt-10 md:mt-12"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -207,7 +211,7 @@ export function BuildProjectAppSection() {
         </motion.div>
 
         <motion.div
-          className="mt-10 flex justify-center md:mt-12"
+          className="mt-8 flex justify-center md:mt-10"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}

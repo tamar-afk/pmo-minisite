@@ -46,10 +46,10 @@ export function ResourceManagementSection() {
   const mode = modes[active]
 
   return (
-    <section id="resources" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-12 md:px-8 md:py-16 lg:px-12">
+    <section id="resources" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-10 md:px-8 md:py-12 lg:px-12">
       <div className="mx-auto max-w-[1100px]">
         <div className="text-center">
-          <SectionChip>People management</SectionChip>
+          <SectionChip>Your people</SectionChip>
           <h2 className="mt-5 text-[28px] font-bold leading-tight text-[#0f0f14] md:text-[36px]">
             Make the most out of your workforce
           </h2>
@@ -61,7 +61,7 @@ export function ResourceManagementSection() {
 
         <motion.div
           ref={foldRef}
-          className="mt-12 overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_80px_rgba(15,15,20,0.08)]"
+          className="mt-8 overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_80px_rgba(15,15,20,0.08)]"
           initial={{ opacity: 0, y: 24 }}
           animate={foldInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut' }}

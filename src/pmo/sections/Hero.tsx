@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       id="overview"
-      className="relative overflow-hidden border-b border-[rgba(12,12,15,0.05)] bg-white px-4 pb-16 pt-[80px] md:px-12 md:pb-20 md:pt-[120px]"
+      className="relative overflow-hidden border-b border-[rgba(12,12,15,0.05)] bg-white px-4 pb-12 pt-[64px] md:px-12 md:pb-14 md:pt-[96px]"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-8%,rgba(97,97,255,0.11),transparent_52%)]"
@@ -53,11 +53,10 @@ export function Hero() {
       >
         <motion.h1
           variants={heroItem}
-          className="mx-auto max-w-[min(100%,22rem)] text-[40px] font-semibold leading-[1.12] tracking-[-0.035em] text-[#0c0c0f] antialiased sm:max-w-[26rem] md:max-w-[32rem] md:text-[56px] md:leading-[1.08] md:tracking-[-0.04em] lg:text-[60px]"
+          className="mx-auto max-w-[min(100%,42rem)] px-1 text-[clamp(20px,min(4.25vw+0.65rem),40px)] font-semibold leading-[1.1] tracking-[-0.035em] text-[#0c0c0f] antialiased md:text-[56px] md:leading-[1.08] md:tracking-[-0.04em] lg:text-[60px]"
         >
-          Deliver projects, with
-          <br aria-hidden />
-          <span className="inline-block">
+          <span className="block sm:whitespace-nowrap">Drive your projects forward, with</span>
+          <span className="mt-1 block whitespace-nowrap md:mt-1.5">
             a{' '}
             <span className="relative inline-block font-semibold text-[#6161FF]">
               <span className="relative z-10">full team</span>
@@ -72,7 +71,7 @@ export function Hero() {
 
         <motion.div
           variants={heroItem}
-          className="mx-auto mt-6 flex justify-center md:mt-7"
+          className="mx-auto mt-5 flex justify-center md:mt-6"
           aria-hidden
         >
           <span className="h-1 w-14 rounded-full bg-gradient-to-r from-[#6161FF] via-[#7c7cff] to-[#6161FF] opacity-90 shadow-[0_0_24px_rgba(97,97,255,0.35)]" />
@@ -80,13 +79,13 @@ export function Hero() {
 
         <motion.p
           variants={heroItem}
-          className="mx-auto mt-6 max-w-[520px] text-pretty text-[18px] font-normal leading-[1.65] tracking-[-0.01em] text-[rgba(12,12,15,0.62)] antialiased md:mt-7"
+          className="mx-auto mt-5 max-w-[520px] text-pretty text-[18px] font-normal leading-[1.65] tracking-[-0.01em] text-[rgba(12,12,15,0.62)] antialiased md:mt-6"
         >
           Always-on agents work alongside your team, chasing updates, flagging risks, and reporting to
           leadership so your people don&apos;t have to.
         </motion.p>
 
-        <motion.div variants={heroItem} className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <motion.div variants={heroItem} className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <motion.a
             href="#pricing"
             className="inline-flex items-center justify-center rounded-full bg-[#6161FF] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_1px_0_rgba(255,255,255,0.12)_inset,0_8px_32px_rgba(97,97,255,0.22)]"
@@ -113,13 +112,13 @@ export function Hero() {
         </motion.p>
       </motion.div>
 
-      <div className="mx-auto mt-10 max-w-[900px] px-0">
+      <div className="mx-auto mt-8 max-w-[900px] px-0">
         <HeroShowcase />
       </div>
 
       <div className="mx-auto max-w-[900px]">
         <motion.div
-          className="mt-12 space-y-4 text-center"
+          className="mt-8 space-y-3 text-center"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -128,7 +127,7 @@ export function Hero() {
           <p className="text-[13px] text-[rgba(15,15,20,0.45)]">
             Trusted by 250,000+ customers worldwide
           </p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {logos.map((name, i) => (
               <motion.span
                 key={name}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FeatureTabVisual } from '../components/FeatureTabVisual'
+import { SectionChip } from '../components/SectionChip'
 import { springSnappy } from '../motion'
 
 const SECTION_HEADLINE = 'Every project, end-to-end.'
@@ -54,9 +55,12 @@ export function FeatureTabsSection() {
   const tab = tabs[active]
 
   return (
-    <section id="features" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-20 md:px-8 lg:px-12">
+    <section id="features" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-14 md:px-8 md:py-16 lg:px-12">
       <div className="mx-auto max-w-[1280px]">
-        <header className="mb-10 max-w-[720px] md:mb-14">
+        <header className="mb-8 max-w-[720px] md:mb-10">
+          <div className="mb-3">
+            <SectionChip>Your projects</SectionChip>
+          </div>
           <h2 className="text-pretty text-[32px] font-semibold leading-[1.12] tracking-[-0.02em] text-[#0c0c0f] md:text-[40px] md:leading-[1.1]">
             {SECTION_HEADLINE.replace(' end-to-end.', '')}{' '}
             <span className="whitespace-nowrap">end-to-end.</span>
@@ -74,7 +78,7 @@ export function FeatureTabsSection() {
           </motion.a>
         </header>
 
-        <div className="mt-0 flex flex-col gap-8 lg:flex-row lg:gap-12">
+        <div className="mt-0 flex flex-col gap-6 lg:flex-row lg:gap-9">
           <nav
             className="relative w-full max-w-[min(100%,320px)] lg:w-[260px] lg:max-w-none lg:flex-shrink-0"
             aria-label="Project lifecycle stages"
@@ -149,7 +153,7 @@ export function FeatureTabsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -8 }}
                 transition={{ duration: 0.3 }}
-                className="flex flex-col gap-5 md:gap-6"
+                className="flex flex-col gap-4 md:gap-5"
               >
                 <div>
                   <h3
