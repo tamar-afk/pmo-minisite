@@ -209,30 +209,6 @@ export function BuildProjectAppSection() {
             </div>
           </div>
         </motion.div>
-
-        <motion.div
-          className="mt-8 flex justify-center md:mt-10"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ ...springSoft, delay: 0.06 }}
-        >
-          <motion.a
-            href="#pricing"
-            className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,15,20,0.08)] bg-white px-6 py-3 text-[15px] font-semibold text-[#6161FF] shadow-[0_4px_24px_rgba(15,15,20,0.06)]"
-            whileHover={{ x: 3, borderColor: 'rgba(97,97,255,0.35)', backgroundColor: 'rgba(255,255,255,1)' }}
-            transition={springSnappy}
-          >
-            <span className="text-[13px] font-bold tracking-tight text-[#0f0f14]">monday vibe</span>
-            <span className="text-[rgba(15,15,20,0.35)]" aria-hidden>
-              ·
-            </span>
-            Get started{' '}
-            <motion.span aria-hidden animate={{ x: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
-              →
-            </motion.span>
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   )

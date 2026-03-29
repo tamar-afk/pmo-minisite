@@ -31,11 +31,11 @@ const interactiveItems: BentoItem[] = [
     imageSrc: '/images/why-monday-team.jpg',
     imageAlt: 'Teams collaborating with monday work management',
     footer: (
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center rounded-md border border-[rgba(15,15,20,0.1)] bg-[#fafafa] px-2.5 py-1 text-[11px] font-semibold text-[#0f0f14]">
+      <div className="flex flex-wrap items-center gap-2.5">
+        <span className="inline-flex items-center rounded-md border border-[rgba(15,15,20,0.1)] bg-[#fafafa] px-3 py-1.5 text-[13px] font-semibold text-[#0f0f14]">
           G2
         </span>
-        <span className="text-[11px] font-medium text-[rgba(15,15,20,0.45)]">Highest Adoption · Winter 2025</span>
+        <span className="text-[14px] font-medium text-[rgba(15,15,20,0.5)]">Highest Adoption · Winter 2025</span>
       </div>
     ),
   },
@@ -47,18 +47,18 @@ const interactiveItems: BentoItem[] = [
     imageSrc: '/images/why-monday-team.jpg',
     imageAlt: 'Teams collaborating with monday work management',
     footer: (
-      <div className="space-y-2">
-        <div className="flex flex-wrap gap-3 text-[12px]">
+      <div className="space-y-3">
+        <div className="flex flex-wrap gap-4 text-[15px] md:text-[16px]">
           <span>
             <span className="font-bold text-[#0c0c0f]">250K+</span>{' '}
-            <span className="text-[rgba(15,15,20,0.5)]">customers</span>
+            <span className="text-[rgba(15,15,20,0.55)]">customers</span>
           </span>
           <span>
             <span className="font-bold text-[#0c0c0f]">190+</span>{' '}
-            <span className="text-[rgba(15,15,20,0.5)]">industries</span>
+            <span className="text-[rgba(15,15,20,0.55)]">industries</span>
           </span>
         </div>
-        <p className="text-[11px] leading-snug text-[rgba(15,15,20,0.45)]">
+        <p className="text-[13px] leading-snug text-[rgba(15,15,20,0.5)] md:text-[14px]">
           From startups to enterprises, worldwide
         </p>
       </div>
@@ -72,18 +72,18 @@ const interactiveItems: BentoItem[] = [
     imageSrc: '/images/why-monday-team.jpg',
     imageAlt: 'People and teams using monday work management across the business',
     footer: (
-      <ul className="space-y-2.5">
-        <li className="border-b border-[rgba(15,15,20,0.06)] pb-2">
-          <p className="text-[12px] font-semibold text-[#0c0c0f]">200+ integrations</p>
-          <p className="text-[11px] text-[rgba(15,15,20,0.45)]">Connect your entire stack</p>
+      <ul className="space-y-3.5">
+        <li className="border-b border-[rgba(15,15,20,0.06)] pb-3">
+          <p className="text-[15px] font-semibold text-[#0c0c0f] md:text-[16px]">200+ integrations</p>
+          <p className="mt-1 text-[13px] text-[rgba(15,15,20,0.5)] md:text-[14px]">Connect your entire stack</p>
         </li>
-        <li className="border-b border-[rgba(15,15,20,0.06)] pb-2">
-          <p className="text-[12px] font-semibold text-[#0c0c0f]">REST API</p>
-          <p className="text-[11px] text-[rgba(15,15,20,0.45)]">Build on top of monday</p>
+        <li className="border-b border-[rgba(15,15,20,0.06)] pb-3">
+          <p className="text-[15px] font-semibold text-[#0c0c0f] md:text-[16px]">REST API</p>
+          <p className="mt-1 text-[13px] text-[rgba(15,15,20,0.5)] md:text-[14px]">Build on top of monday</p>
         </li>
         <li>
-          <p className="text-[12px] font-semibold text-[#0c0c0f]">MCP support</p>
-          <p className="text-[11px] text-[rgba(15,15,20,0.45)]">Native AI agent protocol</p>
+          <p className="text-[15px] font-semibold text-[#0c0c0f] md:text-[16px]">MCP support</p>
+          <p className="mt-1 text-[13px] text-[rgba(15,15,20,0.5)] md:text-[14px]">Native AI agent protocol</p>
         </li>
       </ul>
     ),
@@ -97,11 +97,11 @@ const interactiveItems: BentoItem[] = [
     imageAlt: 'Enterprise teams using monday work management',
     footer: (
       <div>
-        <p className="text-[28px] font-bold leading-none tracking-tight text-[#0c0c0f] md:text-[32px]">
-          70<span className="text-[rgba(15,15,20,0.35)]">%</span>
+        <p className="text-[34px] font-bold leading-none tracking-tight text-[#0c0c0f] md:text-[40px]">
+          60<span className="text-[rgba(15,15,20,0.35)]">%</span>
         </p>
-        <p className="mt-1 text-[12px] leading-snug text-[rgba(15,15,20,0.5)]">
-          of the Fortune 500 <span className="text-[rgba(15,15,20,0.65)]">run on monday</span>
+        <p className="mt-2 text-[14px] leading-snug text-[rgba(15,15,20,0.55)] md:text-[15px]">
+          of Fortune 500 companies <span className="text-[rgba(15,15,20,0.7)]">run on monday</span>
         </p>
       </div>
     ),
@@ -159,7 +159,7 @@ function BentoCard({
               style={{ transform: 'rotateY(0deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
               <div>
-                <div className="flex items-center justify-between gap-3 rounded-full border border-[rgba(15,15,20,0.09)] bg-[#fafafa] px-4 py-3 shadow-sm transition-colors duration-300 group-hover:border-[rgba(15,15,20,0.14)] md:gap-4 md:px-5 md:py-3.5">
+                <div className="flex items-start justify-between gap-3 md:gap-4">
                   <h3 className="min-w-0 flex-1 text-left text-[15px] font-semibold leading-snug tracking-[-0.02em] text-[#0c0c0f] md:text-[16px]">
                     {item.title}
                   </h3>
@@ -346,32 +346,7 @@ export function PlatformBentoSection() {
         </div>
 
         {/* Analyst & research proof row — flip cards: claim (front) / proof (back) */}
-        <div className="mt-4 grid grid-cols-1 gap-3 md:mt-6 md:grid-cols-3 md:gap-4">
-          <ProofFlipCard
-            title="Most popular work management software on G2"
-            claimBody={
-              <p>
-                Backed by 14K+ customer reviews. Rated by real users as the leader in work management.
-              </p>
-            }
-            proof={
-              <>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-md bg-[#0f0f14] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-                    Leader
-                  </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[rgba(15,15,20,0.45)]">
-                    Winter 2026
-                  </span>
-                </div>
-                <p className="mt-5 text-[40px] font-bold leading-none tracking-tight text-[#0c0c0f] md:text-[44px]">
-                  4.7<span className="text-[22px] font-semibold text-[rgba(15,15,20,0.35)]">/5</span>
-                </p>
-                <p className="mt-2 text-[12px] text-[rgba(15,15,20,0.45)]">Based on 14K+ customer reviews</p>
-              </>
-            }
-          />
-
+        <div className="mt-4 grid grid-cols-1 gap-3 md:mt-6 md:grid-cols-2 md:gap-4">
           <ProofFlipCard
             title="Leader in Gartner Magic Quadrant for APMR"
             claimBody={
@@ -393,7 +368,7 @@ export function PlatformBentoSection() {
                   href="https://monday.com/ap/gartner-apmr-2025"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[#6161FF] hover:text-[#5050e6]"
+                  className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#6161FF] hover:text-[#5050e6] md:text-[15px]"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Get the report <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -415,10 +390,10 @@ export function PlatformBentoSection() {
                 <p className="text-[36px] font-bold leading-none tracking-tight text-[#6161FF] md:text-[42px]">
                   346%
                 </p>
-                <p className="mt-2 text-[12px] font-medium leading-snug text-[rgba(15,15,20,0.55)]">
+                <p className="mt-2 text-[13px] font-medium leading-snug text-[rgba(15,15,20,0.55)] md:text-[14px]">
                   ROI in the Total Economic Impact Study of monday.com
                 </p>
-                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[rgba(15,15,20,0.4)]">
+                <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[rgba(15,15,20,0.45)] md:text-[13px]">
                   Forrester
                 </p>
               </>

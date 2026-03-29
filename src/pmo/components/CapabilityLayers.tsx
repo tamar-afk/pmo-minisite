@@ -3,18 +3,19 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-mot
 import {
   AlertTriangle,
   BarChart2,
-  Bell,
   Boxes,
   ChartGantt,
+  Flag,
   Inbox,
   Layers,
+  LineChart,
   LayoutDashboard,
   Link2,
   MessageCircle,
   Scan,
+  Route,
   SquareKanban,
   Users,
-  Waypoints,
   Zap,
   type LucideIcon,
 } from 'lucide-react'
@@ -77,10 +78,19 @@ const projectCaps: Capability[] = [
     description: 'Visualize timelines, milestones, and dependencies at a glance',
   },
   {
-    Icon: Waypoints,
-    name: 'Milestones, baselines and critical path',
-    description:
-      'Mark key checkpoints, compare planned vs. actual to catch slippage early, and see the tasks that determine your finish date',
+    Icon: Flag,
+    name: 'Milestones',
+    description: 'Mark key checkpoints along your timeline',
+  },
+  {
+    Icon: LineChart,
+    name: 'Baselines',
+    description: 'Compare planned vs. actual to catch slippage early',
+  },
+  {
+    Icon: Route,
+    name: 'Critical path',
+    description: 'See the tasks that determine your finish date',
   },
   {
     Icon: Link2,
@@ -107,11 +117,6 @@ const executionCaps: Capability[] = [
     name: 'Collaboration and file sharing',
     description:
       'Comment, tag teammates, and keep conversations in context alongside the work. Attach docs, assets, and references directly to tasks so nothing gets lost in email',
-  },
-  {
-    Icon: Bell,
-    name: 'Notifications',
-    description: 'Stay on top of what matters with smart alerts that know when to surface and when to stay quiet',
   },
   {
     Icon: Zap,

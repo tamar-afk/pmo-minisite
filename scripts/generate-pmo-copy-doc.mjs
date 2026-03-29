@@ -607,23 +607,13 @@ sections.push(
         'Card 4 body',
         'Trusted by the world’s most complex organizations, with the permissions, approval gates, and governance to prove it.',
       ],
-      ['Card 4 stat', '70% of the Fortune 500 run on monday'],
+      ['Card 4 stat', '60% of Fortune 500 companies run on monday'],
     ],
     ['Field', 'Copy'],
   ),
   h3('Analyst / proof row'),
   tableCopy(
     [
-      [
-        'G2 card title',
-        'Most popular work management software on G2',
-      ],
-      [
-        'G2 card body',
-        'Backed by 14K+ customer reviews. Rated by real users as the leader in work management.',
-      ],
-      ['G2 badge', 'Leader · Winter 2026'],
-      ['G2 score', '4.7/5 · Based on 14K+ customer reviews'],
       [
         'Gartner card title',
         'Leader in Gartner Magic Quadrant for APMR',
@@ -687,10 +677,9 @@ sections.push(
         'Cross-project dependencies',
         'Manage task relationships across multiple projects in one view',
       ],
-      [
-        'Milestones, baselines & critical path',
-        'Mark key checkpoints, compare planned vs. actual to catch slippage early, and see the tasks that determine your finish date',
-      ],
+      ['Milestones', 'Mark key checkpoints along your timeline'],
+      ['Baselines', 'Compare planned vs. actual to catch slippage early'],
+      ['Critical path', 'See the tasks that determine your finish date'],
       [
         'Multiple views',
         'Switch between table, timeline, calendar, kanban, and more—same work, the view your team needs',
@@ -724,7 +713,6 @@ sections.push(
         'Marquee tiles',
         'OKR tracker, Portfolio risk register, Executive overview, Resource insights, Project scenario planner, Budget tracker, Milestone dashboard, Dependency map',
       ],
-      ['CTA', 'monday vibe · Get started →'],
     ],
     ['Field', 'Copy'],
   ),
