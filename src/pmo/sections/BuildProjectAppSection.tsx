@@ -1,0 +1,235 @@
+import { useEffect, useRef, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { springSnappy, springSoft, staggerContainer, staggerItem } from '../motion'
+
+const tiles = [
+  'OKR tracker',
+  'Portfolio risk register',
+  'Executive overview',
+  'Resource insights',
+  'Project scenario planner',
+  'Budget tracker',
+  'Milestone dashboard',
+  'Dependency map',
+]
+
+const PROMPT =
+  'Build me an executive overview dashboard showing RAG status, upcoming milestones, and budget vs. actuals across all active projects'
+
+function usePromptTypewriter() {
+  const prefersReducedMotion = useReducedMotion()
+  const [display, setDisplay] = useState('')
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplay(PROMPT)
+      return
+    }
+    let cancelled = false
+    let i = 0
+    const TYPE_MS = 40
+    const PAUSE_MS = 2500
+    const tick = () => {
+      if (cancelled) return
+      if (i < PROMPT.length) {
+        i += 1
+        setDisplay(PROMPT.slice(0, i))
+        timerRef.current = setTimeout(tick, TYPE_MS)
+      } else {
+        timerRef.current = setTimeout(() => {
+          if (cancelled) return
+          i = 0
+          setDisplay('')
+          tick()
+        }, PAUSE_MS)
+      }
+    }
+    timerRef.current = setTimeout(tick, 600)
+    return () => {
+      cancelled = true
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [prefersReducedMotion])
+
+  return { display, prefersReducedMotion }
+}
+
+export function BuildProjectAppSection() {
+  const { display, prefersReducedMotion } = usePromptTypewriter()
+  const activeTile = display.toLowerCase().includes('executive') ? 'Executive overview' : null
+  const reduce = useReducedMotion()
+
+  return (
+    <section
+      id="for-teams"
+      className="relative scroll-mt-24 overflow-hidden bg-[#f7f7f8] px-4 py-20 md:px-8 md:py-28 lg:px-12"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_50%_at_50%_-15%,rgba(97,97,255,0.09),transparent_55%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-24 top-1/3 h-[min(420px,50vh)] w-[min(480px,70vw)] rounded-full bg-[radial-gradient(circle,rgba(97,97,255,0.06),transparent_70%)] blur-3xl"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-[1100px]">
+        <motion.div
+          className="text-center"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.22 }}
+        >
+          <motion.h2
+            variants={staggerItem}
+            className="mx-auto max-w-[18ch] text-[clamp(1.75rem,4.5vw,2.35rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#0f0f14] sm:max-w-none md:text-[40px] md:leading-[1.06]"
+          >
+            <span className="block sm:inline">Build any project app </span>
+            <span className="block sm:inline">in minutes</span>
+          </motion.h2>
+          <motion.p
+            variants={staggerItem}
+            className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[rgba(15,15,20,0.55)] md:mt-6 md:text-[18px]"
+          >
+            Describe what you need. monday vibe builds the app on top of your live project data.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="mx-auto mt-12 max-w-[560px] lg:mt-14"
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.12 }}
+        >
+          <motion.div variants={staggerItem} className="min-h-0">
+            <div className="flex h-full flex-col overflow-hidden rounded-[22px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_70px_rgba(15,15,20,0.09)] ring-1 ring-[rgba(15,15,20,0.04)]">
+              <div className="flex items-center gap-2 border-b border-[rgba(15,15,20,0.06)] bg-[#fafafa] px-4 py-2.5">
+                <span className="flex gap-1.5" aria-hidden>
+                  <span className="h-2 w-2 rounded-full bg-[#FF6B6B]" />
+                  <span className="h-2 w-2 rounded-full bg-[#FFCC33]" />
+                  <span className="h-2 w-2 rounded-full bg-[#3DD598]" />
+                </span>
+                <span className="text-[11px] font-medium text-[rgba(15,15,20,0.45)]">monday vibe · prompt</span>
+              </div>
+              <div className="flex flex-1 flex-col bg-gradient-to-b from-[#fafbff] to-white p-4 md:p-5">
+                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(15,15,20,0.4)]">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[rgba(97,97,255,0.12)] text-[#6161FF]">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                    </svg>
+                  </span>
+                  Example prompt
+                </div>
+                <p
+                  className="mt-3 min-h-[6rem] flex-1 text-[15px] leading-relaxed text-[#0f0f14] md:text-[16px]"
+                  aria-live={prefersReducedMotion ? 'off' : 'polite'}
+                >
+                  {display}
+                  <motion.span
+                    className="ml-0.5 inline-block w-[2px] translate-y-px bg-[#6161FF]"
+                    style={{ height: '1.05em' }}
+                    animate={{ opacity: [1, 0.15, 1] }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.85,
+                      repeat: prefersReducedMotion ? 0 : Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    aria-hidden
+                  />
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="group relative mt-14 md:mt-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={reduce ? { duration: 0.2 } : springSoft}
+        >
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f7f7f8] to-transparent md:w-24"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f7f7f8] to-transparent md:w-24"
+            aria-hidden
+          />
+          <div className="overflow-hidden py-2 [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="animate-build-strip flex w-max gap-4">
+              {[0, 1].map((dup) => (
+                <div key={dup} className="flex gap-4">
+                  {tiles.map((t) => {
+                    const isActive = activeTile === t
+                    return (
+                      <motion.div
+                        key={`${dup}-${t}`}
+                        className={`flex min-h-[120px] w-[180px] shrink-0 flex-col items-center justify-center rounded-[14px] border px-3 pb-3 pt-3 shadow-sm transition-colors duration-300 ${
+                          isActive
+                            ? 'border-[rgba(97,97,255,0.45)] bg-white shadow-[0_20px_48px_rgba(97,97,255,0.18)] ring-1 ring-[rgba(97,97,255,0.12)]'
+                            : 'border-[rgba(15,15,20,0.07)] bg-white/90'
+                        }`}
+                        whileHover={
+                          reduce
+                            ? {}
+                            : {
+                                scale: 1.03,
+                                y: -3,
+                                borderColor: 'rgba(97,97,255,0.35)',
+                              }
+                        }
+                        transition={springSnappy}
+                      >
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[rgba(97,97,255,0.12)] text-[#6161FF]">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                            <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" />
+                          </svg>
+                        </span>
+                        <span
+                          className={`mt-2 text-center text-[12px] font-medium leading-snug ${
+                            isActive ? 'text-[#0f0f14]' : 'text-[rgba(15,15,20,0.65)]'
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="mt-10 flex justify-center md:mt-12"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ ...springSoft, delay: 0.06 }}
+        >
+          <motion.a
+            href="#pricing"
+            className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,15,20,0.08)] bg-white px-6 py-3 text-[15px] font-semibold text-[#6161FF] shadow-[0_4px_24px_rgba(15,15,20,0.06)]"
+            whileHover={{ x: 3, borderColor: 'rgba(97,97,255,0.35)', backgroundColor: 'rgba(255,255,255,1)' }}
+            transition={springSnappy}
+          >
+            <span className="text-[13px] font-bold tracking-tight text-[#0f0f14]">monday vibe</span>
+            <span className="text-[rgba(15,15,20,0.35)]" aria-hidden>
+              ·
+            </span>
+            Get started{' '}
+            <motion.span aria-hidden animate={{ x: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+              →
+            </motion.span>
+          </motion.a>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
