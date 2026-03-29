@@ -5,7 +5,7 @@ import { springSnappy } from '../motion'
 
 const SECTION_HEADLINE = 'Every project, end-to-end.'
 const SECTION_INTRO =
-  'Focus on outcomes and decisions. AI handles coordination, monitoring, reporting, and the follow-through that slows projects down.'
+  'Every stage of the project cycle is automatically pushed forward. Your agents continuously handle monitoring, reporting, and the follow-through that slows projects down.'
 
 /**
  * Tab order (Plan → Align → Execute → Track → Report) and visuals:

@@ -370,7 +370,7 @@ sections.push(
       ['H2', 'Every project, end-to-end.'],
       [
         'Intro',
-        'Focus on outcomes and decisions. AI handles coordination, monitoring, reporting, and the follow-through that slows projects down.',
+        'Every stage of the project cycle is automatically pushed forward. Your agents continuously handle monitoring, reporting, and the follow-through that slows projects down.',
       ],
       ['Link', 'Get started →'],
       ['Timeline labels', 'Plan · Align · Execute · Track · Report'],
