@@ -319,10 +319,10 @@ sections.push(
   tableCopy(
     [
       ['Chip', 'How it works'],
-      ['H2', 'From brief to done, without the manual work'],
+      ['H2', 'From planning to delivery, without the manual work'],
       [
         'Intro',
-        'Every stage keeps moving because your agents are always on and your platform always has the full picture.',
+        'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.',
       ],
       ['Link', 'Get started →'],
       ['Timeline labels', 'Plan · Align · Run · Track · Report'],
@@ -410,7 +410,7 @@ sections.push(
       ['H2', 'Your best people on your most important work'],
       [
         'Intro',
-        "When agents handle the coordination, you can see who's overloaded, who has capacity, and whether your staffing matches your priorities, before it's too late to change it.",
+        "Now that agents handle the busywork, you can make sure your team's time and talent go to the work that requires them most.",
       ],
     ],
     ['Field', 'Copy'],
@@ -420,27 +420,27 @@ sections.push(
     [
       [
         'Plan resource needs: headline',
-        'See demand before you staff',
+        'No more staffing surprises',
       ],
       [
         'Plan resource needs: body',
-        'Roadmaps and intake show up as role gaps and peak load, so you adjust dates and staffing while you still can.',
+        "Plan headcount at the project level using planned roles, before you're ready to assign.",
       ],
       [
         'Allocate the right person: headline',
-        'Match the right person to every role',
+        'Right person, every time',
       ],
       [
         'Allocate the right person: body',
-        'Skills, availability, and current load surfaced automatically. You make the call, with the full picture in front of you.',
+        'Assign at the project or task level. AI recommends based on skills, availability, and workload.',
       ],
       [
         'Balance capacity: headline',
-        'Catch overload before it hits delivery',
+        'Always know where your team stands',
       ],
       [
         'Balance capacity: body',
-        'See capacity gaps across teams and projects in one view. Shift resources before timelines slip, not after.',
+        'See planned vs. actual in the capacity manager, spot conflicts, and make changes instantly.',
       ],
       ['CTA', 'Get started →'],
     ],
@@ -560,16 +560,16 @@ sections.push(
   tableCopy(
     [
       ['Chip', 'The platform'],
-      ['H2', 'Everything your projects run on'],
+      ['H2', 'One complete platform, built for every level of project work.'],
       [
         'Subcopy',
-        'The depth to handle one project or a hundred. Agents work on top of it, but this is what makes them actually useful.',
+        'Everything you need to manage projects at scale. Agents included.',
       ],
       [
         'Portfolios subtitle',
         'For leads running multiple projects at once, with full visibility across every one of them',
       ],
-      ['Project subtitle', 'For project managers running complex delivery end-to-end'],
+      ['Projects subtitle', 'For project managers running complex delivery end-to-end'],
       [
         'Execution subtitle',
         'Where your people and agents do the actual work, side by side',

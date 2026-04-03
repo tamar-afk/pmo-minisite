@@ -113,14 +113,23 @@ export function Hero() {
         </motion.p>
       </div>
 
-      <motion.div
-        className="mx-auto mt-8 max-w-[900px] px-0"
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: showcaseDelay, duration: 0.45, ease: pageEase }}
-      >
-        <HeroShowcase />
-      </motion.div>
+      <div className="mx-auto mt-10 w-full max-w-[min(100%,1120px)] px-0">
+        <motion.p
+          className="mb-5 text-center text-[13px] font-medium leading-snug tracking-[-0.01em] text-[rgba(12,12,15,0.52)] antialiased md:mb-6 md:text-[14px]"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: showcaseDelay, duration: 0.4, ease: pageEase }}
+        >
+          Ranked a top 5 project management platform on G2, backed by 14K+ customer reviews
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: showcaseDelay + 0.08, duration: 0.45, ease: pageEase }}
+        >
+          <HeroShowcase />
+        </motion.div>
+      </div>
     </section>
   )
 }

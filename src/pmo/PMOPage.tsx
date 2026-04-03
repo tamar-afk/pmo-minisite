@@ -35,11 +35,11 @@ export function PMOPage() {
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
-          <CapabilityLayers />
+          <FeatureTabsSection />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
-          <FeatureTabsSection />
+          <CapabilityLayers />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>

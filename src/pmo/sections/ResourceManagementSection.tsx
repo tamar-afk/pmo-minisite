@@ -47,8 +47,8 @@ export function ResourceManagementSection() {
             Your best people on your most important work
           </h2>
           <p className="mt-4 max-w-[640px] text-[16px] font-normal leading-[1.6] text-[rgba(15,15,20,0.6)] md:text-[17px]">
-            When agents handle the coordination, you can finally see who&apos;s overloaded, who has room, and
-            whether the right people are on the right work.
+            Now that agents handle the busywork, you can make sure your team&apos;s time and talent go to the work
+            that requires them most.
           </p>
         </div>
 

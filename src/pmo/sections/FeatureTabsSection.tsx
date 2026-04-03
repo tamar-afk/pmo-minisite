@@ -4,7 +4,7 @@ import { FeatureTabVisual } from '../components/FeatureTabVisual'
 import { SectionChip } from '../components/SectionChip'
 import { pageEase, springSnappy } from '../motion'
 
-const SECTION_HEADLINE = 'From brief to done, without the manual work'
+const SECTION_HEADLINE = 'From planning to delivery, without the manual work'
 const SECTION_INTRO =
   'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.'
 
@@ -26,14 +26,14 @@ const tabs = [
     label: 'Align',
     headline: 'Everyone on the same page, without the meeting',
     body:
-      'Skills, availability, and current load surfaced automatically. You make the call, with the full picture in front of you.',
+      'The right people get the right updates automatically. No chasing, no check-in meetings, no one asking "where are we on this?"',
   },
   {
     id: 'execute' as const,
     label: 'Run',
     headline: 'Work moves forward, with or without you in the room',
     body:
-      'Agents nudge owners, flag blockers, and keep tasks moving through the pipeline. Your job is decisions, not follow-up.',
+      'Task-specific agents clear blockers, chase owners, and keep the pipeline moving. Your team focuses on the work only they can do.',
   },
   {
     id: 'track' as const,
