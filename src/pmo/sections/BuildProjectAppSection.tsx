@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { SectionChip } from '../components/SectionChip'
-import { springSnappy, springSoft, staggerContainer, staggerItem } from '../motion'
+import { springSoft, staggerContainer, staggerItem } from '../motion'
 
 const tiles = [
   'OKR tracker',
@@ -17,7 +17,7 @@ const tiles = [
 const PROMPT =
   'Build me an executive overview dashboard showing RAG status, upcoming milestones, and budget vs. actuals across all active projects'
 
-function usePromptTypewriter() {
+function usePromptTypewriter(started: boolean) {
   const prefersReducedMotion = useReducedMotion()
   const [display, setDisplay] = useState('')
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -27,6 +27,8 @@ function usePromptTypewriter() {
       setDisplay(PROMPT)
       return
     }
+    if (!started) return
+
     let cancelled = false
     let i = 0
     const TYPE_MS = 40
@@ -46,58 +48,52 @@ function usePromptTypewriter() {
         }, PAUSE_MS)
       }
     }
-    timerRef.current = setTimeout(tick, 600)
+    timerRef.current = setTimeout(tick, 400)
     return () => {
       cancelled = true
       if (timerRef.current) clearTimeout(timerRef.current)
     }
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, started])
 
   return { display, prefersReducedMotion }
 }
 
 export function BuildProjectAppSection() {
-  const { display, prefersReducedMotion } = usePromptTypewriter()
+  const promptRef = useRef(null)
+  const promptInView = useInView(promptRef, { once: true, amount: 0.35 })
+  const { display, prefersReducedMotion } = usePromptTypewriter(promptInView)
   const activeTile = display.toLowerCase().includes('executive') ? 'Executive overview' : null
   const reduce = useReducedMotion()
 
   return (
     <section
       id="for-teams"
-      className="relative scroll-mt-24 overflow-hidden bg-[#f7f7f8] px-4 py-14 md:px-8 md:py-20 lg:px-12 lg:py-22"
+      className="relative scroll-mt-24 overflow-hidden bg-[rgba(247,247,248,0.55)] px-4 py-14 backdrop-blur-[1px] md:px-8 md:py-20 lg:px-12 lg:py-22"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_50%_at_50%_-15%,rgba(97,97,255,0.09),transparent_55%)]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-24 top-1/3 h-[min(420px,50vh)] w-[min(480px,70vw)] rounded-full bg-[radial-gradient(circle,rgba(97,97,255,0.06),transparent_70%)] blur-3xl"
-        aria-hidden
-      />
-
       <div className="relative mx-auto max-w-[1100px]">
         <motion.div
-          className="text-center"
+          className="text-left"
           variants={staggerContainer(0.1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.22 }}
         >
-          <motion.div variants={staggerItem} className="mb-3 flex justify-center">
+          <motion.div variants={staggerItem} className="mb-3 flex justify-start">
             <SectionChip>Your apps</SectionChip>
           </motion.div>
           <motion.h2
             variants={staggerItem}
-            className="mx-auto max-w-[18ch] text-[clamp(1.75rem,4.5vw,2.35rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#0f0f14] sm:max-w-none md:text-[40px] md:leading-[1.06]"
+            className="max-w-[22ch] text-[40px] font-bold leading-[1.2] tracking-[-0.035em] text-[#0f0f14] sm:max-w-none md:text-[44px] lg:text-[48px]"
           >
-            <span className="block sm:inline">Build any project app </span>
-            <span className="block sm:inline">in minutes</span>
+            <span className="block sm:inline">Need something specific? </span>
+            <span className="block sm:inline">Build it in minutes.</span>
           </motion.h2>
           <motion.p
             variants={staggerItem}
-            className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[rgba(15,15,20,0.55)] md:mt-6 md:text-[18px]"
+            className="mt-5 max-w-[560px] text-[16px] font-normal leading-[1.6] text-[rgba(15,15,20,0.55)] md:mt-6 md:text-[18px]"
           >
-            Describe what you need. monday vibe builds the app on top of your live project data.
+            Describe what you need. monday builds the app on top of your live project data. No developers, no
+            waiting.
           </motion.p>
         </motion.div>
 
@@ -108,8 +104,8 @@ export function BuildProjectAppSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.12 }}
         >
-          <motion.div variants={staggerItem} className="min-h-0">
-            <div className="flex h-full flex-col overflow-hidden rounded-[22px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_70px_rgba(15,15,20,0.09)] ring-1 ring-[rgba(15,15,20,0.04)]">
+          <motion.div ref={promptRef} variants={staggerItem} className="min-h-0">
+            <div className="flex h-full flex-col overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_70px_rgba(15,15,20,0.09)] ring-1 ring-[rgba(15,15,20,0.04)]">
               <div className="flex items-center gap-2 border-b border-[rgba(15,15,20,0.06)] bg-[#fafafa] px-4 py-2.5">
                 <span className="flex gap-1.5" aria-hidden>
                   <span className="h-2 w-2 rounded-full bg-[#FF6B6B]" />
@@ -165,7 +161,7 @@ export function BuildProjectAppSection() {
                     return (
                       <motion.div
                         key={`${dup}-${t}`}
-                        className={`flex min-h-[120px] w-[180px] shrink-0 flex-col items-center justify-center rounded-[14px] border px-3 pb-3 pt-3 shadow-sm transition-colors duration-300 ${
+                        className={`flex min-h-[120px] w-[180px] shrink-0 flex-col items-center justify-center rounded-[12px] border px-3 pb-3 pt-3 shadow-sm transition-colors duration-300 ${
                           isActive
                             ? 'border-[rgba(97,97,255,0.45)] bg-white shadow-[0_20px_48px_rgba(97,97,255,0.18)] ring-1 ring-[rgba(97,97,255,0.12)]'
                             : 'border-[rgba(15,15,20,0.07)] bg-white/90'
@@ -174,12 +170,12 @@ export function BuildProjectAppSection() {
                           reduce
                             ? {}
                             : {
-                                scale: 1.03,
-                                y: -3,
+                                y: -2,
                                 borderColor: 'rgba(97,97,255,0.35)',
+                                backgroundColor: 'rgba(255,255,255,1)',
                               }
                         }
-                        transition={springSnappy}
+                        transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
                       >
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[rgba(97,97,255,0.12)] text-[#6161FF]">
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>

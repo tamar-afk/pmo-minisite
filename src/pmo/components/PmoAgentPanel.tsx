@@ -57,7 +57,7 @@ export function PmoAgentPanel({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-2xl bg-white text-[#1A1A1A] shadow-[0_24px_64px_rgba(0,0,0,0.35)] ${maxWidthClass} ${className}`}
+      className={`overflow-hidden rounded-[16px] bg-white text-[#1A1A1A] shadow-[0_24px_64px_rgba(0,0,0,0.35)] ${maxWidthClass} ${className}`}
     >
       <div className="border-b border-[rgba(0,0,0,0.06)] p-4">
         <div className="flex gap-3">

@@ -7,7 +7,7 @@ import { springSnappy, springSoft } from '../motion'
 function Chip({ children }: { children: React.ReactNode }) {
   return (
     <motion.span
-      className="inline-flex items-center rounded-full border border-[rgba(12,12,15,0.08)] bg-white px-5 py-2 text-[13px] font-medium text-[rgba(12,12,15,0.62)] shadow-[0_1px_2px_rgba(12,12,15,0.04)]"
+      className="inline-flex items-center rounded-full border border-[rgba(12,12,15,0.08)] bg-white px-5 py-2 text-[12px] font-medium uppercase tracking-[0.05em] text-[rgba(12,12,15,0.62)] shadow-[0_1px_2px_rgba(12,12,15,0.04)] md:text-[13px]"
       whileHover={{ y: -2, scale: 1.01, borderColor: 'rgba(12,12,15,0.12)' }}
       transition={springSnappy}
     >
@@ -18,18 +18,21 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 export function McpSection() {
   return (
-    <section id="mcp" className="mcp-section px-4 py-14 md:px-8 md:py-16 lg:px-12">
-      <div className="relative z-[1] mx-auto max-w-[900px] text-center">
+    <section
+      id="mcp"
+      className="mcp-section backdrop-blur-[1px] px-4 py-14 md:px-8 md:py-16 lg:px-12"
+    >
+      <div className="relative z-[1] mx-auto max-w-[900px] text-left">
         <SectionReveal>
-          <div className="mb-1 flex justify-center">
+          <div className="mb-1 flex justify-start">
             <SectionChip>Your AI tools</SectionChip>
           </div>
-          <h2 className="mt-5 text-[32px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[44px]">
-            Your projects, connected to any AI tool
+          <h2 className="mt-5 text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
+            Your favourite AI tools, now connected to your projects.
           </h2>
-          <p className="mx-auto mt-4 max-w-[540px] text-[17px] leading-relaxed text-[rgba(12,12,15,0.58)] md:text-[18px]">
-            Connect live monday data to Claude, ChatGPT, Copilot, and more. One source of truth, answers in
-            the assistant you already use, no tab-hopping.
+          <p className="mx-auto mt-4 max-w-[540px] text-[16px] font-normal leading-[1.6] text-[rgba(12,12,15,0.58)] md:text-[18px]">
+            Connect monday to Claude, ChatGPT, Copilot, and more. Your live project data, always in the AI
+            you&apos;re already using.
           </p>
         </SectionReveal>
       </div>
@@ -39,7 +42,7 @@ export function McpSection() {
       </div>
 
       <motion.div
-        className="relative z-[1] mx-auto mt-7 flex max-w-[720px] flex-wrap justify-center gap-3"
+        className="relative z-[1] mx-auto mt-7 flex max-w-[720px] flex-wrap justify-start gap-3"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}

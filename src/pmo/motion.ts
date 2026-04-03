@@ -1,3 +1,11 @@
+/** Page-wide easing (Linear-style): smooth, no bounce */
+export const pageEase: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+export const pageRevealTransition = {
+  duration: 0.4,
+  ease: pageEase,
+} as const
+
 /** Shared Framer Motion presets for consistent, snappy UI feel */
 export const springSnappy = { type: 'spring' as const, stiffness: 380, damping: 28 }
 export const springSoft = { type: 'spring' as const, stiffness: 120, damping: 22 }
@@ -16,10 +24,10 @@ export const staggerContainer = (stagger = 0.08) => ({
 })
 
 export const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
-    transition: springSoft,
+    transition: pageRevealTransition,
   },
 }

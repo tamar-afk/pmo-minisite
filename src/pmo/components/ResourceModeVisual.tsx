@@ -1,105 +1,112 @@
-type ModeId = 'planning' | 'allocation' | 'capacity'
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Plus, X } from 'lucide-react'
 
-const MODE_LABEL: Record<ModeId, string> = {
-  planning: 'Planning',
-  allocation: 'Allocation',
-  capacity: 'Capacity',
+/** Aligned with PlatformBentoSection */
+const flipEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const flipDuration = 0.65
+
+const cardMinHeight = 'min-h-[300px] sm:min-h-[340px]'
+
+export type ResourceFlipCardProps = {
+  label: string
+  headline: string
+  body: string
+  imageSrc: string
+  imageAlt: string
 }
 
 /**
- * Custom illustrations for the People management section (not the Feature tabs Plan visual).
- * The monday.com–style Resource planner lives in {@link FeatureTabVisual} `plan`.
+ * Single flip card: front = copy, back = photo. Click or Enter/Space to flip.
  */
-export function ResourceModeVisual({ mode }: { mode: ModeId }) {
+export function ResourceFlipCard({ label, headline, body, imageSrc, imageAlt }: ResourceFlipCardProps) {
+  const [flipped, setFlipped] = useState(false)
+  const reduceMotion = useReducedMotion()
+  const toggle = () => setFlipped((f) => !f)
+
+  const ariaLabel = flipped
+    ? `Show text: ${headline}. Press to flip.`
+    : `Show image: ${headline}. Press to flip.`
+
   return (
-    <div className="flex h-full min-h-[220px] w-full items-center justify-center bg-gradient-to-b from-[#f4f5f7] to-[#ececef] p-4 sm:min-h-[260px] sm:p-6">
-      <div className="w-full max-w-[400px] rounded-xl border border-[rgba(15,15,20,0.08)] bg-white p-4 shadow-[0_12px_40px_rgba(15,15,20,0.06)]">
-        {mode === 'planning' && <PlanningVisual />}
-        {mode === 'allocation' && <AllocationVisual />}
-        {mode === 'capacity' && <CapacityVisual />}
+    <div className="[perspective:1200px]">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-pressed={flipped}
+        aria-label={ariaLabel}
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            toggle()
+          }
+        }}
+        className="w-full cursor-pointer rounded-[12px] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#6161FF] focus-visible:ring-offset-2"
+      >
+        <motion.div
+          className={`relative w-full [transform-style:preserve-3d] ${cardMinHeight}`}
+          initial={false}
+          animate={{ rotateY: flipped ? 180 : 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: flipDuration, ease: flipEase }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          {/* Front: text */}
+          <div
+            aria-hidden={flipped}
+            className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white p-5 shadow-[0_4px_24px_rgba(15,15,20,0.06)] [backface-visibility:hidden] sm:p-6"
+            style={{ transform: 'rotateY(0deg)', WebkitBackfaceVisibility: 'hidden' }}
+          >
+            <div className="flex shrink-0 justify-end">
+              <span
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(15,15,20,0.08)] bg-white text-[rgba(15,15,20,0.42)] shadow-sm"
+                aria-hidden
+              >
+                <Plus className="h-4 w-4" strokeWidth={2} />
+              </span>
+            </div>
+            <div className="flex min-h-0 flex-1 flex-col pt-1">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#6161FF]">{label}</p>
+              <h3 className="mt-3 text-[18px] font-bold leading-snug tracking-[-0.02em] text-[#0f0f14] sm:text-[20px]">
+                {headline}
+              </h3>
+              <p className="mt-3 flex-1 whitespace-pre-line text-[14px] leading-relaxed text-[rgba(15,15,20,0.65)] sm:text-[15px]">
+                {body}
+              </p>
+            </div>
+          </div>
+
+          {/* Back: image */}
+          <div
+            aria-hidden={!flipped}
+            className="absolute inset-0 overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] shadow-[0_8px_40px_rgba(15,15,20,0.12)] [backface-visibility:hidden]"
+            style={{ transform: 'rotateY(180deg)', WebkitBackfaceVisibility: 'hidden' }}
+          >
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className="h-full w-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(12,12,15,0.35)] via-transparent to-transparent"
+              aria-hidden
+            />
+            <div className="absolute right-3 top-3">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-white/90 text-[#0f0f14] shadow-md backdrop-blur-sm"
+                aria-hidden
+              >
+                <X className="h-4 w-4" strokeWidth={2} />
+              </span>
+            </div>
+            <p className="absolute bottom-3 left-3 right-12 text-[12px] font-semibold text-white drop-shadow-sm sm:bottom-4 sm:left-4">
+              {label}
+            </p>
+          </div>
+        </motion.div>
       </div>
     </div>
-  )
-}
-
-function PlanningVisual() {
-  return (
-    <>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[rgba(15,15,20,0.4)]">
-        {MODE_LABEL.planning}
-      </p>
-      <div className="mt-3 space-y-2">
-        {['Q1 launch', 'Integrations', 'CX beta'].map((label, i) => (
-          <div key={label} className="flex items-center gap-2">
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-[rgba(15,15,20,0.06)]">
-              <div
-                className="h-full rounded-full bg-[#6161FF]/80"
-                style={{ width: `${45 + i * 18}%` }}
-              />
-            </div>
-            <span className="w-16 shrink-0 text-[10px] text-[rgba(15,15,20,0.55)]">{label}</span>
-          </div>
-        ))}
-      </div>
-      <p className="mt-3 rounded-lg bg-[rgba(97,97,255,0.08)] px-2 py-1.5 text-[9px] text-[rgba(15,15,20,0.65)]">
-        2 role gaps flagged before staffing lock
-      </p>
-    </>
-  )
-}
-
-function AllocationVisual() {
-  return (
-    <>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[rgba(15,15,20,0.4)]">
-        {MODE_LABEL.allocation}
-      </p>
-      <div className="mt-3 space-y-2">
-        {[
-          { task: 'API schema', who: 'Sam' },
-          { task: 'UAT plan', who: 'Alex' },
-          { task: 'Design QA', who: 'Jordan' },
-        ].map((row) => (
-          <div
-            key={row.task}
-            className="flex items-center justify-between gap-2 rounded-lg border border-[rgba(15,15,20,0.06)] bg-[#fafafa] px-2 py-1.5"
-          >
-            <span className="text-[10px] text-[#0f0f14]">{row.task}</span>
-            <span className="rounded-full bg-[#6161FF]/15 px-2 py-0.5 text-[9px] font-semibold text-[#6161FF]">
-              {row.who}
-            </span>
-          </div>
-        ))}
-      </div>
-    </>
-  )
-}
-
-function CapacityVisual() {
-  return (
-    <>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[rgba(15,15,20,0.4)]">
-        {MODE_LABEL.capacity}
-      </p>
-      <div className="mt-3 grid grid-cols-6 gap-1">
-        {Array.from({ length: 24 }).map((_, i) => (
-          <div
-            key={i}
-            className={`aspect-square rounded-sm ${
-              i % 7 === 0
-                ? 'bg-[#FF6B6B]/75'
-                : i % 5 === 0
-                  ? 'bg-[#FFCC33]/80'
-                  : 'bg-[#3DD598]/45'
-            }`}
-          />
-        ))}
-      </div>
-      <div className="mt-3 flex justify-between text-[8px] text-[rgba(15,15,20,0.45)]">
-        <span>Under</span>
-        <span>At cap</span>
-        <span>Over</span>
-      </div>
-    </>
   )
 }

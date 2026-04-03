@@ -45,11 +45,11 @@ export function ProvenImpactSection() {
   return (
     <section
       id="proven-impact"
-      className="scroll-mt-24 border-t border-[rgba(15,15,20,0.06)] bg-[#f7f7f8] px-4 py-16 md:px-8 md:py-20 lg:px-12"
+      className="scroll-mt-24 border-t border-[rgba(15,15,20,0.06)] bg-[rgba(247,247,248,0.6)] px-4 py-16 backdrop-blur-[1px] md:px-8 md:py-20 lg:px-12"
     >
       <div className="mx-auto max-w-[1120px]">
         <motion.div
-          className="text-center"
+          className="text-left"
           variants={staggerContainer(0.08)}
           initial="hidden"
           whileInView="show"
@@ -57,7 +57,7 @@ export function ProvenImpactSection() {
         >
           <motion.h2
             variants={staggerItem}
-            className="text-[26px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[32px]"
+            className="text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]"
           >
             Proven impact across teams and industries
           </motion.h2>
@@ -76,7 +76,7 @@ export function ProvenImpactSection() {
                 href={STORIES_BASE}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_4px_24px_rgba(15,15,20,0.06)] transition-shadow duration-300 hover:border-[rgba(97,97,255,0.2)] hover:shadow-[0_12px_40px_rgba(97,97,255,0.12)]"
+                className="group flex h-full flex-col overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_4px_24px_rgba(15,15,20,0.06)] transition-shadow duration-300 hover:border-[rgba(97,97,255,0.2)] hover:shadow-[0_12px_40px_rgba(97,97,255,0.12)]"
               >
                 <div
                   className={`relative aspect-[16/10] w-full bg-gradient-to-br ${story.gradient}`}
@@ -88,10 +88,10 @@ export function ProvenImpactSection() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-4 sm:p-5">
-                  <p className="text-[36px] font-bold leading-none tracking-tight text-[#0f0f14] md:text-[40px]">
+                  <p className="text-[56px] font-bold leading-[1.05] tracking-tight text-[#6161ff]">
                     {story.stat}
                   </p>
-                  <p className="mt-2 text-[14px] font-medium leading-snug text-[rgba(15,15,20,0.65)] md:text-[15px]">
+                  <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(15,15,20,0.6)]">
                     {story.label}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#6161FF]">

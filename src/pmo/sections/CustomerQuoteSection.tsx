@@ -50,7 +50,7 @@ export function CustomerQuoteSection(props: CustomerQuoteSectionProps = {}) {
 
   return (
     <motion.figure
-      className={`mx-auto max-w-[720px] rounded-2xl border border-[rgba(15,15,20,0.1)] bg-[#f9fafb] px-6 py-8 shadow-[0_12px_40px_rgba(15,15,20,0.06)] md:px-10 md:py-10 ${align} ${className}`}
+      className={`mx-auto max-w-[720px] rounded-[12px] border border-[rgba(15,15,20,0.1)] bg-[#f9fafb] px-6 py-8 shadow-[0_12px_40px_rgba(15,15,20,0.06)] md:px-10 md:py-10 ${align} ${className}`}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -68,7 +68,7 @@ export function CustomerQuoteSection(props: CustomerQuoteSectionProps = {}) {
         <span>{titleLine}</span>
       </figcaption>
       {highlightStat ? (
-        <p className="mt-4 text-[28px] font-bold tabular-nums leading-none text-[#0f0f14] md:text-[32px]">
+        <p className="mt-4 text-[clamp(2.25rem,5vw,3.5rem)] font-bold tabular-nums leading-[1.05] text-[#0f0f14]">
           {highlightStat}
         </p>
       ) : null}

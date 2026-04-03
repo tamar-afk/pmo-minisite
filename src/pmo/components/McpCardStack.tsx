@@ -189,8 +189,14 @@ function AssistantRiskChatAnimated({ loopKey, demo }: { loopKey: number; demo: A
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.22, delay: syncShow, ease: heroEase }}
       >
-        <SyncingDots />
-        <span>Syncing with monday</span>
+        <motion.span
+          className="flex items-center gap-2"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <SyncingDots />
+          <span>Syncing with monday</span>
+        </motion.span>
       </motion.div>
 
       <motion.div
@@ -283,8 +289,8 @@ export function McpCardStack() {
   ]
 
   return (
-    <div className="relative mx-auto w-full max-w-[900px] px-0 sm:px-2">
-      <div className="overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.1)] bg-[#ebebef] shadow-[0_24px_60px_rgba(15,15,20,0.1)]">
+    <div className="relative mx-auto w-full max-w-[min(100%,720px)] px-0 sm:px-2">
+      <div className="overflow-hidden rounded-[16px] border border-[rgba(15,15,20,0.1)] bg-[#ebebef] shadow-[0_24px_60px_rgba(15,15,20,0.1)]">
         <div
           role="tablist"
           aria-label="Choose AI assistant"

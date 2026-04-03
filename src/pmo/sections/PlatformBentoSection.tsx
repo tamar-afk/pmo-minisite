@@ -1,13 +1,14 @@
 import { useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ExternalLink, Plus, X } from 'lucide-react'
+import { ComplianceBadgeGrid } from '../components/ComplianceBadgeGrid'
 import { SectionChip } from '../components/SectionChip'
 import { mondayGartnerApmrGraphic } from '../constants/mondayVisuals'
 import { springSoft } from '../motion'
 
 /** 3D flip easing: avoid spring overshoot on rotateY */
 const flipEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const flipDuration = 0.65
+const flipDuration = 0.4
 
 /** Shared with the hero image so it matches flip-card height */
 const bentoFlipMinHeightClass =
@@ -21,19 +22,14 @@ type BentoItem = {
   id: string
   title: string
   body: string
-  imageSrc: string
-  imageAlt: string
   footer: ReactNode
 }
 
 const interactiveItems: BentoItem[] = [
   {
-    id: 'adoption',
-    title: 'Ease of use that drives proven adoption',
-    body:
-      'Hyper-personalization and intuitive design drive the adoption rates that give you a complete picture of work.',
-    imageSrc: '/images/why-monday-team.jpg',
-    imageAlt: 'Teams collaborating with monday work management',
+    id: 'teams-use',
+    title: 'Teams actually use it',
+    body: 'Intuitive enough to adopt. Flexible enough to make your own.',
     footer: (
       <div className="flex flex-wrap items-center gap-2">
         <span className="inline-flex items-center rounded-md border border-[rgba(15,15,20,0.1)] bg-[#fafafa] px-2.5 py-1 text-[12px] font-semibold text-[#0f0f14]">
@@ -44,66 +40,39 @@ const interactiveItems: BentoItem[] = [
     ),
   },
   {
-    id: 'expertise',
-    title: 'Expertise built on real-world work',
+    id: 'one-place',
+    title: 'One place, full picture',
     body:
-      'AI capabilities informed by 250K+ customers across industries and the patterns of the world’s most productive teams.',
-    imageSrc: '/images/why-monday-team.jpg',
-    imageAlt: 'Teams collaborating with monday work management',
+      'Your data, your tools, your teams, all connected in one place. So your people and agents never work in the dark.',
     footer: (
-      <div className="space-y-2">
-        <div className="flex flex-wrap gap-3 text-[14px] md:text-[15px]">
-          <span>
-            <span className="font-bold text-[#0c0c0f]">250K+</span>{' '}
-            <span className="text-[rgba(15,15,20,0.55)]">customers</span>
-          </span>
-          <span>
-            <span className="font-bold text-[#0c0c0f]">190+</span>{' '}
-            <span className="text-[rgba(15,15,20,0.55)]">industries</span>
-          </span>
+      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+        <div className="flex flex-col items-center justify-center rounded-[12px] border border-[rgba(15,15,20,0.1)] bg-white px-2 py-4 text-center shadow-sm">
+          <span className="text-[20px] font-bold leading-tight tracking-tight text-[#0f0f14] md:text-[22px]">Open API</span>
         </div>
-        <p className="text-[12px] leading-snug text-[rgba(15,15,20,0.5)] md:text-[13px]">
-          From startups to enterprises, worldwide
-        </p>
+        <div className="flex flex-col items-center justify-center rounded-[12px] border border-[rgba(15,15,20,0.1)] bg-white px-2 py-4 text-center shadow-sm">
+          <span className="text-[28px] font-bold tabular-nums leading-none tracking-tight text-[#0f0f14] md:text-[32px]">
+            200+
+          </span>
+          <span className="mt-1.5 text-[12px] font-semibold leading-snug text-[rgba(15,15,20,0.55)]">integrations</span>
+        </div>
       </div>
     ),
   },
   {
-    id: 'context',
-    title: 'One place for all of your organizational context',
+    id: 'enterprise-ready',
+    title: 'Enterprise-ready out of the box',
     body:
-      'Unifies your data, work context, and institutional knowledge into a single intelligence layer for people and agents.',
-    imageSrc: '/images/why-monday-team.jpg',
-    imageAlt: 'People and teams using monday work management across the business',
-    footer: (
-      <ul className="space-y-2">
-        <li className="border-b border-[rgba(15,15,20,0.06)] pb-2">
-          <p className="text-[14px] font-semibold text-[#0c0c0f] md:text-[15px]">200+ integrations</p>
-          <p className="mt-0.5 text-[12px] text-[rgba(15,15,20,0.5)] md:text-[13px]">Connect your entire stack</p>
-        </li>
-        <li>
-          <p className="text-[14px] font-semibold text-[#0c0c0f] md:text-[15px]">API</p>
-          <p className="mt-0.5 text-[12px] text-[rgba(15,15,20,0.5)] md:text-[13px]">Build on top of monday</p>
-        </li>
-      </ul>
-    ),
+      'The security and governance controls your IT team will approve. Built in, not bolted on.',
+    footer: <ComplianceBadgeGrid />,
   },
   {
-    id: 'enterprise',
-    title: 'Enterprise control without compromise',
-    body:
-      'Trusted by the world’s most complex organizations, with the permissions, approval gates, and governance to prove it.',
-    imageSrc: '/images/why-monday-team.jpg',
-    imageAlt: 'Enterprise teams using monday work management',
+    id: 'any-industry',
+    title: 'Made for any project, any industry',
+    body: 'Whatever your team delivers, monday is built for it.',
     footer: (
-      <div>
-        <p className="text-[28px] font-bold leading-none tracking-tight text-[#0c0c0f] md:text-[32px]">
-          60<span className="text-[rgba(15,15,20,0.35)]">%</span>
-        </p>
-        <p className="mt-1.5 text-[13px] leading-snug text-[rgba(15,15,20,0.55)] md:text-[14px]">
-          of Fortune 500 companies <span className="text-[rgba(15,15,20,0.7)]">run on monday</span>
-        </p>
-      </div>
+      <p className="text-[13px] leading-relaxed text-[rgba(15,15,20,0.62)] md:text-[14px]">
+        200+ use cases. 190 industries. Thousands of teams like yours already on monday.
+      </p>
     ),
   },
 ]
@@ -137,7 +106,7 @@ function BentoCard({
               onSelect()
             }
           }}
-          className="group w-full cursor-pointer rounded-[20px] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#6161FF] focus-visible:ring-offset-2"
+          className="group w-full cursor-pointer rounded-[12px] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#6161FF] focus-visible:ring-offset-2"
         >
           <motion.div
             className={`relative w-full [transform-style:preserve-3d] ${bentoFlipMinHeightClass}`}
@@ -151,10 +120,10 @@ function BentoCard({
             {/* Front: claim (headline + supporting copy) */}
             <div
               aria-hidden={active}
-              className={`absolute inset-0 flex flex-col rounded-[20px] border bg-white p-4 shadow-[0_4px_24px_rgba(15,15,20,0.05)] [backface-visibility:hidden] md:p-5 ${
+              className={`absolute inset-0 flex flex-col rounded-[12px] border bg-white p-4 shadow-[0_4px_24px_rgba(15,15,20,0.05)] [backface-visibility:hidden] md:p-5 ${
                 active
                   ? ''
-                  : 'border-[rgba(15,15,20,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-[rgba(15,15,20,0.12)]'
+                  : 'border-[rgba(15,15,20,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-[rgba(97,97,255,0.35)] hover:shadow-[0_6px_32px_rgba(97,97,255,0.14)]'
               }`}
               style={{ transform: 'rotateY(0deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
@@ -170,7 +139,7 @@ function BentoCard({
                     <Plus className="h-4 w-4" strokeWidth={2} />
                   </span>
                 </div>
-                <p className="mt-2.5 text-[13px] leading-relaxed text-[rgba(15,15,20,0.58)] md:mt-3 md:text-[14px]">
+                <p className="mt-2.5 whitespace-pre-line text-[13px] leading-relaxed text-[rgba(15,15,20,0.58)] md:mt-3 md:text-[14px]">
                   {item.body}
                 </p>
               </div>
@@ -179,7 +148,7 @@ function BentoCard({
             {/* Back: proof (badges, stats, evidence only) */}
             <div
               aria-hidden={!active}
-              className="absolute inset-0 flex flex-col rounded-[20px] border border-[rgba(97,97,255,0.35)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.14)] [backface-visibility:hidden] md:p-5"
+              className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(97,97,255,0.35)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.14)] [backface-visibility:hidden] md:p-5"
               style={{ transform: 'rotateY(180deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
               <div className="flex shrink-0 justify-end">
@@ -228,7 +197,7 @@ function ProofFlipCard({
             toggle()
           }
         }}
-        className="cursor-pointer rounded-[20px] outline-none focus-visible:ring-2 focus-visible:ring-[#6161FF] focus-visible:ring-offset-2"
+        className="cursor-pointer rounded-[12px] outline-none focus-visible:ring-2 focus-visible:ring-[#6161FF] focus-visible:ring-offset-2"
       >
         <motion.div
           className="relative min-h-[280px] w-full [transform-style:preserve-3d] md:min-h-[300px] lg:min-h-[320px]"
@@ -240,7 +209,7 @@ function ProofFlipCard({
           {/* Front: claim */}
           <div
             aria-hidden={flipped}
-            className="absolute inset-0 flex flex-col rounded-[20px] border border-[rgba(15,15,20,0.08)] bg-white p-4 shadow-[0_4px_24px_rgba(15,15,20,0.05)] [backface-visibility:hidden] md:p-5"
+            className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white p-4 shadow-[0_4px_24px_rgba(15,15,20,0.05)] [backface-visibility:hidden] md:p-5"
             style={{ transform: 'rotateY(0deg)', WebkitBackfaceVisibility: 'hidden' }}
           >
             <div className="flex items-start justify-between gap-2">
@@ -260,7 +229,7 @@ function ProofFlipCard({
           {/* Back: proof */}
           <div
             aria-hidden={!flipped}
-            className="absolute inset-0 flex flex-col rounded-[20px] border border-[rgba(97,97,255,0.28)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.1)] [backface-visibility:hidden] md:p-5"
+            className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(97,97,255,0.28)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.1)] [backface-visibility:hidden] md:p-5"
             style={{ transform: 'rotateY(180deg)', WebkitBackfaceVisibility: 'hidden' }}
           >
             <div className="flex shrink-0 justify-end">
@@ -287,15 +256,15 @@ export function PlatformBentoSection() {
   return (
     <section
       id="platform-bento"
-      className="scroll-mt-24 bg-[#f4f4f5] px-4 py-8 md:px-8 md:py-10 lg:px-12"
+      className="scroll-mt-24 bg-[rgba(244,244,245,0.65)] px-4 py-8 backdrop-blur-[1px] md:px-8 md:py-10 lg:px-12"
     >
       <div className="mx-auto max-w-[1120px]">
         <div className="mb-5 md:mb-6">
-          <div className="mb-2">
+          <div className="mb-2 flex justify-start">
             <SectionChip>Why monday.com</SectionChip>
           </div>
-          <h2 className="max-w-[min(100%,40rem)] text-pretty text-[24px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[28px] md:leading-[1.12] lg:text-[30px]">
-            Why choose monday.com to run your strategic projects
+          <h2 className="max-w-[min(100%,40rem)] text-pretty text-left text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
+            Why choose monday.com to run your projects?
           </h2>
         </div>
 
@@ -321,14 +290,13 @@ export function PlatformBentoSection() {
 
           <div className="grid grid-cols-1 gap-2 md:grid-cols-3 md:gap-3">
             <div
-              className={`relative overflow-hidden rounded-[20px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_8px_40px_rgba(15,15,20,0.06)] md:col-span-2 ${bentoFlipMinHeightClass}`}
+              className={`relative overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_8px_40px_rgba(15,15,20,0.06)] md:col-span-2 ${bentoFlipMinHeightClass}`}
             >
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={current.id}
-                  src={current.imageSrc}
-                  alt={current.imageAlt}
-                  className={`h-full w-full object-cover object-center ${bentoFlipMinHeightClass}`}
+                  aria-hidden
+                  className={`h-full w-full bg-gradient-to-br from-[#f4f4f8] via-white to-[rgba(97,97,255,0.1)] ${bentoFlipMinHeightClass}`}
                   initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.02, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.99, y: -8 }}
@@ -347,10 +315,11 @@ export function PlatformBentoSection() {
         {/* Analyst & research proof row: flip cards claim (front) / proof (back) */}
         <div className="mt-3 grid grid-cols-1 gap-2 md:mt-4 md:grid-cols-2 md:gap-3">
           <ProofFlipCard
-            title="Leader in Gartner Magic Quadrant for APMR"
+            title="Leader in the Gartner Magic Quadrant for Adaptive Project Management and Reporting"
             claimBody={
               <p>
-                Leader in the 2025 Gartner® Magic Quadrant™ for APMR: furthest on vision, highest on execution.
+                A Leader in the 2025 Gartner Magic Quadrant for Adaptive Project Management and Reporting, four years
+                running.
               </p>
             }
             proof={
@@ -380,8 +349,7 @@ export function PlatformBentoSection() {
             title="Recognized by industry leaders"
             claimBody={
               <p>
-                Independent research validates significant ROI for monday.com customers, including Forrester&apos;s Total
-                Economic Impact™ study.
+                Forrester&apos;s Total Economic Impact study validates significant ROI for monday.com customers.
               </p>
             }
             proof={

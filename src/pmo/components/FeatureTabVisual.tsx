@@ -5,9 +5,9 @@ export type FeatureTabId = 'plan' | 'align' | 'execute' | 'track' | 'report'
 const ALT: Record<FeatureTabId, string> = {
   plan: 'Plan projects with AI: timelines, owners, and dependencies',
   align: 'Keep teams aligned with automated nudges and real-time updates',
-  execute: 'Execute work with monday agents across teams',
+  execute: 'Run phase: work moving with monday agents across teams',
   track: 'Track risk, progress, and capacity across projects',
-  report: 'Generate project reports and stakeholder insights',
+  report: 'Generate project reports and leadership-ready insights',
 }
 
 /**
@@ -29,7 +29,7 @@ export function FeatureTabVisual({
         <img
           src={mondayAiPmFeatureTabImages[tabId]}
           alt={ALT[tabId]}
-          className="h-auto w-full max-w-[min(100%,300px)] object-cover object-left-top sm:max-w-[360px] md:max-w-[400px] lg:max-w-[440px]"
+          className="h-auto w-full max-w-[min(100%,220px)] object-cover object-left-top sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px]"
           loading="lazy"
           decoding="async"
         />

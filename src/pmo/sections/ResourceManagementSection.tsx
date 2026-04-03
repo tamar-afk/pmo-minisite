@@ -1,123 +1,94 @@
-import { useRef, useState } from 'react'
-import { AnimatePresence, motion, useInView } from 'framer-motion'
-import { ResourceModeVisual } from '../components/ResourceModeVisual'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { ResourceFlipCard } from '../components/ResourceModeVisual'
+import { mondayResourceFlipProductImages } from '../constants/mondayVisuals'
 import { SectionChip } from '../components/SectionChip'
-import { springSnappy, springSoft } from '../motion'
 
 const modes = [
   {
     id: 'planning' as const,
-    label: 'Plan resource needs',
-    headline: 'See demand before you staff',
-    body:
-      'Roadmaps and intake show up as role gaps and peak load, so you adjust dates and staffing while you still can.',
-    visual: 'planning' as const,
+    label: 'Plan',
+    headline: 'No more staffing surprises',
+    body: "Plan headcount at the project level using planned roles, before you're ready to assign.",
+    imageSrc: mondayResourceFlipProductImages.planNeeds,
+    imageAlt: 'monday.com product: plan workspace for projects',
   },
   {
     id: 'allocation' as const,
-    label: 'Allocate the right person for every job',
-    headline: 'Match people to work with confidence',
-    body:
-      'Assign owners by skills, availability, and fit. Everyone sees the same plan, agents included.',
-    visual: 'allocation' as const,
+    label: 'Assign',
+    headline: 'Right person, every time',
+    body: 'Assign at the project or task level. AI recommends based on skills, availability, and workload.',
+    imageSrc: mondayResourceFlipProductImages.allocate,
+    imageAlt: 'monday.com product: align teams and ownership in one place',
   },
   {
     id: 'capacity' as const,
-    label: 'Balance capacity',
-    headline: 'Read load before it breaks delivery',
-    body:
-      'Spot overload and gaps across teams in one view. Tradeoffs stay visible instead of buried in spreadsheets.',
-    visual: 'capacity' as const,
+    label: 'Balance',
+    headline: 'Always know where your team stands',
+    body: 'See planned vs. actual in the capacity manager, spot conflicts, and make changes instantly.',
+    imageSrc: mondayResourceFlipProductImages.capacity,
+    imageAlt: 'monday.com product: track health and workload across projects',
   },
 ]
 
 export function ResourceManagementSection() {
-  const [active, setActive] = useState(0)
-  const foldRef = useRef(null)
-  const foldInView = useInView(foldRef, { once: true, amount: 0.25 })
-  const mode = modes[active]
+  const gridRef = useRef(null)
+  const gridInView = useInView(gridRef, { once: true, amount: 0.15 })
 
   return (
-    <section id="resources" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-10 md:px-8 md:py-12 lg:px-12">
+    <section
+      id="resources"
+      className="scroll-mt-24 bg-[rgba(244,244,245,0.65)] px-4 py-10 backdrop-blur-[1px] md:px-8 md:py-12 lg:px-12"
+    >
       <div className="mx-auto max-w-[1100px]">
-        <div className="text-center">
+        <div className="text-left">
           <SectionChip>Your people</SectionChip>
-          <h2 className="mt-5 text-[28px] font-bold leading-tight text-[#0f0f14] md:text-[36px]">
-            Make the most out of your workforce
+          <h2 className="mt-5 text-[40px] font-bold leading-[1.2] text-[#0f0f14] md:text-[44px] lg:text-[48px]">
+            Your best people on your most important work
           </h2>
-          <p className="mx-auto mt-4 max-w-[640px] text-[16px] leading-relaxed text-[rgba(15,15,20,0.6)] md:text-[17px]">
-            With agents taking the busy work, you can make sure that the right people work on the right
-            priorities, while easily balancing their capacity.
+          <p className="mt-4 max-w-[640px] text-[16px] font-normal leading-[1.6] text-[rgba(15,15,20,0.6)] md:text-[17px]">
+            When agents handle the coordination, you can finally see who&apos;s overloaded, who has room, and
+            whether the right people are on the right work.
           </p>
         </div>
 
         <motion.div
-          ref={foldRef}
-          className="mt-8 overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_24px_80px_rgba(15,15,20,0.08)]"
-          initial={{ opacity: 0, y: 24 }}
-          animate={foldInView ? { opacity: 1, y: 0 } : {}}
+          ref={gridRef}
+          className="mt-10 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={gridInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <div className="border-b border-[rgba(15,15,20,0.06)] bg-[#fafafa] px-3 py-3 sm:px-4">
-            <div className="flex flex-wrap justify-center gap-2 overflow-x-auto pb-1">
-              {modes.map((m, i) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  className={`max-w-[min(100%,280px)] shrink-0 rounded-lg px-3 py-2 text-left text-[11px] font-semibold leading-snug transition-colors sm:max-w-[300px] sm:text-[12px] ${
-                    active === i
-                      ? 'bg-[#6161FF] text-white'
-                      : 'bg-white text-[rgba(15,15,20,0.55)] ring-1 ring-[rgba(15,15,20,0.08)] hover:text-[#0f0f14]'
-                  }`}
-                >
-                  {m.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          {modes.map((m, i) => (
+            <motion.div
+              key={m.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={gridInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: i * 0.08, ease: 'easeOut' }}
+            >
+              <ResourceFlipCard
+                label={m.label}
+                headline={m.headline}
+                body={m.body}
+                imageSrc={m.imageSrc}
+                imageAlt={m.imageAlt}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
 
-          <div className="grid gap-0 lg:grid-cols-2">
-            <div className="min-h-[220px] border-b border-[rgba(15,15,20,0.06)] lg:border-b-0 lg:border-r">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={mode.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={springSoft}
-                  className="h-full"
-                >
-                  <ResourceModeVisual mode={mode.visual} />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={mode.id}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -8 }}
-                  transition={springSnappy}
-                >
-                  <h3 className="text-[22px] font-bold leading-tight text-[#0f0f14] md:text-[26px]">
-                    {mode.headline}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-[rgba(15,15,20,0.65)]">
-                    {mode.body}
-                  </p>
-                  <a
-                    href="#pricing"
-                    className="mt-6 inline-flex items-center gap-1 text-[15px] font-semibold text-[#6161FF] hover:text-[#5050e6]"
-                  >
-                    Get started <span aria-hidden>→</span>
-                  </a>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+        <motion.div
+          className="mt-10 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={gridInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.4, delay: 0.35 }}
+        >
+          <a
+            href="#pricing"
+            className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#6161FF] hover:text-[#5050e6]"
+          >
+            Get started <span aria-hidden>→</span>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -25,7 +25,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t border-[rgba(15,15,20,0.08)] bg-white px-4 py-10 md:px-8 md:py-12 lg:px-12"
+      className="border-t border-[rgba(15,15,20,0.08)] bg-white/82 px-4 py-10 backdrop-blur-[1px] md:px-8 md:py-12 lg:px-12"
     >
       <motion.div
         className="mx-auto max-w-[1280px]"

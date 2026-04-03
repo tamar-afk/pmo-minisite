@@ -1,4 +1,4 @@
-type BrandId = 'mcd' | 'holt' | 'canva' | 'vistra' | 'lionsgate' | 'forrester'
+type BrandId = 'mcd' | 'holt' | 'canva' | 'vistra' | 'umg' | 'forrester'
 
 type Outcome = {
   id: string
@@ -13,7 +13,7 @@ type Outcome = {
   href: string
 }
 
-/** Project-delivery focused metrics; carousel duplicates the row for a seamless loop. */
+/** Project-delivery focused metrics; carousel duplicates the row for a continuous loop. */
 const outcomes: Outcome[] = [
   {
     id: '1',
@@ -23,8 +23,8 @@ const outcomes: Outcome[] = [
     imageAlt: 'Store rollout program',
     target: 615,
     format: 'percent',
-    headline: 'ROI on portfolio programs',
-    tag: 'Program delivery',
+    headline: 'Return on investment',
+    tag: 'Retail & CPG',
     href: 'https://monday.com/customer-stories',
   },
   {
@@ -35,8 +35,8 @@ const outcomes: Outcome[] = [
     imageAlt: 'Equipment and field projects',
     target: 105,
     format: 'k',
-    headline: 'Project coordination hours saved',
-    tag: 'Capital projects',
+    headline: 'Hours saved annually',
+    tag: 'Manufacturing',
     href: 'https://monday.com/customer-stories',
   },
   {
@@ -47,8 +47,8 @@ const outcomes: Outcome[] = [
     imageAlt: 'Cross-functional project team',
     target: 300,
     format: 'percent',
-    headline: 'More initiatives delivered per year',
-    tag: 'Product & marketing project management',
+    headline: 'Saved yearly to reinvest',
+    tag: 'Advertising',
     href: 'https://monday.com/customer-stories',
   },
   {
@@ -59,20 +59,20 @@ const outcomes: Outcome[] = [
     imageAlt: 'Enterprise program office',
     target: 28,
     format: 'percent',
-    headline: 'Faster project time-to-market',
-    tag: 'Technology programs',
+    headline: 'Faster time to market',
+    tag: 'Technology',
     href: 'https://monday.com/customer-stories',
   },
   {
     id: '5',
-    brand: 'lionsgate',
+    brand: 'umg',
     imageSrc:
-      'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Production and release projects',
+      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Music and entertainment projects',
     target: 517,
     format: 'percent',
-    headline: 'Growth in active greenlit projects',
-    tag: 'Creative operations',
+    headline: 'Growth in annual accounts',
+    tag: 'Entertainment',
     href: 'https://monday.com/customer-stories',
   },
   {
@@ -124,9 +124,11 @@ function BrandLogo({ brand }: { brand: BrandId }) {
       )
     case 'vistra':
       return <span className="text-[15px] font-bold uppercase tracking-[0.06em] text-[#005eb8]">Vistra</span>
-    case 'lionsgate':
+    case 'umg':
       return (
-        <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#0f0f14]">Lionsgate</span>
+        <span className="max-w-[140px] text-[11px] font-bold uppercase leading-tight tracking-[0.06em] text-[#0f0f14]">
+          Universal Music Group
+        </span>
       )
     case 'forrester':
       return (
@@ -141,7 +143,7 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
   const metric = formatMetric(outcome)
 
   return (
-    <article className="flex w-[min(280px,calc(100vw-3rem))] shrink-0 flex-col overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_4px_24px_rgba(15,15,20,0.06)]">
+    <article className="flex w-[min(280px,calc(100vw-3rem))] shrink-0 flex-col overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_4px_24px_rgba(15,15,20,0.06)]">
       <div className="flex items-center justify-between gap-3 px-4 pt-4">
         <div className="min-w-0">
           <BrandLogo brand={outcome.brand} />
@@ -157,7 +159,7 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
       </div>
 
       <div className="mt-3 px-4">
-        <div className="overflow-hidden rounded-xl bg-[#f0f0f2]">
+        <div className="overflow-hidden rounded-[12px] bg-[#f0f0f2]">
           <img
             src={outcome.imageSrc}
             alt={outcome.imageAlt}
@@ -168,11 +170,11 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
         </div>
       </div>
 
-      <div className="flex items-start gap-3 px-4 pt-4">
-        <span className="shrink-0 text-[32px] font-bold leading-none tracking-tight text-[#0f0f14] tabular-nums md:text-[36px]">
+      <div className="flex flex-col gap-0 px-4 pt-4">
+        <span className="text-[56px] font-bold leading-[1.05] tracking-tight text-[#6161ff] tabular-nums">
           {metric}
         </span>
-        <p className="min-w-0 flex-1 pt-0.5 text-[14px] font-semibold leading-snug text-[#0f0f14] md:text-[15px]">
+        <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(15,15,20,0.6)]">
           {outcome.headline}
         </p>
       </div>
@@ -188,41 +190,48 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
   )
 }
 
+export function CustomerOutcomesCarousel({ className = '' }: { className?: string }) {
+  return (
+    <div className={`group relative w-full ${className}`}>
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent md:w-20"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent md:w-20"
+        aria-hidden
+      />
+      <div className="overflow-hidden py-1 [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="animate-outcomes-carousel flex w-max gap-4 will-change-transform">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="flex gap-4">
+              {outcomes.map((o) => (
+                <OutcomeCard key={`${dup}-${o.id}`} outcome={o} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Optional standalone section (carousel also renders inside social proof). */
 export function CustomerOutcomesSection() {
   return (
     <section
       id="customer-outcomes"
-      className="scroll-mt-24 border-t border-[rgba(12,12,15,0.06)] bg-white px-0 py-6 md:py-8"
+      className="scroll-mt-24 border-t border-[rgba(12,12,15,0.06)] bg-white/75 px-0 py-6 backdrop-blur-[1px] md:py-8"
     >
       <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-12">
-        <div className="mx-auto max-w-[1100px] text-center">
-          <h2 className="text-[15px] font-semibold leading-snug tracking-[-0.02em] text-[#0c0c0f] sm:text-[16px] md:text-[17px] lg:text-[18px]">
-            Real customers, real business outcomes
+        <div className="mx-auto max-w-[1100px] text-left">
+          <h2 className="text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
+            Real customers. Real outcomes.
           </h2>
         </div>
       </div>
 
-      <div className="group relative mt-6 w-full md:mt-7">
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent md:w-20"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent md:w-20"
-          aria-hidden
-        />
-        <div className="overflow-hidden py-1 [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div className="animate-outcomes-carousel flex w-max gap-4 will-change-transform">
-            {[0, 1].map((dup) => (
-              <div key={dup} className="flex gap-4">
-                {outcomes.map((o) => (
-                  <OutcomeCard key={`${dup}-${o.id}`} outcome={o} />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <CustomerOutcomesCarousel className="mt-6 md:mt-7" />
     </section>
   )
 }

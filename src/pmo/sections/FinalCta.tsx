@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
-import { springSnappy, staggerContainer, staggerItem } from '../motion'
+import { pageEase, springSnappy, staggerContainer, staggerItem } from '../motion'
 
 export function FinalCta() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden border-t border-[rgba(12,12,15,0.06)] bg-white px-4 py-16 md:px-8 lg:px-12"
+      className="relative overflow-hidden border-t border-[rgba(12,12,15,0.06)] bg-white/88 px-4 py-16 backdrop-blur-[2px] md:px-8 lg:px-12"
     >
       <motion.div
         aria-hidden
@@ -28,12 +28,9 @@ export function FinalCta() {
       >
         <motion.h2
           variants={staggerItem}
-          className="text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#0c0c0f] md:text-[44px] md:leading-[1.06]"
+          className="text-balance text-[40px] font-bold leading-[1.2] tracking-[-0.03em] text-[#0c0c0f] md:text-[46px] lg:text-[48px]"
         >
-          <span className="block">Every project, end to end.</span>
-          <span className="mt-1 block text-[rgba(12,12,15,0.92)] md:mt-1.5">
-            with agents keeping work moving.
-          </span>
+          Deliver more. Without doing more.
         </motion.h2>
         <motion.div
           variants={staggerItem}
@@ -41,10 +38,14 @@ export function FinalCta() {
         >
           <motion.a
             href="#pricing"
+            data-cursor-cta
             className="inline-flex min-w-[200px] items-center justify-center rounded-full bg-[#6161FF] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_8px_36px_rgba(97,97,255,0.2)]"
-            whileHover={{ scale: 1.03, y: -2 }}
+            whileHover={{
+              scale: 1.03,
+              boxShadow: '0 14px 48px rgba(97,97,255,0.35)',
+            }}
             whileTap={{ scale: 0.97 }}
-            transition={springSnappy}
+            transition={{ duration: 0.15, ease: pageEase }}
           >
             Get started free
           </motion.a>

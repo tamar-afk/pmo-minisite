@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FeatureTabVisual } from '../components/FeatureTabVisual'
 import { SectionChip } from '../components/SectionChip'
-import { springSnappy } from '../motion'
+import { pageEase, springSnappy } from '../motion'
 
-const SECTION_HEADLINE = 'Every project, end-to-end.'
+const SECTION_HEADLINE = 'From brief to done, without the manual work'
 const SECTION_INTRO =
-  'Every stage of the project cycle is automatically pushed forward. Your agents continuously handle monitoring, reporting, and the follow-through that slows projects down.'
+  'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.'
 
 /**
- * Tab order (Plan → Align → Execute → Track → Report) and visuals:
+ * Tab order (Plan → Align → Run → Track → Report) and visuals:
  * [monday.com/ap/project-management/ai-var](https://monday.com/ap/project-management/ai-var) via `mondayAiPmFeatureTabImages`.
+ * Tab id `execute` maps to the Run step and uses the Run visual asset.
  */
 const tabs = [
   {
@@ -18,35 +19,35 @@ const tabs = [
     label: 'Plan',
     headline: 'From brief to project plan in minutes',
     body:
-      'Owners, timelines, and allocation for people and agents, from your brief, updated as strategy shifts. One project or a full portfolio.',
+      'Your brief becomes a full project plan in minutes. Owners assigned, timelines set, capacity checked, and updated automatically as plans change. One project or a full portfolio.',
   },
   {
     id: 'align' as const,
     label: 'Align',
-    headline: 'Everyone on the same page, automatically',
+    headline: 'Everyone on the same page, without the meeting',
     body:
-      "Owners get nudged and plans stay current, so your team knows what's next without another meeting.",
+      'Skills, availability, and current load surfaced automatically. You make the call, with the full picture in front of you.',
   },
   {
     id: 'execute' as const,
-    label: 'Execute',
-    headline: "Projects keep moving, even when no one's pushing",
+    label: 'Run',
+    headline: 'Work moves forward, with or without you in the room',
     body:
-      'Follow-ups, blockers, and dependencies keep work moving between check-ins, without anyone chasing.',
+      'Agents nudge owners, flag blockers, and keep tasks moving through the pipeline. Your job is decisions, not follow-up.',
   },
   {
     id: 'track' as const,
     label: 'Track',
-    headline: 'Catch risks before they become problems',
+    headline: "See what's slipping before it's too late",
     body:
-      'Progress, dependencies, and capacity are monitored across your portfolio, with risks surfaced and ranked by urgency while you can still act.',
+      "Live project health across every project you're running. Risks surfaced, dependencies flagged, timelines updated in real time, so you're never caught off guard.",
   },
   {
     id: 'report' as const,
     label: 'Report',
-    headline: 'Leadership reports, without the prep work',
+    headline: 'Executive reports that write themselves',
     body:
-      'Live portfolio data rolls into leadership-ready reports on demand, no manual prep or decks.',
+      'Pull a complete status report from live project data in one click. Ready for leadership, no manual prep required.',
   },
 ] as const
 
@@ -55,17 +56,19 @@ export function FeatureTabsSection() {
   const tab = tabs[active]
 
   return (
-    <section id="features" className="scroll-mt-24 bg-[#f4f4f5] px-4 py-14 md:px-8 md:py-16 lg:px-12">
+    <section
+      id="features"
+      className="scroll-mt-24 bg-[rgba(244,244,245,0.65)] px-4 py-14 backdrop-blur-[1px] md:px-8 md:py-16 lg:px-12"
+    >
       <div className="mx-auto max-w-[1280px]">
         <header className="mb-8 max-w-[720px] md:mb-10">
           <div className="mb-3">
-            <SectionChip>Your projects</SectionChip>
+            <SectionChip>How it works</SectionChip>
           </div>
-          <h2 className="text-pretty text-[32px] font-semibold leading-[1.12] tracking-[-0.02em] text-[#0c0c0f] md:text-[40px] md:leading-[1.1]">
-            {SECTION_HEADLINE.replace(' end-to-end.', '')}{' '}
-            <span className="whitespace-nowrap">end-to-end.</span>
+          <h2 className="text-pretty text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
+            {SECTION_HEADLINE}
           </h2>
-          <p className="mt-4 text-[17px] leading-relaxed text-[rgba(12,12,15,0.58)] md:text-[18px]">
+          <p className="mt-4 text-[16px] font-normal leading-[1.6] text-[rgba(12,12,15,0.58)] md:text-[18px]">
             {SECTION_INTRO}
           </p>
           <motion.a
@@ -83,23 +86,9 @@ export function FeatureTabsSection() {
             className="relative w-full max-w-[min(100%,320px)] lg:w-[260px] lg:max-w-none lg:flex-shrink-0"
             aria-label="Project lifecycle stages"
           >
-            {/* Continuous spine: line sits behind dots */}
             <div
               className="pointer-events-none absolute left-[7px] top-4 bottom-4 w-px bg-[rgba(15,15,20,0.12)] sm:left-[9px]"
               aria-hidden
-            />
-            {/* Progress accent: filled portion up to active step */}
-            <motion.div
-              className="pointer-events-none absolute left-[7px] top-4 w-px origin-top bg-[#6161FF] sm:left-[9px]"
-              aria-hidden
-              initial={false}
-              animate={{
-                scaleY: tabs.length <= 1 ? 0 : active / (tabs.length - 1),
-              }}
-              style={{
-                height: `calc(100% - 2rem)`,
-              }}
-              transition={{ type: 'spring', stiffness: 380, damping: 32 }}
             />
 
             <ol className="relative flex flex-col gap-0">
@@ -149,24 +138,37 @@ export function FeatureTabsSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={tab.id}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -8 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.1, ease: pageEase }}
                 className="flex flex-col gap-4 md:gap-5"
               >
-                <div>
-                  <h3
-                    id={`feature-tab-${tab.id}-title`}
-                    className="text-[20px] font-semibold leading-snug tracking-[-0.02em] text-[#0c0c0f] md:text-[22px]"
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease: pageEase, delay: 0.1 }}
+                >
+                  <div>
+                    <h3
+                      id={`feature-tab-${tab.id}-title`}
+                      className="text-[18px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#0c0c0f] md:text-[20px]"
+                    >
+                      {tab.headline}
+                    </h3>
+                    <p className="mt-3 max-w-[560px] text-[16px] font-normal leading-[1.6] text-[rgba(12,12,15,0.62)] md:text-[17px]">
+                      {tab.body}
+                    </p>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, ease: pageEase, delay: 0.12 }}
+                    className="mt-4"
                   >
-                    {tab.headline}
-                  </h3>
-                  <p className="mt-3 max-w-[560px] text-[15px] leading-relaxed text-[rgba(12,12,15,0.62)] md:text-[16px]">
-                    {tab.body}
-                  </p>
-                </div>
-                <FeatureTabVisual tabId={tab.id} aria-labelledby={`feature-tab-${tab.id}-title`} />
+                    <FeatureTabVisual tabId={tab.id} aria-labelledby={`feature-tab-${tab.id}-title`} />
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>

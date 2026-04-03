@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { springSnappy, springSoft } from '../motion'
+import { pageEase, springSnappy, springSoft } from '../motion'
 
 const faqs = [
   {
@@ -34,10 +34,13 @@ export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-[#f4f4f5] px-4 py-14 md:px-8 md:py-16 lg:px-12">
+    <section
+      id="faq"
+      className="bg-[rgba(244,244,245,0.65)] px-4 py-14 backdrop-blur-[1px] md:px-8 md:py-16 lg:px-12"
+    >
       <div className="mx-auto max-w-[720px]">
         <motion.h2
-          className="text-center text-[28px] font-bold text-[#0f0f14] md:text-[32px]"
+          className="text-left text-[40px] font-bold leading-[1.2] text-[#0f0f14] md:text-[44px] lg:text-[48px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -67,7 +70,7 @@ export function FAQSection() {
                   {item.q}
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={springSnappy}
+                    transition={{ duration: 0.2, ease: pageEase }}
                     className="mt-0.5 shrink-0 text-[#6161FF]"
                     aria-hidden
                   >
@@ -87,7 +90,7 @@ export function FAQSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={springSoft}
+                      transition={{ duration: 0.3, ease: pageEase }}
                       className="overflow-hidden"
                     >
                       <p className="pb-4 text-[14px] leading-relaxed text-[rgba(15,15,20,0.65)]">

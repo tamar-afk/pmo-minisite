@@ -273,15 +273,26 @@ sections.push(
   h2('Hero'),
   tableCopy(
     [
-      ['H1', 'Drive your projects forward'],
+      ['H1', 'Your projects, fully staffed.'],
       [
         'Body',
-        "Always-on agents work alongside your team, chasing updates, flagging risks, and reporting to leadership so your people don't have to.",
+        'Status updates, risk flags, executive reports: your agents handle the follow-through so your team can focus on the work that actually moves things forward.',
       ],
       ['Primary CTA', 'Get started free'],
       ['Secondary CTA', 'See it in action →'],
       ['Microcopy', 'Free forever. No credit card needed.'],
-      ['Trust line', 'Trusted by 250,000+ customers worldwide'],
+    ],
+    ['Field', 'Copy'],
+  ),
+  new Paragraph({ spacing: { after: 200 } }),
+)
+
+// --- Logo bar (section below hero) ---
+sections.push(
+  h2('Logo bar'),
+  tableCopy(
+    [
+      ['Label', 'Trusted by 250,000+ customers worldwide'],
       ['Logo strip', "Canva, Coca-Cola, Lionsgate, McDonald's, BMW, Cartier, VML"],
     ],
     ['Field', 'Copy'],
@@ -291,70 +302,11 @@ sections.push(
 
 // --- Hero showcase ---
 sections.push(
-  h2('Hero showcase (chrome & placeholder)'),
+  h2('Hero showcase (placeholder)'),
   tableCopy(
     [
-      ['Window chrome', 'Agent session · monday.com'],
-      ['Subline', 'Context · Docs · Slack · Drive'],
-      ['Placeholder title', 'Video placeholder: planned reel'],
-      ['Overlay card title', 'project management agent'],
-      ['Overlay card subtitle', 'monday.com'],
-      ['Region aria-label', 'project management agent workflow: hero video placeholder'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  new Paragraph({ spacing: { after: 200 } }),
-)
-
-// --- Hero story steps ---
-sections.push(
-  h2('Hero story steps'),
-  h3('Step 1'),
-  tableCopy(
-    [
-      ['Title', 'Context, live in monday'],
-      [
-        'Body',
-        'Your brief stays where your team writes: agents read blocks and docs, then sync structure, owners, and dates into monday.',
-      ],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Step 2'),
-  tableCopy(
-    [
-      ['Title', 'Agent builds your project board'],
-      [
-        'Body',
-        'The project management agent creates the workspace structure (groups, items, and timelines) ready for your team.',
-      ],
-      ['Image alt', 'monday work management project board created by an AI agent'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Step 3'),
-  tableCopy(
-    [
-      ['Title', 'Allocate resources'],
-      [
-        'Body',
-        'See capacity and ownership across workstreams so the right people are on the right work.',
-      ],
-      ['Image alt', 'Portfolio and resource view in monday.com'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Step 4'),
-  tableCopy(
-    [['Title', 'Flag risks early'], ['Body', 'Agents surface delays, conflicts, and dependencies before they derail delivery.']],
-    ['Field', 'Copy'],
-  ),
-  h3('Step 5'),
-  tableCopy(
-    [
-      ['Title', 'Generate executive reports'],
-      ['Body', 'Leadership-ready rollups from live data: no deck assembly or manual exports.'],
-      ['Image alt', 'Projects and portfolios reporting in monday.com'],
+      ['Placeholder', 'HERO IMAGE PLACEHOLDER (black box)'],
+      ['Region aria-label', 'Hero image placeholder'],
     ],
     ['Field', 'Copy'],
   ),
@@ -363,16 +315,17 @@ sections.push(
 
 // --- Feature tabs ---
 sections.push(
-  h2('Feature tabs'),
+  h2('Feature tabs (How it works)'),
   tableCopy(
     [
-      ['H2', 'Every project, end-to-end.'],
+      ['Chip', 'How it works'],
+      ['H2', 'From brief to done, without the manual work'],
       [
         'Intro',
-        'Every stage of the project cycle is automatically pushed forward. Your agents continuously handle monitoring, reporting, and the follow-through that slows projects down.',
+        'Every stage keeps moving because your agents are always on and your platform always has the full picture.',
       ],
       ['Link', 'Get started →'],
-      ['Timeline labels', 'Plan · Align · Execute · Track · Report'],
+      ['Timeline labels', 'Plan · Align · Run · Track · Report'],
       ['Nav aria-label', 'Project lifecycle stages'],
     ],
     ['Field', 'Copy'],
@@ -385,11 +338,11 @@ sections.push(
   h2('AI agents'),
   tableCopy(
     [
-      ['Chip', 'AI agents'],
-      ['H2', 'Meet your new project management teammates'],
+      ['Chip', 'Your agents'],
+      ['H2', 'A new kind of project team'],
       [
         'Intro',
-        'Purpose-built agents that live inside monday, keeping your projects moving without manual coordination.',
+        "Purpose-built agents that live inside monday, picking up the coordination work your team shouldn't have to do.",
       ],
     ],
     ['Field', 'Copy'],
@@ -397,36 +350,24 @@ sections.push(
   h3('project management agent'),
   tableCopy(
     [
-      [
-        'Bullet 1',
-        'Prioritizes your day by surfacing key projects, risks, and meetings',
-      ],
-      ['Bullet 2', 'Your always-on project co-pilot, native to monday'],
+      ['Bullet 1', 'Keeps your plan current as things change.'],
+      ['Bullet 2', 'Owners, dates, and priorities updated without anyone having to ask.'],
     ],
     ['Field', 'Copy'],
   ),
   h3('Risk analyzer (New)'),
   tableCopy(
     [
-      [
-        'Bullet 1',
-        'Detects schedule, dependency, and workload risks across projects in real time',
-      ],
-      [
-        'Bullet 2',
-        'Reassigns owners, updates timelines, and alerts stakeholders before delays happen',
-      ],
+      ['Bullet 1', "Spots what's about to go wrong before it does."],
+      ['Bullet 2', 'So you can act while you still have options.'],
     ],
     ['Field', 'Copy'],
   ),
   h3('Reporting manager'),
   tableCopy(
     [
-      [
-        'Bullet 1',
-        'Generates AI-curated executive reports on demand from live project data',
-      ],
-      ['Bullet 2', 'No manual prep, just share the report'],
+      ['Bullet 1', 'Your exec update, ready before the meeting.'],
+      ['Bullet 2', 'No prep, no manual pull, just send it.'],
     ],
     ['Field', 'Copy'],
   ),
@@ -435,31 +376,25 @@ sections.push(
     [
       [
         'Bullet 1',
-        'Monitors capacity and recommends reallocation when demand shifts',
+        'Shows you where your people are stretched and where you have room, across every active project.',
       ],
-      ['Bullet 2', 'Flags conflicts before they create delivery bottlenecks'],
+      ['Bullet 2', 'Shift work before overload turns into missed dates.'],
     ],
     ['Field', 'Copy'],
   ),
   h3('Dependencies resolver'),
   tableCopy(
     [
-      [
-        'Bullet 1',
-        'Proactively surfaces cross-project blockers before they cascade',
-      ],
-      ['Bullet 2', 'Notifies teams the moment a dependency is at risk'],
+      ['Bullet 1', "Tracks what's blocking what."],
+      ["Bullet 2", "So one slipped task doesn't quietly derail everything downstream."],
     ],
     ['Field', 'Copy'],
   ),
   h3('Create your own'),
   tableCopy(
     [
-      [
-        'Bullet 1',
-        'Define custom instructions and workflows so agents match exactly how your team works',
-      ],
-      ['Bullet 2', 'Build and iterate in monday without writing code'],
+      ['Bullet 1', 'Build an agent for how your team actually works.'],
+      ['Bullet 2', 'Define custom instructions and iterate in monday without writing code.'],
     ],
     ['Field', 'Copy'],
   ),
@@ -468,14 +403,14 @@ sections.push(
 
 // --- Resource management ---
 sections.push(
-  h2('People management'),
+  h2('Resource management (Your people)'),
   tableCopy(
     [
-      ['Chip', 'People management'],
-      ['H2', 'Make the most out of your workforce'],
+      ['Chip', 'Your people'],
+      ['H2', 'Your best people on your most important work'],
       [
         'Intro',
-        'With agents taking the busy work, you can make sure that the right people work on the right priorities, while easily balancing their capacity.',
+        "When agents handle the coordination, you can see who's overloaded, who has capacity, and whether your staffing matches your priorities, before it's too late to change it.",
       ],
     ],
     ['Field', 'Copy'],
@@ -493,19 +428,19 @@ sections.push(
       ],
       [
         'Allocate the right person: headline',
-        'Match people to work with confidence',
+        'Match the right person to every role',
       ],
       [
         'Allocate the right person: body',
-        'Assign owners by skills, availability, and fit. Everyone sees the same plan, agents included.',
+        'Skills, availability, and current load surfaced automatically. You make the call, with the full picture in front of you.',
       ],
       [
         'Balance capacity: headline',
-        'Read load before it breaks delivery',
+        'Catch overload before it hits delivery',
       ],
       [
         'Balance capacity: body',
-        'Spot overload and gaps across teams in one view. Tradeoffs stay visible instead of buried in spreadsheets.',
+        'See capacity gaps across teams and projects in one view. Shift resources before timelines slip, not after.',
       ],
       ['CTA', 'Get started →'],
     ],
@@ -522,7 +457,7 @@ sections.push(
     [
       [
         'Headline',
-        'Loved by users. Trusted by organizations.',
+        "Built for teams that can't afford for projects to slip",
       ],
       [
         'Quote',
@@ -530,8 +465,9 @@ sections.push(
       ],
       ['Attribution', 'Sarah Luxemberg, Operations Director, VML'],
       ['Stat', '50% faster project delivery'],
-      ['G2 line 1', 'Ranked top 5 project management platforms on G2'],
+      ['G2 line 1', 'Real customers, real outcomes'],
       ['G2 line 2', 'Backed by 14K+ customer reviews.'],
+      ['G2 badge categories', 'Leader · Easiest to use · Best results · Highest adoption'],
     ],
     ['Field', 'Copy'],
   ),
@@ -540,9 +476,9 @@ sections.push(
 
 // --- Platform bento ---
 sections.push(
-  h2('Platform bento'),
+  h2('Platform bento (Why monday.com)'),
   tableCopy(
-    [['H2', 'Why choose monday.com to run your strategic projects']],
+    [['H2', 'Not just another project management tool']],
     ['Field', 'Copy'],
   ),
   h3('Interactive cards'),
@@ -550,29 +486,29 @@ sections.push(
     [
       [
         'Card 1 title',
-        'Ease of use that drives proven adoption',
+        'Built for project work specifically',
       ],
       [
         'Card 1 body',
-        'Hyper-personalization and intuitive design drive the adoption rates that give you a complete picture of work.',
+        'Not a general-purpose tool retrofitted for projects. The data model, the views, the agents, all designed around how project teams actually operate.',
       ],
       ['Card 1 footer', 'G2 · Highest Adoption · Winter 2025'],
       [
         'Card 2 title',
-        'Expertise built on real-world work',
+        'AI that knows your context',
       ],
       [
         'Card 2 body',
-        'AI capabilities informed by 250K+ customers across industries and the patterns of the world’s most productive teams.',
+        'Agents work from your actual project data, not generic templates. The more your team works in monday, the more useful they get.',
       ],
       ['Card 2 stats', '250K+ customers · 190+ industries · From startups to enterprises, worldwide'],
       [
         'Card 3 title',
-        'One place for all of your organizational context',
+        'One place, every layer',
       ],
       [
         'Card 3 body',
-        'Unifies your data, work context, and institutional knowledge into a single intelligence layer for people and agents.',
+        'From individual task to full portfolio, it all lives in one platform. No stitching tools together, no data falling through the cracks.',
       ],
       [
         'Card 3 bullets',
@@ -580,11 +516,11 @@ sections.push(
       ],
       [
         'Card 4 title',
-        'Enterprise control without compromise',
+        'Enterprise-ready out of the box',
       ],
       [
         'Card 4 body',
-        'Trusted by the world’s most complex organizations, with the permissions, approval gates, and governance to prove it.',
+        'Permissions, governance, approval flows, and compliance certifications included. Not an upgrade.',
       ],
       ['Card 4 stat', '60% of Fortune 500 companies run on monday'],
     ],
@@ -595,11 +531,11 @@ sections.push(
     [
       [
         'Gartner card title',
-        'Leader in Gartner Magic Quadrant for APMR',
+        'Leader in the Gartner Magic Quadrant for Adaptive Project Management and Reporting',
       ],
       [
         'Gartner card body',
-        'Leader in the 2025 Gartner® Magic Quadrant™ for APMR: furthest on vision, highest on execution.',
+        'A Leader in the 2025 Gartner® Magic Quadrant™ for Adaptive Project Management and Reporting, four years in a row.',
       ],
       ['Gartner CTA', 'Get the report'],
       [
@@ -618,20 +554,25 @@ sections.push(
   new Paragraph({ spacing: { after: 200 } }),
 )
 
-// --- PM Feature grid ---
+// --- PM Feature grid (accordion / CapabilityLayers) ---
 sections.push(
-  h2('PM capabilities grid'),
+  h2('Platform capabilities (accordion)'),
   tableCopy(
     [
-      [
-        'Line above chip',
-        'Behind every agent is a platform built for the full depth of project management.',
-      ],
-      ['Chip', 'Built for every level of project management'],
-      ['H2', 'Everything you need to deliver complex projects at scale.'],
+      ['Chip', 'The platform'],
+      ['H2', 'Everything your projects run on'],
       [
         'Subcopy',
-        'monday.com covers the full depth of project and portfolio management, out of the box, no setup required.',
+        'The depth to handle one project or a hundred. Agents work on top of it, but this is what makes them actually useful.',
+      ],
+      [
+        'Portfolios subtitle',
+        'For leads running multiple projects at once, with full visibility across every one of them',
+      ],
+      ['Project subtitle', 'For project managers running complex delivery end-to-end'],
+      [
+        'Execution subtitle',
+        'Where your people and agents do the actual work, side by side',
       ],
     ],
     ['Field', 'Copy'],
@@ -673,10 +614,10 @@ sections.push(
   h2('Build any project app (monday vibe)'),
   tableCopy(
     [
-      ['H2', 'Build any project app / in minutes'],
+      ['H2', 'Need something specific? Build it in minutes.'],
       [
         'Subcopy',
-        'Describe what you need. monday vibe builds the app on top of your live project data.',
+        'Describe what you need. monday builds the app on top of your live project data. No developers, no waiting.',
       ],
       [
         'Prompt typing demo',
@@ -698,11 +639,11 @@ sections.push(
   h2('monday MCP'),
   tableCopy(
     [
-      ['Chip', 'monday MCP'],
-      ['H2', 'Your projects, connected to any AI tool'],
+      ['Chip', 'Your AI tools'],
+      ['H2', 'monday data, in the AI you already use'],
       [
         'Body',
-        'Connect live monday data to Claude, ChatGPT, Copilot, and more: one source of truth, answers in the assistant you already use, no tab-hopping.',
+        'Connect your projects to Claude, ChatGPT, Copilot, and more. Ask questions, get answers, take action, without switching tabs or chasing someone for an update.',
       ],
       ['Tabs', 'Claude · ChatGPT · Microsoft Copilot'],
       ['UI labels', 'You · Syncing with monday · monday'],
@@ -743,26 +684,13 @@ sections.push(
   new Paragraph({ spacing: { after: 200 } }),
 )
 
-// --- Post-MCP headline ---
-sections.push(
-  h2('Post-MCP headline'),
-  tableCopy(
-    [
-      ['H2 line 1', 'Drive your projects forward, with'],
-      ['H2 line 2', 'a full team behind you'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  new Paragraph({ spacing: { after: 200 } }),
-)
-
 // --- Final CTA ---
 sections.push(
   h2('Final CTA'),
   tableCopy(
     [
-      ['H2 line 1', 'Every project, end to end: '],
-      ['H2 line 2', 'with agents keeping work moving.'],
+      ['H2 line 1', 'Projects delivered. Team capacity protected.'],
+      ['H2 line 2', 'Nothing falling through the cracks.'],
       ['Primary', 'Get started free'],
       ['Secondary', 'Talk to sales'],
       ['Microcopy', 'Free forever. No credit card needed.'],
@@ -781,7 +709,7 @@ sections.push(
       ['H2', 'Enterprise-grade security'],
       [
         'Card body',
-        'Enterprise-grade AI infrastructure with built-in protection and security, data privacy, governance, permissions, and compliance.',
+        'Your project data stays protected with built-in governance, permissions, data privacy, and compliance, across every plan.',
       ],
       ['Link', 'Explore our Trust Center → https://monday.com/trust'],
       ['Badges', 'GDPR · AICPA SOC 2 · ISO 27001 · HIPAA'],
@@ -833,7 +761,7 @@ sections.push(
   new Paragraph({ spacing: { after: 200 } }),
 )
 
-// --- Customer outcomes (bottom band, monday.com–style cards) ---
+// --- Customer outcomes (bottom band, monday.com-style cards) ---
 sections.push(
   h2('Customer outcomes'),
   tableCopy(
