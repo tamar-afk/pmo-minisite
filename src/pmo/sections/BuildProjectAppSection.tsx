@@ -66,11 +66,8 @@ export function BuildProjectAppSection() {
   const reduce = useReducedMotion()
 
   return (
-    <section
-      id="for-teams"
-      className="relative scroll-mt-24 overflow-hidden bg-[rgba(247,247,248,0.55)] px-4 py-14 backdrop-blur-[1px] md:px-8 md:py-20 lg:px-12 lg:py-22"
-    >
-      <div className="relative mx-auto max-w-[1100px]">
+    <section id="for-teams" className="relative scroll-mt-24 overflow-hidden bg-transparent py-24 backdrop-blur-[1px]">
+      <div className="pmo-container relative">
         <motion.div
           className="text-left"
           variants={staggerContainer(0.1)}
@@ -78,19 +75,19 @@ export function BuildProjectAppSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.22 }}
         >
-          <motion.div variants={staggerItem} className="mb-3 flex justify-start">
+          <motion.div variants={staggerItem} className="flex justify-start">
             <SectionChip>Your apps</SectionChip>
           </motion.div>
           <motion.h2
             variants={staggerItem}
-            className="max-w-[22ch] text-[40px] font-bold leading-[1.2] tracking-[-0.035em] text-[#0f0f14] sm:max-w-none md:text-[44px] lg:text-[48px]"
+            className="mt-4 max-w-[22ch] text-[40px] font-bold leading-[1.15] tracking-[-0.01em] text-[#0a0a0f] sm:max-w-none md:text-[44px] lg:text-[48px]"
           >
             <span className="block sm:inline">Need something specific? </span>
             <span className="block sm:inline">Build it in minutes.</span>
           </motion.h2>
           <motion.p
             variants={staggerItem}
-            className="mt-5 max-w-[560px] text-[16px] font-normal leading-[1.6] text-[rgba(15,15,20,0.55)] md:mt-6 md:text-[18px]"
+            className="pmo-body mt-5 max-w-[560px] md:mt-5 md:text-[18px]"
           >
             Describe what you need. monday builds the app on top of your live project data. No developers, no
             waiting.
@@ -145,11 +142,11 @@ export function BuildProjectAppSection() {
           transition={reduce ? { duration: 0.2 } : springSoft}
         >
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f7f7f8] to-transparent md:w-24"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f8f8ff] to-transparent md:w-24"
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f7f7f8] to-transparent md:w-24"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f8f8ff] to-transparent md:w-24"
             aria-hidden
           />
           <div className="overflow-hidden py-2 [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

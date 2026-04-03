@@ -119,17 +119,7 @@ function SyncingDots() {
   return (
     <span className="inline-flex items-center gap-0.5" aria-hidden>
       {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="inline-block h-1 w-1 rounded-full bg-[#6161FF]"
-          animate={{ opacity: [0.25, 1, 0.25], scale: [0.85, 1, 0.85] }}
-          transition={{
-            duration: 0.55,
-            repeat: Infinity,
-            delay: i * 0.12,
-            ease: 'easeInOut',
-          }}
-        />
+        <span key={i} className="inline-block h-1 w-1 rounded-full bg-[#6161FF] opacity-80" />
       ))}
     </span>
   )

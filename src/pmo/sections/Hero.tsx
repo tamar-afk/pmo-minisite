@@ -9,14 +9,18 @@ const wordStagger = 0.03
 const headlineDuration = 0.4
 const headlineWordCount = HEADLINE_LINES.reduce((n, line) => n + line.split(' ').length, 0)
 const subheadDelay = headlineWordCount * wordStagger + 0.15
-const ctaDelay = subheadDelay + 0.25
+/** Primary CTAs: 100ms after subhead (master spec). */
+const ctaDelay = subheadDelay + 0.1
 const showcaseDelay = ctaDelay + 0.2
 
 export function Hero() {
+  const headlineLine1 = HEADLINE_LINES[0].split(' ')
+  const headlineLine2 = HEADLINE_LINES[1].split(' ')
+
   return (
     <section
       id="overview"
-      className="relative scroll-mt-24 overflow-hidden border-b border-[rgba(12,12,15,0.05)] bg-white/90 px-4 pb-12 pt-8 backdrop-blur-[2px] md:px-12 md:pb-14 md:pt-12"
+      className="relative scroll-mt-24 overflow-hidden border-b border-[#e8e8f0]/90 bg-transparent py-24 backdrop-blur-[1px]"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-8%,rgba(97,97,255,0.11),transparent_52%)]"
@@ -27,32 +31,41 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-[900px] text-center">
-        <h1 className="mx-auto max-w-[min(100%,42rem)] px-1 text-[clamp(2.5rem,6vw+1rem,4rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#0c0c0f] antialiased md:text-[64px] lg:text-[72px]">
-          {HEADLINE_LINES.map((line, lineIndex) => {
-            const words = line.split(' ')
-            const priorWords = HEADLINE_LINES.slice(0, lineIndex).reduce((acc, l) => acc + l.split(' ').length, 0)
+      <div className="pmo-container relative text-center">
+        <div className="relative mx-auto max-w-[900px]">
+        <h1 className="mx-auto max-w-[min(100%,42rem)] px-1 text-[clamp(2.5rem,6vw+1rem,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-[#0a0a0f] antialiased md:text-[64px] lg:text-[72px]">
+          {headlineLine1.map((word, wi) => (
+            <motion.span
+              key={`l1-${wi}-${word}`}
+              className={`inline-block ${wi < headlineLine1.length - 1 ? 'pr-[0.2em]' : ''}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: headlineDuration,
+                ease: pageEase,
+                delay: 0.03 + wi * wordStagger,
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+          <br />
+          {headlineLine2.map((word, wi) => {
+            const globalIndex = headlineLine1.length + wi
             return (
-              <span key={line} className="block">
-                {words.map((word, wi) => {
-                  const globalIndex = priorWords + wi
-                  return (
-                    <motion.span
-                      key={`${lineIndex}-${wi}-${word}`}
-                      className={`inline-block ${wi < words.length - 1 ? 'pr-[0.2em]' : ''}`}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: headlineDuration,
-                        ease: pageEase,
-                        delay: 0.03 + globalIndex * wordStagger,
-                      }}
-                    >
-                      {word}
-                    </motion.span>
-                  )
-                })}
-              </span>
+              <motion.span
+                key={`l2-${wi}-${word}`}
+                className={`inline-block ${wi < headlineLine2.length - 1 ? 'pr-[0.2em]' : ''}`}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: headlineDuration,
+                  ease: pageEase,
+                  delay: 0.03 + globalIndex * wordStagger,
+                }}
+              >
+                {word}
+              </motion.span>
             )
           })}
         </h1>
@@ -68,7 +81,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="mx-auto mt-5 max-w-[520px] text-pretty text-[16px] font-normal leading-[1.6] tracking-[-0.01em] text-[rgba(12,12,15,0.62)] antialiased md:mt-6 md:text-[18px]"
+          className="pmo-body mx-auto mt-5 max-w-[520px] text-pretty antialiased md:mt-6 md:text-[18px]"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: subheadDelay, duration: 0.4, ease: pageEase }}
@@ -94,8 +107,8 @@ export function Hero() {
           </motion.a>
           <motion.a
             href="#features"
-            className="inline-flex items-center justify-center gap-1 rounded-full border border-[rgba(12,12,15,0.12)] bg-white px-8 py-3.5 text-[15px] font-semibold text-[#0c0c0f] shadow-[0_1px_2px_rgba(12,12,15,0.04)]"
-            whileHover={{ borderColor: 'rgba(12,12,15,0.2)', backgroundColor: 'rgba(12,12,15,0.03)' }}
+            className="inline-flex items-center justify-center gap-1 rounded-full border border-[#e8e8f0] bg-white px-8 py-3.5 text-[15px] font-semibold text-[#0a0a0f] shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+            whileHover={{ borderColor: 'rgba(97,97,255,0.3)', y: -2, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15, ease: pageEase }}
           >
@@ -129,6 +142,7 @@ export function Hero() {
         >
           <HeroShowcase />
         </motion.div>
+      </div>
       </div>
     </section>
   )

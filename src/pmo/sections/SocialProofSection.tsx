@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { CustomerProofBlock } from '../components/CustomerProofBlock'
 import { SectionChip } from '../components/SectionChip'
 import { pageEase } from '../motion'
-import { CustomerOutcomesCarousel } from './CustomerOutcomesSection'
+import { CaseStudiesProofCarousel } from './CustomerOutcomesSection'
 
 export function SocialProofSection() {
   return (
@@ -28,7 +28,7 @@ export function SocialProofSection() {
 
         <CustomerProofBlock />
 
-        <CustomerOutcomesCarousel className="mt-10 md:mt-12" />
+        <CaseStudiesProofCarousel className="mt-10 md:mt-12" />
       </div>
     </section>
   )

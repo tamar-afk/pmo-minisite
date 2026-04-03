@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { pageEase, springSnappy, springSoft } from '../motion'
+import { pageEase } from '../motion'
 
 const faqs = [
   {
@@ -34,17 +34,14 @@ export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section
-      id="faq"
-      className="bg-[rgba(244,244,245,0.65)] px-4 py-14 backdrop-blur-[1px] md:px-8 md:py-16 lg:px-12"
-    >
-      <div className="mx-auto max-w-[720px]">
+    <section id="faq" className="bg-transparent py-24">
+      <div className="mx-auto w-full max-w-[720px] px-6 md:px-12">
         <motion.h2
-          className="text-left text-[40px] font-bold leading-[1.2] text-[#0f0f14] md:text-[44px] lg:text-[48px]"
+          className="pmo-section-title text-left"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={springSoft}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5, ease: pageEase }}
         >
           Frequently asked questions
         </motion.h2>
@@ -54,24 +51,25 @@ export function FAQSection() {
             return (
               <motion.div
                 key={item.q}
-                className="border-b border-[rgba(15,15,20,0.1)]"
-                initial={{ opacity: 0, y: 14 }}
+                className="border-b border-[#e8e8f0]"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ ...springSoft, delay: i * 0.04 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, ease: pageEase, delay: i * 0.06 }}
               >
                 <motion.button
                   type="button"
+                  data-cursor-interactive
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 py-3.5 text-left text-[15px] font-semibold text-[#0f0f14]"
-                  whileHover={{ color: '#6161FF' }}
-                  transition={springSnappy}
+                  className="flex w-full items-start justify-between gap-4 py-3.5 text-left text-[15px] font-semibold text-[#0a0a0f]"
+                  whileHover={{ color: '#6161ff' }}
+                  transition={{ duration: 0.1, ease: pageEase }}
                 >
                   {item.q}
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2, ease: pageEase }}
-                    className="mt-0.5 shrink-0 text-[#6161FF]"
+                    className="mt-0.5 shrink-0 text-[#6161ff]"
                     aria-hidden
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -93,9 +91,7 @@ export function FAQSection() {
                       transition={{ duration: 0.3, ease: pageEase }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-4 text-[14px] leading-relaxed text-[rgba(15,15,20,0.65)]">
-                        {item.a}
-                      </p>
+                      <p className="pb-4 text-[16px] leading-[1.7] text-[#6b6b8a]">{item.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

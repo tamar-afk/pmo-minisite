@@ -1,4 +1,5 @@
 import { CustomCursor } from './components/CustomCursor'
+import PlatformFeatureMatrix from './components/PlatformFeatureMatrix'
 import { PageChrome } from './components/PageChrome'
 import { Nav } from './components/Nav'
 import { PageScrollReveal } from './components/PageScrollReveal'
@@ -6,18 +7,15 @@ import { ScrollProgress } from './components/ScrollProgress'
 import { SectionDivider } from './components/SectionDivider'
 import { AIAgents } from './sections/AIAgents'
 import { BuildProjectAppSection } from './sections/BuildProjectAppSection'
+import { CaseStudiesSection } from './sections/CaseStudiesSection'
 import { PlatformBentoSection } from './sections/PlatformBentoSection'
-import { SocialProofSection } from './sections/SocialProofSection'
-import { EnterpriseSecuritySection } from './sections/EnterpriseSecuritySection'
 import { FAQSection } from './sections/FAQSection'
-import CapabilityLayers from './components/CapabilityLayers'
 import { FeatureTabsSection } from './sections/FeatureTabsSection'
 import { FinalCta } from './sections/FinalCta'
 import { Footer } from './sections/Footer'
 import { Hero } from './sections/Hero'
 import { LogoBarSection } from './sections/LogoBarSection'
 import { McpSection } from './sections/McpSection'
-import { ResourceManagementSection } from './sections/ResourceManagementSection'
 
 export function PMOPage() {
   return (
@@ -39,19 +37,7 @@ export function PMOPage() {
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
-          <CapabilityLayers />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <ResourceManagementSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <McpSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <SocialProofSection />
+          <CaseStudiesSection />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
@@ -63,7 +49,11 @@ export function PMOPage() {
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
-          <EnterpriseSecuritySection />
+          <McpSection />
+        </PageScrollReveal>
+        <SectionDivider />
+        <PageScrollReveal>
+          <PlatformFeatureMatrix />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>

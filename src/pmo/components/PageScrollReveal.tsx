@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { pageEase } from '../motion'
 
 /**
- * Wraps a page block with a subtle scroll-triggered fade/slide so motion continues down the page.
+ * Linear-style scroll entrance: opacity + 20px rise, 500ms, threshold 0.1, once.
  */
 export function PageScrollReveal({
   children,
@@ -17,10 +17,10 @@ export function PageScrollReveal({
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12, margin: '0px 0px -80px 0px' }}
-      transition={reduceMotion ? { duration: 0 } : { duration: 0.4, ease: pageEase }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={reduceMotion ? { duration: 0 } : { duration: 0.5, ease: pageEase }}
     >
       {children}
     </motion.div>

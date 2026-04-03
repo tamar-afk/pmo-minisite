@@ -318,8 +318,8 @@ sections.push(
   h2('Feature tabs (How it works)'),
   tableCopy(
     [
-      ['Chip', 'How it works'],
-      ['H2', 'From planning to delivery, without the manual work'],
+      ['Chip', 'Your projects, end to end'],
+      ['H2', 'From brief to done, without the manual work'],
       [
         'Intro',
         'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.',
@@ -554,7 +554,7 @@ sections.push(
   new Paragraph({ spacing: { after: 200 } }),
 )
 
-// --- PM Feature grid (accordion / CapabilityLayers) ---
+// --- PM Feature matrix (PlatformFeatureMatrix) ---
 sections.push(
   h2('Platform capabilities (accordion)'),
   tableCopy(

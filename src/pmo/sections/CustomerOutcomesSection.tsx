@@ -1,6 +1,11 @@
-type BrandId = 'mcd' | 'holt' | 'canva' | 'vistra' | 'umg' | 'forrester'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { pageEase } from '../motion'
 
-type Outcome = {
+type BrandId = 'mcd' | 'holt' | 'canva' | 'vistra' | 'umg'
+
+export type Outcome = {
   id: string
   brand: BrandId
   imageSrc: string
@@ -13,8 +18,8 @@ type Outcome = {
   href: string
 }
 
-/** Project-delivery focused metrics; carousel duplicates the row for a continuous loop. */
-const outcomes: Outcome[] = [
+/** Project-delivery focused metrics (case studies band). */
+export const outcomes: Outcome[] = [
   {
     id: '1',
     brand: 'mcd',
@@ -75,24 +80,12 @@ const outcomes: Outcome[] = [
     tag: 'Entertainment',
     href: 'https://monday.com/customer-stories',
   },
-  {
-    id: '6',
-    brand: 'forrester',
-    imageSrc:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Project governance workshop',
-    target: 346,
-    format: 'percent',
-    headline: 'ROI on PM & project operations',
-    tag: 'Total Economic Impact',
-    href: 'https://monday.com/customer-stories',
-  },
 ]
 
-function formatMetric(o: Outcome): string {
-  if (o.format === 'percent') return `${o.target}%`
-  if (o.format === 'k') return `${o.target}K`
-  return String(o.target)
+function formatMetricValue(value: number, o: Outcome): string {
+  if (o.format === 'percent') return `${Math.round(value)}%`
+  if (o.format === 'k') return `${Math.round(value)}K`
+  return String(Math.round(value))
 }
 
 function BrandLogo({ brand }: { brand: BrandId }) {
@@ -130,20 +123,46 @@ function BrandLogo({ brand }: { brand: BrandId }) {
           Universal Music Group
         </span>
       )
-    case 'forrester':
-      return (
-        <span className="text-[14px] font-semibold italic text-[#0f0f14]">
-          Forrester<span className="text-[#e85d04]">®</span>
-        </span>
-      )
   }
 }
 
-function OutcomeCard({ outcome }: { outcome: Outcome }) {
-  const metric = formatMetric(outcome)
+function useCountUp(target: number, active: boolean, durationMs = 800) {
+  const [value, setValue] = useState(0)
+  useEffect(() => {
+    if (!active) return
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / durationMs)
+      const eased = 1 - (1 - t) ** 3
+      setValue(target * eased)
+      if (t < 1) raf = requestAnimationFrame(tick)
+      else setValue(target)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [active, target, durationMs])
+  return value
+}
+
+export function OutcomeCard({
+  outcome,
+  className = '',
+}: {
+  outcome: Outcome
+  className?: string
+}) {
+  const ref = useRef<HTMLElement | null>(null)
+  const inView = useInView(ref, { once: true, amount: 0.35 })
+  const animated = useCountUp(outcome.target, inView)
+  const metric = formatMetricValue(animated, outcome)
 
   return (
-    <article className="flex w-[min(280px,calc(100vw-3rem))] shrink-0 flex-col overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.08)] bg-white shadow-[0_4px_24px_rgba(15,15,20,0.06)]">
+    <article
+      ref={ref}
+      data-cursor-interactive
+      className={`flex w-full max-w-[320px] shrink-0 flex-col overflow-hidden rounded-[12px] border border-[#e8e8f0] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[rgba(97,97,255,0.3)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] ${className}`}
+    >
       <div className="flex items-center justify-between gap-3 px-4 pt-4">
         <div className="min-w-0">
           <BrandLogo brand={outcome.brand} />
@@ -171,10 +190,10 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
       </div>
 
       <div className="flex flex-col gap-0 px-4 pt-4">
-        <span className="text-[56px] font-bold leading-[1.05] tracking-tight text-[#6161ff] tabular-nums">
-          {metric}
+        <span className="min-h-[1.1em] text-[56px] font-bold leading-[1] tracking-tight text-[#6161ff] tabular-nums md:text-[60px]">
+          {inView ? metric : outcome.format === 'percent' ? '0%' : outcome.format === 'k' ? '0K' : '0'}
         </span>
-        <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(15,15,20,0.6)]">
+        <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(107,107,138,0.6)]">
           {outcome.headline}
         </p>
       </div>
@@ -190,33 +209,83 @@ function OutcomeCard({ outcome }: { outcome: Outcome }) {
   )
 }
 
-export function CustomerOutcomesCarousel({ className = '' }: { className?: string }) {
+/**
+ * Manual carousel (no infinite loop): slides 300ms with global easing.
+ */
+export function CaseStudiesProofCarousel({ className = '' }: { className?: string }) {
+  const n = outcomes.length
+  const [idx, setIdx] = useState(0)
+
+  const go = (dir: -1 | 1) => {
+    setIdx((i) => {
+      const next = i + dir
+      if (next < 0) return n - 1
+      if (next >= n) return 0
+      return next
+    })
+  }
+
   return (
-    <div className={`group relative w-full ${className}`}>
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent md:w-20"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent md:w-20"
-        aria-hidden
-      />
-      <div className="overflow-hidden py-1 [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="animate-outcomes-carousel flex w-max gap-4 will-change-transform">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex gap-4">
-              {outcomes.map((o) => (
-                <OutcomeCard key={`${dup}-${o.id}`} outcome={o} />
-              ))}
+    <div className={`relative ${className}`}>
+      <div className="overflow-hidden rounded-[12px] py-1">
+        <motion.div
+          className="flex"
+          style={{ width: `${n * 100}%` }}
+          animate={{ x: `${-(idx * 100) / n}%` }}
+          transition={{ duration: 0.3, ease: pageEase }}
+        >
+          {outcomes.map((o) => (
+            <div
+              key={o.id}
+              className="box-border flex shrink-0 justify-center px-3"
+              style={{ width: `${100 / n}%` }}
+            >
+              <OutcomeCard outcome={o} className="max-w-[min(320px,100%)]" />
             </div>
           ))}
+        </motion.div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-3">
+        <button
+          type="button"
+          data-cursor-interactive
+          aria-label="Previous case study"
+          onClick={() => go(-1)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(12,12,15,0.12)] bg-white text-[#0c0c0f] shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[rgba(97,97,255,0.35)] hover:shadow-[0_4px_16px_rgba(97,97,255,0.12)]"
+        >
+          <ChevronLeft className="h-5 w-5" strokeWidth={2} aria-hidden />
+        </button>
+        <div className="flex gap-1.5" aria-hidden>
+          {outcomes.map((o, i) => (
+            <button
+              key={o.id}
+              type="button"
+              data-cursor-interactive
+              aria-label={`Go to slide ${i + 1}`}
+              aria-current={i === idx}
+              onClick={() => setIdx(i)}
+              className={`h-2 w-2 rounded-full transition-colors duration-200 ${
+                i === idx ? 'bg-[#6161ff]' : 'bg-[rgba(12,12,15,0.2)] hover:bg-[rgba(12,12,15,0.35)]'
+              }`}
+            />
+          ))}
         </div>
+        <button
+          type="button"
+          data-cursor-interactive
+          aria-label="Next case study"
+          onClick={() => go(1)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(12,12,15,0.12)] bg-white text-[#0c0c0f] shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[rgba(97,97,255,0.35)] hover:shadow-[0_4px_16px_rgba(97,97,255,0.12)]"
+        >
+          <ChevronRight className="h-5 w-5" strokeWidth={2} aria-hidden />
+        </button>
       </div>
     </div>
   )
 }
 
-/** Optional standalone section (carousel also renders inside social proof). */
+/** Optional standalone section. */
 export function CustomerOutcomesSection() {
   return (
     <section
@@ -231,7 +300,7 @@ export function CustomerOutcomesSection() {
         </div>
       </div>
 
-      <CustomerOutcomesCarousel className="mt-6 md:mt-7" />
+      <CaseStudiesProofCarousel className="mt-6 md:mt-7" />
     </section>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MondayWMLogo } from './Logo'
-import { springSnappy } from '../motion'
+import { pageEase } from '../motion'
 
 const links = [
   { label: 'Overview', href: '#overview' },
@@ -25,10 +25,10 @@ function NavLink({
       className={`group relative shrink-0 text-[14px] font-normal leading-none tracking-[0.01em] transition-colors duration-300 md:text-[15px] ${
         onDark
           ? 'text-[rgba(255,255,255,0.68)] hover:text-white'
-          : 'text-[rgba(12,12,15,0.52)] hover:text-[#0c0c0f]'
+          : 'text-[#6b6b8a] hover:text-[#0a0a0f]'
       }`}
       whileHover={{ y: -1 }}
-      transition={springSnappy}
+      transition={{ duration: 0.15, ease: pageEase }}
     >
       {children}
       <span className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left scale-x-0 rounded-full bg-[#6161FF] opacity-90 transition-transform duration-300 ease-out group-hover:scale-x-100" />
@@ -58,9 +58,9 @@ function PrimaryButton({
             ? 'border-[rgba(255,255,255,0.2)] text-white hover:bg-[rgba(255,255,255,0.08)]'
             : 'border-[rgba(15,15,20,0.12)] text-[#0f0f14] hover:bg-[rgba(15,15,20,0.05)]'
         }`}
-        whileHover={{ scale: 1.03 }}
+        whileHover={{ scale: 1.02, y: -1 }}
         whileTap={{ scale: 0.97 }}
-        transition={springSnappy}
+        transition={{ duration: 0.15, ease: pageEase }}
       >
         {children}
       </motion.a>
@@ -69,10 +69,10 @@ function PrimaryButton({
   return (
     <motion.a
       href={href}
-      className={`${base} bg-[#6161FF] text-white shadow-[0_4px_24px_rgba(97,97,255,0.25)]`}
-      whileHover={{ scale: 1.03, backgroundColor: '#7272FF', boxShadow: '0 8px 32px rgba(97,97,255,0.35)' }}
+      className={`${base} bg-[#6161ff] text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]`}
+      whileHover={{ scale: 1.02, backgroundColor: '#7272ff', boxShadow: '0 8px 24px rgba(97,97,255,0.35)' }}
       whileTap={{ scale: 0.97 }}
-      transition={springSnappy}
+      transition={{ duration: 0.15, ease: pageEase }}
     >
       {children}
     </motion.a>
@@ -92,18 +92,18 @@ export function Nav() {
 
   return (
     <motion.header
-      className="sticky top-0 z-50 border-b border-[rgba(12,12,15,0.06)] transition-colors"
+      className="sticky top-0 z-50 border-b border-[#e8e8f0]/90 transition-colors"
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={springSnappy}
+      transition={{ duration: 0.45, ease: pageEase }}
       style={{
         backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(180%)',
         WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(180%)',
-        backgroundColor: scrolled ? 'rgba(255,255,255,0.82)' : 'rgba(247,247,248,0.72)',
-        borderBottomColor: 'rgba(12,12,15,0.06)',
+        backgroundColor: scrolled ? 'rgba(255,255,255,0.88)' : 'rgba(255,255,255,0.72)',
+        borderBottomColor: 'rgba(232,232,240,0.9)',
       }}
     >
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 py-3.5 md:flex-row md:items-center md:justify-between md:gap-6 md:px-8 lg:px-12">
+      <div className="pmo-container flex flex-col gap-3 py-3.5 md:flex-row md:items-center md:justify-between md:gap-6">
         <div className="flex items-center justify-between gap-4">
           <MondayWMLogo onDark={onDark} />
           <div className="flex items-center gap-2 sm:gap-3 md:hidden">

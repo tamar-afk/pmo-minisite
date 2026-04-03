@@ -1,16 +1,27 @@
 import { type ReactNode } from 'react'
 import { motion } from 'framer-motion'
-import { pageEase } from '../motion'
+import { pageRevealTransition } from '../motion'
 
-export function SectionChip({ children }: { children: ReactNode }) {
+type SectionChipProps = {
+  children: ReactNode
+  /** When true, show sentence case instead of uppercase chip style. */
+  sentenceCase?: boolean
+  className?: string
+}
+
+/**
+ * Linear-style pill: faint purple tint, purple border, no shadow.
+ */
+export function SectionChip({ children, sentenceCase = false, className = '' }: SectionChipProps) {
   return (
     <motion.span
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2, margin: '0px 0px -80px 0px' }}
-      transition={{ duration: 0.4, ease: pageEase }}
-      whileHover={{ scale: 1.02, boxShadow: '0 1px 0 rgba(0,0,0,0.04)' }}
-      className="inline-flex cursor-default items-center rounded-full border border-[rgba(12,12,15,0.08)] bg-white px-[14px] py-1.5 text-[12px] font-medium uppercase tracking-[0.05em] text-[rgba(12,12,15,0.48)] shadow-[0_1px_2px_rgba(12,12,15,0.04)] md:text-[13px]"
+      viewport={{ once: true, amount: 0.1 }}
+      transition={pageRevealTransition}
+      className={`inline-flex cursor-default items-center rounded-full border border-[rgba(97,97,255,0.2)] bg-[rgba(97,97,255,0.08)] px-3 py-1 text-[11px] font-medium text-[#6161ff] ${
+        sentenceCase ? 'normal-case tracking-[-0.01em]' : 'uppercase tracking-[0.08em]'
+      } ${className}`}
     >
       {children}
     </motion.span>

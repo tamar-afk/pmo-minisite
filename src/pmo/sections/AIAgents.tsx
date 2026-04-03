@@ -249,9 +249,20 @@ export function AIAgents() {
   return (
     <section
       id="agents"
-      className="relative z-20 -mb-[24px] rounded-b-[28px] border-b-0 bg-white/88 px-6 pb-20 pt-14 shadow-[0_28px_56px_rgba(15,15,20,0.12)] backdrop-blur-[2px] md:px-12 md:pb-24 md:pt-20"
+      className="relative z-20 -mb-[24px] overflow-hidden rounded-b-[28px] border-b-0 bg-[#0a0a0f] py-20 shadow-[0_2px_8px_rgba(0,0,0,0.3)] md:py-20"
     >
-      <div className="mx-auto max-w-[1280px] text-left">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04]" aria-hidden>
+        <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <filter id="pmo-agent-noise" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" result="n" />
+              <feColorMatrix type="saturate" values="0" in="n" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" filter="url(#pmo-agent-noise)" fill="#fff" />
+        </svg>
+      </div>
+      <div className="pmo-container relative text-left">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -275,7 +286,7 @@ export function AIAgents() {
               hidden: { opacity: 0, y: 20 },
               show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: pageEase } },
             }}
-            className="mt-4 text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]"
+            className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.01em] text-white md:text-[44px] lg:text-[48px]"
           >
             Meet your always-on project team
           </motion.h2>
@@ -284,7 +295,7 @@ export function AIAgents() {
               hidden: { opacity: 0, y: 20 },
               show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: pageEase } },
             }}
-            className="mt-4 max-w-[500px] text-[16px] font-normal leading-[1.6] text-[rgba(12,12,15,0.58)] md:text-[18px]"
+            className="mt-5 max-w-[500px] text-[16px] font-normal leading-[1.7] text-[rgba(255,255,255,0.6)] md:text-[18px]"
           >
             Handling the around-the-clock coordination, bottlenecks, and follow-through that slow projects down.
           </motion.p>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion'
+import { pageEase } from '../motion'
 
 const INTERACTIVE_SELECTOR =
   'a[href],button:not([disabled]),[role="button"]:not([disabled]),summary,[data-cursor-interactive],input:not([disabled]),select,textarea,.cursor-interactive'
@@ -54,7 +55,7 @@ export function CustomCursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[300]"
+      className="pointer-events-none fixed left-0 top-0 z-[540]"
       style={{ x: springX, y: springY }}
     >
       <div
@@ -68,7 +69,7 @@ export function CustomCursor() {
             height: visible ? size : 0,
             opacity: visible ? 1 : 0,
           }}
-          transition={{ duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.15, ease: pageEase }}
         />
       </div>
     </motion.div>
