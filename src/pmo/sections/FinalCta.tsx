@@ -30,20 +30,14 @@ export function FinalCta() {
           variants={staggerItem}
           className="text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#0c0c0f] md:text-[44px] md:leading-[1.06]"
         >
-          <span className="block">Projects don&apos;t just get managed.</span>
+          <span className="block">Every project, end to end.</span>
           <span className="mt-1 block text-[rgba(12,12,15,0.92)] md:mt-1.5">
-            They get delivered, faster.
+            with agents keeping work moving.
           </span>
         </motion.h2>
-        <motion.p
-          variants={staggerItem}
-          className="mt-4 text-[17px] text-[rgba(12,12,15,0.58)] md:text-[18px]"
-        >
-          Run high-quality projects with clarity, control, and fewer surprises.
-        </motion.p>
         <motion.div
           variants={staggerItem}
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4"
         >
           <motion.a
             href="#pricing"

@@ -7,10 +7,10 @@ const replySpring = { type: 'spring' as const, stiffness: 380, damping: 26, mass
 
 const heroEase = [0.22, 1, 0.36, 1] as const
 
-/** Full loop length — must cover typing → sync → reply stagger (Workato-style hero replay). */
+/** Full loop length: must cover typing, sync, reply stagger (Workato-style hero replay). */
 const HERO_LOOP_MS = 9800
 
-type CardId = 'claude' | 'cursor' | 'copilot'
+type CardId = 'claude' | 'chatgpt' | 'copilot'
 
 type AssistantDemo = {
   question: string
@@ -24,12 +24,12 @@ const ASSISTANT_DEMOS: Record<CardId, AssistantDemo> = {
     question: 'What owner updates or blockers on the Q3 launch board need my attention today?',
     replyIntro: 'Catch-ups synced from monday:',
     replyRows: [
-      'Design: Figma handoff done — 2 dependencies unblocked',
+      'Design: Figma handoff done; 2 dependencies unblocked',
       'Eng: API migration on track; infra review scheduled Thu',
-      'PMO: Budget line awaiting approval — owner auto-nudged',
+      'Project management: Budget line awaiting approval; owner auto-nudged',
     ],
   },
-  cursor: {
+  chatgpt: {
     question: 'What projects are at risk this week?',
     replyIntro: '3 projects flagged at risk:',
     replyRows: [
@@ -43,7 +43,7 @@ const ASSISTANT_DEMOS: Record<CardId, AssistantDemo> = {
       'Draft a leadership-ready brief: portfolio health and top decisions needed before Q3 close.',
     replyIntro: 'Executive summary from live portfolio data:',
     replyRows: [
-      'Health: 12 on track · 4 at risk · 1 blocked — RAG roll-up by program',
+      'Health: 12 on track · 4 at risk · 1 blocked. RAG roll-up by program',
       'Budget vs actual: 3% under portfolio-wide; 2 line items over threshold',
       'Decisions needed: CRM migration scope tradeoff, Platform squad staffing',
     ],
@@ -62,14 +62,14 @@ function ClaudeMark() {
   )
 }
 
-function CursorMark() {
+function ChatGPTMark() {
   return (
     <span
       className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] text-[11px] font-bold text-white"
-      style={{ background: '#141414' }}
+      style={{ background: '#10A37F' }}
       aria-hidden
     >
-      C
+      G
     </span>
   )
 }
@@ -273,7 +273,7 @@ export function McpCardStack() {
 
   const cards: { id: CardId; title: string; shortTitle: string; header: ReactNode }[] = [
     { id: 'claude', title: 'Claude', shortTitle: 'Claude', header: <ClaudeMark /> },
-    { id: 'cursor', title: 'Cursor', shortTitle: 'Cursor', header: <CursorMark /> },
+    { id: 'chatgpt', title: 'ChatGPT', shortTitle: 'ChatGPT', header: <ChatGPTMark /> },
     {
       id: 'copilot',
       title: 'Microsoft Copilot',

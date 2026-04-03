@@ -7,7 +7,7 @@ export type CustomerQuoteSectionProps = {
   titleLine?: string
   storyHref?: string
   storyLabel?: string
-  /** e.g. “50% faster project delivery” — ministite-style highlight under attribution */
+  /** e.g. “50% faster project delivery”: ministite-style highlight under attribution */
   highlightStat?: string
   /** Use `left` when placed beside G2 / in a split layout */
   textAlign?: 'center' | 'left'

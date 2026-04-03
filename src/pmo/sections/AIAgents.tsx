@@ -18,8 +18,8 @@ type Agent = {
 
 const agents: Agent[] = [
   {
-    id: 'pmo-agent',
-    label: 'PMO agent',
+    id: 'project-management-agent',
+    label: 'Project management agent',
     showNew: false,
     primary: true,
     bullets: [

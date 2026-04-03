@@ -1,7 +1,7 @@
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 
 /**
- * Fixed top bar that fills with scroll progress — gives continuous motion feedback while reading.
+ * Fixed top bar that fills with scroll progress: gives continuous motion feedback while reading.
  */
 export function ScrollProgress() {
   const reduceMotion = useReducedMotion()

@@ -1,7 +1,7 @@
 /**
  * Exports the built site to a full-page PDF.
  * Scrolls the page first so scroll-triggered animations (Framer useInView) run
- * and content is visible — plain headless print often captures blank sections.
+ * and content is visible: plain headless print often captures blank sections.
  */
 import { spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'

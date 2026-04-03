@@ -28,7 +28,7 @@ export function McpSection() {
             Your projects, connected to any AI tool
           </h2>
           <p className="mx-auto mt-4 max-w-[540px] text-[17px] leading-relaxed text-[rgba(12,12,15,0.58)] md:text-[18px]">
-            Connect live monday data to Claude, Cursor, Copilot, and more—one source of truth, answers in
+            Connect live monday data to Claude, ChatGPT, Copilot, and more. One source of truth, answers in
             the assistant you already use, no tab-hopping.
           </p>
         </SectionReveal>

@@ -71,10 +71,10 @@ export function PmoAgentPanel({
           />
           <div className="min-w-0">
             <p className="text-[15px] font-bold leading-tight text-[#0f0f14]">
-              Hi, I&apos;m your PMO agent
+              Hi, I&apos;m your project management agent
             </p>
             <p className="mt-1 text-[11px] leading-snug text-[rgba(0,0,0,0.5)]">
-              Your PMO Agent prioritizes your day by highlighting key meetings,
+              Your project management agent prioritizes your day by highlighting key meetings,
               projects, and reminders.
             </p>
           </div>

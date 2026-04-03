@@ -5,13 +5,13 @@ import { springSoft, staggerContainer, staggerItem } from '../motion'
 const STORIES_BASE = 'https://monday.com/stories'
 
 /**
- * “Proven impact across teams and industries” — outcome cards aligned with
+ * “Proven impact across teams and industries”: outcome cards aligned with
  * [monday.com project management](https://monday.com/ap/project-management) (customer proof band).
  */
 const impactStories = [
   {
     stat: '25%',
-    label: 'Reduction in PMO timelines',
+    label: 'Reduction in project management timelines',
     industry: 'Retail & CPG',
     gradient: 'from-[#e8e4ff] via-[#f4f2ff] to-[#faf8fc]',
   },

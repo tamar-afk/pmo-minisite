@@ -5,12 +5,12 @@
 const CLOUDINARY = 'https://dapulse-res.cloudinary.com/image/upload'
 const CLOUDINARY_VIDEO = 'https://dapulse-res.cloudinary.com/video/upload'
 
-/** Responsive image transforms — keeps payloads reasonable on retina. */
+/** Responsive image transforms: keeps payloads reasonable on retina. */
 export function mondayTransform(w: number) {
   return `f_auto,q_auto,w_${w}`
 }
 
-/** PMO agent / monday.com AI agent — homepage hero headshot (Cloudinary). */
+/** Project management agent / monday.com AI agent: homepage hero headshot (Cloudinary). */
 export const mondayAgentHeadshotUrl = `${CLOUDINARY}/f_auto,q_auto,w_400/v1768899453/Generator_featured%20images/hp-jan-26/Hero/agents/agent-headshot-1.png`
 
 /**
@@ -18,7 +18,7 @@ export const mondayAgentHeadshotUrl = `${CLOUDINARY}/f_auto,q_auto,w_400/v176889
  */
 /**
  * Official monday.com Agents hero reel (Cloudinary).
- * Same marketing asset used on ministite-style demos — see [ministite.vercel.app](https://ministite.vercel.app/).
+ * Same marketing asset used on ministite-style demos. See [ministite.vercel.app](https://ministite.vercel.app/).
  */
 export const mondayHeroAgentVideo = {
   mp4: `${CLOUDINARY_VIDEO}/v1769001499/Generator_featured%20images/hp-jan-26/Hero/videos-v2/_Agents_HERO-v2.mp4`,
@@ -27,7 +27,7 @@ export const mondayHeroAgentVideo = {
 } as const
 
 /**
- * Gartner® Magic Quadrant™ for Adaptive Project Management and Reporting (APMR) — 2025 graphic
+ * Gartner® Magic Quadrant™ for Adaptive Project Management and Reporting (APMR), 2025 graphic
  * (same asset family as [monday.com/ap/gartner-apmr-2025](https://monday.com/ap/gartner-apmr-2025)).
  */
 export const mondayGartnerApmrGraphic =
@@ -37,7 +37,7 @@ export const mondayGartnerApmrGraphic =
  * AI PM feature tab art (Plan → Align → Execute → Track → Report).
  * Same Cloudinary assets as [monday.com/ap/project-management/ai-var](https://monday.com/ap/project-management/ai-var).
  */
-/** Tab art max ~440px CSS — fetch at 640w to match display size */
+/** Tab art max ~440px CSS: fetch at 640w to match display size */
 export const mondayAiPmFeatureTabImages = {
   plan: `${CLOUDINARY}/${mondayTransform(640)}/v1771152734/Generator_featured%20images/pm-feb-26/features/pm-feature-plan.avif`,
   align: `${CLOUDINARY}/${mondayTransform(640)}/v1771156858/Generator_featured%20images/pm-feb-26/features/pm-feature-align.avif`,
@@ -57,7 +57,7 @@ export const mondayAgentStripSrc = '/images/agents/ai-agents-strip.png'
 export const heroPmoCompositeVideoPath = '/videos/pmo-hero-activities.mp4'
 
 /**
- * Hero story beats — local product captures + official agent art.
+ * Hero story beats: local product captures + official agent art.
  * `strip` frames a column from `mondayAgentStripSrc` (same layout as AIAgents section).
  */
 export type HeroStoryMedia =
@@ -78,14 +78,14 @@ export const heroAgentStorySteps: readonly HeroAgentStoryStep[] = [
     id: 'brief',
     stepNum: 1,
     title: 'Context, live in monday',
-    body: 'Your brief stays where your team writes—agents read blocks and docs, then sync structure, owners, and dates into monday.',
+    body: 'Your brief stays where your team writes: agents read blocks and docs, then sync structure, owners, and dates into monday.',
     media: { kind: 'brief' },
   },
   {
     id: 'board',
     stepNum: 2,
     title: 'Agent builds your project board',
-    body: 'The PMO agent creates the workspace structure—groups, items, and timelines—ready for your team.',
+    body: 'The project management agent creates the workspace structure (groups, items, and timelines) ready for your team.',
     media: {
       kind: 'image',
       src: '/videos/hero-project-board.png',
@@ -114,7 +114,7 @@ export const heroAgentStorySteps: readonly HeroAgentStoryStep[] = [
     id: 'report',
     stepNum: 5,
     title: 'Generate executive reports',
-    body: 'Leadership-ready rollups from live data—no deck assembly or manual exports.',
+    body: 'Leadership-ready rollups from live data: no deck assembly or manual exports.',
     media: {
       kind: 'image',
       src: '/images/monday-projects-portfolios.png',

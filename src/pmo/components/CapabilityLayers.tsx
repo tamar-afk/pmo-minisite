@@ -337,7 +337,7 @@ export default function CapabilityLayers() {
           className="text-center"
         >
           <div className="mb-3 flex justify-center">
-            <SectionChip>Built for real project management</SectionChip>
+            <SectionChip>Built for every level of project management</SectionChip>
           </div>
           <h2 className="mt-1 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-[#0c0c0f] md:text-[38px] lg:text-[42px]">
             Everything you need to deliver complex projects{' '}
@@ -364,32 +364,6 @@ export default function CapabilityLayers() {
             />
           ))}
         </div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.35, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 text-center text-[12px] tracking-[0.06em] text-[rgba(15,15,20,0.45)]"
-        >
-          200+ use cases · 190 industries · works the way your team works
-        </motion.p>
-
-        <motion.div
-          className="mt-6 flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4, duration: 0.4 }}
-        >
-          <a
-            href="https://monday.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#6161FF] transition-colors hover:text-[#5050e6]"
-          >
-            Explore in monday.com
-            <span aria-hidden>→</span>
-          </a>
-        </motion.div>
       </div>
     </section>
   )

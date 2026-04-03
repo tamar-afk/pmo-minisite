@@ -18,35 +18,35 @@ const tabs = [
     label: 'Plan',
     headline: 'From brief to project plan in minutes',
     body:
-      "Structure, owners, timelines, and allocation for people and agents—built from your brief and updated as strategy shifts. One project or a hundred, every plan stays solid.",
+      'Owners, timelines, and allocation for people and agents, from your brief, updated as strategy shifts. One project or a full portfolio.',
   },
   {
     id: 'align' as const,
     label: 'Align',
     headline: 'Everyone on the same page, automatically',
     body:
-      "Owners get nudged, plans stay current, and nothing falls through the cracks between check-ins, so your team always knows what's next without a meeting to make it happen.",
+      "Owners get nudged and plans stay current, so your team knows what's next without another meeting.",
   },
   {
     id: 'execute' as const,
     label: 'Execute',
     headline: "Projects keep moving, even when no one's pushing",
     body:
-      'Follow-ups happen, blockers get flagged, and cross-project dependencies are managed, so work keeps progressing between check-ins, 24/7, without anyone chasing.',
+      'Follow-ups, blockers, and dependencies keep work moving between check-ins, without anyone chasing.',
   },
   {
     id: 'track' as const,
     label: 'Track',
     headline: 'Catch risks before they become problems',
     body:
-      "Progress, dependencies, and capacity are monitored across your entire portfolio, surfacing issues while there's still time to act, ranked by urgency so you know exactly where to focus across every project you run.",
+      'Progress, dependencies, and capacity are monitored across your portfolio, with risks surfaced and ranked by urgency while you can still act.',
   },
   {
     id: 'report' as const,
     label: 'Report',
     headline: 'Leadership reports, without the prep work',
     body:
-      'Live data from across your entire portfolio rolls up into leadership-ready reports on demand. No compiling updates, no exporting to PowerPoint, just the insight executives need, ready when they need it.',
+      'Live portfolio data rolls into leadership-ready reports on demand, no manual prep or decks.',
   },
 ] as const
 
@@ -83,7 +83,7 @@ export function FeatureTabsSection() {
             className="relative w-full max-w-[min(100%,320px)] lg:w-[260px] lg:max-w-none lg:flex-shrink-0"
             aria-label="Project lifecycle stages"
           >
-            {/* Continuous spine — line sits behind dots */}
+            {/* Continuous spine: line sits behind dots */}
             <div
               className="pointer-events-none absolute left-[7px] top-4 bottom-4 w-px bg-[rgba(15,15,20,0.12)] sm:left-[9px]"
               aria-hidden

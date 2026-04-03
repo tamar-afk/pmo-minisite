@@ -76,7 +76,7 @@ export function CustomerProofBlock() {
           </p>
           <p className="mt-1.5 text-[14px] font-semibold text-[#0f0f14] md:text-[15px]">faster project delivery</p>
           <p className="mt-5 text-[13px] font-semibold leading-snug text-[#0f0f14] md:text-[14px]">
-            Most popular work management software on G2
+            Ranked top 5 project management platforms on G2
           </p>
           <p className="mt-1 max-w-[360px] text-[12px] leading-relaxed text-[rgba(15,15,20,0.55)]">
             Backed by 14K+ customer reviews.
@@ -86,10 +86,6 @@ export function CustomerProofBlock() {
           </div>
         </motion.div>
       </div>
-
-      <p className="mt-5 text-center text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(15,15,20,0.4)]">
-        Enterprise-ready AI work platform
-      </p>
     </div>
   )
 }

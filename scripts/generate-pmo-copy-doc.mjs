@@ -1,5 +1,5 @@
 /**
- * Generates docs/PMO-site-copy.docx — site copy in tables with Word heading styles
+ * Generates docs/PMO-site-copy.docx: site copy in tables with Word heading styles
  * for the Navigation pane. Run: npm run copy-doc
  */
 import fs from 'node:fs'
@@ -54,7 +54,7 @@ function paras(text) {
   return lines.map((line) => new Paragraph({ text: line, spacing: { after: 80 } }))
 }
 
-/** Legend: amber (yellow highlight) vs green — matches typical Word review markup */
+/** Legend: amber (yellow highlight) vs green; matches typical Word review markup */
 function colorKeyBlock() {
   const border = {
     top: { style: BorderStyle.SINGLE, size: 1, color: 'E5E5E8' },
@@ -122,7 +122,7 @@ function colorKeyBlock() {
               borders: border,
               children: [
                 new Paragraph({
-                  text: 'Revised copy — text that replaces or refines earlier wording.',
+                  text: 'Revised copy: text that replaces or refines earlier wording.',
                   spacing: { after: 40 },
                 }),
               ],
@@ -142,7 +142,7 @@ function colorKeyBlock() {
               borders: border,
               children: [
                 new Paragraph({
-                  text: 'New copy or connector — net-new lines or bridging phrases.',
+                  text: 'New copy or connector: net-new lines or bridging phrases.',
                   spacing: { after: 40 },
                 }),
               ],
@@ -233,7 +233,7 @@ const sections = []
 
 // --- Title ---
 sections.push(
-  h1('PMO minisite — copy deck (revised)'),
+  h1('project management minisite: copy deck (revised)'),
   ...colorKeyBlock(),
   new Paragraph({ spacing: { after: 200 } }),
 )
@@ -243,10 +243,10 @@ sections.push(
   h2('Document & meta (index.html)'),
   tableCopy(
     [
-      ['Title', 'monday.com for PMO'],
+      ['Title', 'monday.com for project management'],
       [
         'Meta description',
-        'Drive your projects forward with a full team behind you. AI-powered project management with agents that work alongside your team in monday.com.',
+        'Drive your projects forward. AI-powered project management with agents that work alongside your team in monday.com.',
       ],
     ],
     ['Field', 'Copy'],
@@ -273,8 +273,7 @@ sections.push(
   h2('Hero'),
   tableCopy(
     [
-      ['H1 line 1', 'Drive your projects forward, with'],
-      ['H1 line 2', 'a full team behind you'],
+      ['H1', 'Drive your projects forward'],
       [
         'Body',
         "Always-on agents work alongside your team, chasing updates, flagging risks, and reporting to leadership so your people don't have to.",
@@ -297,10 +296,10 @@ sections.push(
     [
       ['Window chrome', 'Agent session · monday.com'],
       ['Subline', 'Context · Docs · Slack · Drive'],
-      ['Placeholder title', 'Video placeholder — planned reel'],
-      ['Overlay card title', 'PMO agent'],
+      ['Placeholder title', 'Video placeholder: planned reel'],
+      ['Overlay card title', 'project management agent'],
       ['Overlay card subtitle', 'monday.com'],
-      ['Region aria-label', 'PMO agent workflow: hero video placeholder'],
+      ['Region aria-label', 'project management agent workflow: hero video placeholder'],
     ],
     ['Field', 'Copy'],
   ),
@@ -316,7 +315,7 @@ sections.push(
       ['Title', 'Context, live in monday'],
       [
         'Body',
-        'Your brief stays where your team writes—agents read blocks and docs, then sync structure, owners, and dates into monday.',
+        'Your brief stays where your team writes: agents read blocks and docs, then sync structure, owners, and dates into monday.',
       ],
     ],
     ['Field', 'Copy'],
@@ -327,7 +326,7 @@ sections.push(
       ['Title', 'Agent builds your project board'],
       [
         'Body',
-        'The PMO agent creates the workspace structure—groups, items, and timelines—ready for your team.',
+        'The project management agent creates the workspace structure (groups, items, and timelines) ready for your team.',
       ],
       ['Image alt', 'monday work management project board created by an AI agent'],
     ],
@@ -354,7 +353,7 @@ sections.push(
   tableCopy(
     [
       ['Title', 'Generate executive reports'],
-      ['Body', 'Leadership-ready rollups from live data—no deck assembly or manual exports.'],
+      ['Body', 'Leadership-ready rollups from live data: no deck assembly or manual exports.'],
       ['Image alt', 'Projects and portfolios reporting in monday.com'],
     ],
     ['Field', 'Copy'],
@@ -395,7 +394,7 @@ sections.push(
     ],
     ['Field', 'Copy'],
   ),
-  h3('PMO agent'),
+  h3('project management agent'),
   tableCopy(
     [
       [
@@ -485,36 +484,28 @@ sections.push(
   tableCopy(
     [
       [
-        'Plan resource needs — headline',
+        'Plan resource needs: headline',
         'See demand before you staff',
       ],
       [
-        'Plan resource needs — body',
+        'Plan resource needs: body',
         'Roadmaps and intake show up as role gaps and peak load, so you adjust dates and staffing while you still can.',
       ],
       [
-        'Allocate the right person — headline',
+        'Allocate the right person: headline',
         'Match people to work with confidence',
       ],
       [
-        'Allocate the right person — body',
+        'Allocate the right person: body',
         'Assign owners by skills, availability, and fit. Everyone sees the same plan, agents included.',
       ],
       [
-        'Balance capacity — headline',
+        'Balance capacity: headline',
         'Read load before it breaks delivery',
       ],
       [
-        'Balance capacity — body',
+        'Balance capacity: body',
         'Spot overload and gaps across teams in one view. Tradeoffs stay visible instead of buried in spreadsheets.',
-      ],
-      [
-        'Data-driven hiring — headline',
-        'Hire and move people with the same data your projects run on',
-      ],
-      [
-        'Data-driven hiring — body',
-        'Compare skills gaps, workload, and cost in one view—so new roles and staffing changes line up with what delivery actually needs, not one-off asks.',
       ],
       ['CTA', 'Get started →'],
     ],
@@ -539,20 +530,8 @@ sections.push(
       ],
       ['Attribution', 'Sarah Luxemberg, Operations Director, VML'],
       ['Stat', '50% faster project delivery'],
-      ['G2 line 1', 'Most popular work management software on G2'],
+      ['G2 line 1', 'Ranked top 5 project management platforms on G2'],
       ['G2 line 2', 'Backed by 14K+ customer reviews.'],
-      ['Footer strip', 'Enterprise-ready AI work platform'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Customer outcomes'),
-  tableCopy(
-    [
-      ['Eyebrow', 'Customer outcomes'],
-      ['Stat 1 label', '132% more projects delivered'],
-      ['Stat 1 source', 'WH Smith'],
-      ['Stat 2 label', '25% reduction in project timelines'],
-      ['Stat 2 source', "McDonald's ANZ"],
     ],
     ['Field', 'Copy'],
   ),
@@ -589,7 +568,7 @@ sections.push(
       ['Card 2 stats', '250K+ customers · 190+ industries · From startups to enterprises, worldwide'],
       [
         'Card 3 title',
-        'Deep understanding of your business',
+        'One place for all of your organizational context',
       ],
       [
         'Card 3 body',
@@ -597,7 +576,7 @@ sections.push(
       ],
       [
         'Card 3 bullets',
-        '200+ integrations — Connect your entire stack\nREST API — Build on top of monday\nMCP support — Native AI agent protocol',
+        '200+ integrations: Connect your entire stack\nAPI: Build on top of monday',
       ],
       [
         'Card 4 title',
@@ -620,7 +599,7 @@ sections.push(
       ],
       [
         'Gartner card body',
-        'Leader in the 2025 Gartner® Magic Quadrant™ for APMR—furthest on vision, highest on execution.',
+        'Leader in the 2025 Gartner® Magic Quadrant™ for APMR: furthest on vision, highest on execution.',
       ],
       ['Gartner CTA', 'Get the report'],
       [
@@ -648,16 +627,11 @@ sections.push(
         'Line above chip',
         'Behind every agent is a platform built for the full depth of project management.',
       ],
-      ['Chip', 'Built for real project management'],
+      ['Chip', 'Built for every level of project management'],
       ['H2', 'Everything you need to deliver complex projects at scale.'],
       [
         'Subcopy',
         'monday.com covers the full depth of project and portfolio management, out of the box, no setup required.',
-      ],
-      ['Panel link', 'Explore in monday.com →'],
-      [
-        'Footer line',
-        '200+ use cases · 190 industries · works the way your team works',
       ],
     ],
     ['Field', 'Copy'],
@@ -682,7 +656,7 @@ sections.push(
       ['Critical path', 'See the tasks that determine your finish date'],
       [
         'Multiple views',
-        'Switch between table, timeline, calendar, kanban, and more—same work, the view your team needs',
+        'Switch between table, timeline, calendar, kanban, and more: same work, the view your team needs',
       ],
       [
         'Dashboards',
@@ -705,10 +679,10 @@ sections.push(
         'Describe what you need. monday vibe builds the app on top of your live project data.',
       ],
       [
-        'Example prompt',
+        'Prompt typing demo',
         'Build me an executive overview dashboard showing RAG status, upcoming milestones, and budget vs. actuals across all active projects',
       ],
-      ['Chrome labels', 'monday vibe · prompt · Example prompt'],
+      ['Chrome labels', 'monday vibe · prompt'],
       [
         'Marquee tiles',
         'OKR tracker, Portfolio risk register, Executive overview, Resource insights, Project scenario planner, Budget tracker, Milestone dashboard, Dependency map',
@@ -728,9 +702,9 @@ sections.push(
       ['H2', 'Your projects, connected to any AI tool'],
       [
         'Body',
-        'Connect live monday data to Claude, Cursor, Copilot, and more—one source of truth, answers in the assistant you already use, no tab-hopping.',
+        'Connect live monday data to Claude, ChatGPT, Copilot, and more: one source of truth, answers in the assistant you already use, no tab-hopping.',
       ],
-      ['Tabs', 'Claude · Cursor · Microsoft Copilot'],
+      ['Tabs', 'Claude · ChatGPT · Microsoft Copilot'],
       ['UI labels', 'You · Syncing with monday · monday'],
       ['Chips', 'Works with any AI tool · Live project data, always in sync · No IT setup required'],
     ],
@@ -740,29 +714,42 @@ sections.push(
   tableCopy(
     [
       [
-        'Claude — question',
+        'Claude: question',
         'What owner updates or blockers on the Q3 launch board need my attention today?',
       ],
-      ['Claude — intro', 'Catch-ups synced from monday:'],
+      ['Claude: intro', 'Catch-ups synced from monday:'],
       [
-        'Claude — rows',
-        'Design: Figma handoff done — 2 dependencies unblocked\nEng: API migration on track; infra review scheduled Thu\nPMO: Budget line awaiting approval — owner auto-nudged',
+        'Claude: rows',
+        'Design: Figma handoff done: 2 dependencies unblocked\nEng: API migration on track; infra review scheduled Thu\nProject management: Budget line awaiting approval: owner auto-nudged',
       ],
-      ['Cursor — question', 'What projects are at risk this week?'],
-      ['Cursor — intro', '3 projects flagged at risk:'],
+      ['ChatGPT: question', 'What projects are at risk this week?'],
+      ['ChatGPT: intro', '3 projects flagged at risk:'],
       [
-        'Cursor — rows',
+        'ChatGPT: rows',
         'Website redesign (delayed 4 days)\nQ4 campaign (resource conflict)\nPlatform migration (dependency blocked)',
       ],
       [
-        'Copilot — question',
+        'Copilot: question',
         'Draft a leadership-ready brief: portfolio health and top decisions needed before Q3 close.',
       ],
-      ['Copilot — intro', 'Executive summary from live portfolio data:'],
+      ['Copilot: intro', 'Executive summary from live portfolio data:'],
       [
-        'Copilot — rows',
-        'Health: 12 on track · 4 at risk · 1 blocked — RAG roll-up by program\nBudget vs actual: 3% under portfolio-wide; 2 line items over threshold\nDecisions needed: CRM migration scope tradeoff, Platform squad staffing',
+        'Copilot: rows',
+        'Health: 12 on track · 4 at risk · 1 blocked: RAG roll-up by program\nBudget vs actual: 3% under portfolio-wide; 2 line items over threshold\nDecisions needed: CRM migration scope tradeoff, Platform squad staffing',
       ],
+    ],
+    ['Field', 'Copy'],
+  ),
+  new Paragraph({ spacing: { after: 200 } }),
+)
+
+// --- Post-MCP headline ---
+sections.push(
+  h2('Post-MCP headline'),
+  tableCopy(
+    [
+      ['H2 line 1', 'Drive your projects forward, with'],
+      ['H2 line 2', 'a full team behind you'],
     ],
     ['Field', 'Copy'],
   ),
@@ -774,15 +761,30 @@ sections.push(
   h2('Final CTA'),
   tableCopy(
     [
-      ['H2 line 1', "Projects don't just get managed."],
-      ['H2 line 2', 'They get delivered, faster.'],
-      [
-        'Body',
-        'Run high-quality projects with clarity, control, and fewer surprises.',
-      ],
+      ['H2 line 1', 'Every project, end to end: '],
+      ['H2 line 2', 'with agents keeping work moving.'],
       ['Primary', 'Get started free'],
       ['Secondary', 'Talk to sales'],
       ['Microcopy', 'Free forever. No credit card needed.'],
+    ],
+    ['Field', 'Copy'],
+  ),
+  new Paragraph({ spacing: { after: 200 } }),
+)
+
+// --- Enterprise security ---
+sections.push(
+  h2('Enterprise security'),
+  tableCopy(
+    [
+      ['Chip', 'Trust & security'],
+      ['H2', 'Enterprise-grade security'],
+      [
+        'Card body',
+        'Enterprise-grade AI infrastructure with built-in protection and security, data privacy, governance, permissions, and compliance.',
+      ],
+      ['Link', 'Explore our Trust Center → https://monday.com/trust'],
+      ['Badges', 'GDPR · AICPA SOC 2 · ISO 27001 · HIPAA'],
     ],
     ['Field', 'Copy'],
   ),
@@ -825,6 +827,31 @@ sections.push(
         'A5',
         'Most teams are up and running in days. monday.com is self-serve, no IT setup or professional services required. Forrester reports a payback period of under 4 months.',
       ],
+    ],
+    ['Field', 'Copy'],
+  ),
+  new Paragraph({ spacing: { after: 200 } }),
+)
+
+// --- Customer outcomes (bottom band, monday.com–style cards) ---
+sections.push(
+  h2('Customer outcomes'),
+  tableCopy(
+    [
+      ['H2 (one line)', 'Real customers, real business outcomes'],
+      [
+        'Motion',
+        'Single horizontal row; infinite carousel (duplicated strip, CSS translate -50%); pauses on hover; respects prefers-reduced-motion',
+      ],
+      [
+        'Card layout (monday.com)',
+        'Row 1: brand logo · underlined “See the case study” · Row 2: photo · Row 3: large metric + project outcome label (side by side) · divider · project/program tag pill',
+      ],
+      [
+        'Cards (project-focused)',
+        '615% portfolio programs · 105K project hours · 300% initiatives/year · 28% time-to-market · 517% active projects · 346% PM ops TEI',
+      ],
+      ['Card link', 'See the case study → monday.com/customer-stories'],
     ],
     ['Field', 'Copy'],
   ),

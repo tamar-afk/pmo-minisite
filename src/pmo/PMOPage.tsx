@@ -6,6 +6,8 @@ import { AIAgents } from './sections/AIAgents'
 import { BuildProjectAppSection } from './sections/BuildProjectAppSection'
 import { PlatformBentoSection } from './sections/PlatformBentoSection'
 import { SocialProofSection } from './sections/SocialProofSection'
+import { CustomerOutcomesSection } from './sections/CustomerOutcomesSection'
+import { EnterpriseSecuritySection } from './sections/EnterpriseSecuritySection'
 import { FAQSection } from './sections/FAQSection'
 import CapabilityLayers from './components/CapabilityLayers'
 import { FeatureTabsSection } from './sections/FeatureTabsSection'
@@ -40,11 +42,15 @@ export function PMOPage() {
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
+          <CapabilityLayers />
+        </PageScrollReveal>
+        <SectionDivider />
+        <PageScrollReveal>
           <PlatformBentoSection />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
-          <CapabilityLayers />
+          <CustomerOutcomesSection />
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
@@ -60,8 +66,13 @@ export function PMOPage() {
         </PageScrollReveal>
         <SectionDivider />
         <PageScrollReveal>
+          <EnterpriseSecuritySection />
+        </PageScrollReveal>
+        <SectionDivider />
+        <PageScrollReveal>
           <FAQSection />
         </PageScrollReveal>
+        <SectionDivider />
         <PageScrollReveal>
           <Footer />
         </PageScrollReveal>

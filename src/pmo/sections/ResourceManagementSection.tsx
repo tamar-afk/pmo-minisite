@@ -29,14 +29,6 @@ const modes = [
       'Spot overload and gaps across teams in one view. Tradeoffs stay visible instead of buried in spreadsheets.',
     visual: 'capacity' as const,
   },
-  {
-    id: 'decision' as const,
-    label: 'Make data-driven hiring decisions',
-    headline: 'Hire and move people with the same data your projects run on',
-    body:
-      'Compare skills gaps, workload, and cost in one view—so new roles and staffing changes line up with what delivery actually needs, not one-off asks.',
-    visual: 'decision' as const,
-  },
 ]
 
 export function ResourceManagementSection() {

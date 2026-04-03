@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       id="overview"
-      className="relative overflow-hidden border-b border-[rgba(12,12,15,0.05)] bg-white px-4 pb-12 pt-[64px] md:px-12 md:pb-14 md:pt-[96px]"
+      className="relative scroll-mt-24 overflow-hidden border-b border-[rgba(12,12,15,0.05)] bg-white px-4 pb-12 pt-8 md:px-12 md:pb-14 md:pt-12"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-8%,rgba(97,97,255,0.11),transparent_52%)]"
@@ -56,12 +56,12 @@ export function Hero() {
           className="mx-auto max-w-[min(100%,42rem)] px-1 text-[clamp(20px,min(4.25vw+0.65rem),40px)] font-semibold leading-[1.1] tracking-[-0.035em] text-[#0c0c0f] antialiased md:text-[56px] md:leading-[1.08] md:tracking-[-0.04em] lg:text-[60px]"
         >
           <span className="block sm:whitespace-nowrap">Drive your projects forward, with</span>
-          <span className="mt-1 block whitespace-nowrap md:mt-1.5">
+          <span className="mt-1 block md:mt-1.5">
             a{' '}
             <span className="relative inline-block font-semibold text-[#6161FF]">
               <span className="relative z-10">full team</span>
               <span
-                className="absolute -inset-x-1 -bottom-0.5 -z-0 h-[0.55em] rounded-sm bg-[rgba(97,97,255,0.14]"
+                className="absolute -inset-x-1 -bottom-0.5 -z-0 h-[0.55em] rounded-sm bg-[rgba(97,97,255,0.14)]"
                 aria-hidden
               />
             </span>{' '}

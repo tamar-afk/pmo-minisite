@@ -73,7 +73,7 @@ function HeroBriefSlide({ replayKey }: { replayKey: string }) {
             <span className="rounded-md bg-[#0f0f0f] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               Docs
             </span>
-            <span className="text-[10px] font-medium text-[rgba(15,15,20,0.45)]">Workspace · PMO</span>
+            <span className="text-[10px] font-medium text-[rgba(15,15,20,0.45)]">Workspace · Project management</span>
           </div>
           <p className="mt-3 text-[15px] font-semibold leading-tight text-[#0f0f0f]">Q3 Launch brief</p>
           <ul className="mt-3 space-y-2">
@@ -239,7 +239,7 @@ function HeroVideoPlaceholder({
       <div className="pointer-events-none absolute inset-3 rounded-xl border-2 border-dashed border-white/18 sm:inset-4" aria-hidden />
       <div className="relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-5">
         <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45">
-          Video placeholder — planned reel
+          Video placeholder: planned reel
         </p>
         <ol className="mt-4 space-y-2">
           {steps.map((s, i) => (
@@ -280,7 +280,7 @@ function HeroCompositeShell({
   return (
     <div
       role="region"
-      aria-label="PMO agent workflow: hero video placeholder"
+      aria-label="Project management agent workflow: hero video placeholder"
       className="relative w-full overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.1)] bg-[#0c0c0f] shadow-[0_24px_80px_rgba(15,15,20,0.15)] ring-1 ring-[rgba(15,15,20,0.08)]"
     >
       <WindowChrome />
@@ -297,14 +297,14 @@ function HeroCompositeShell({
           <div className="pointer-events-auto flex max-w-[min(100%,240px)] items-center gap-2 rounded-xl border border-white/20 bg-[rgba(12,12,15,0.45)] p-1.5 pr-3 shadow-lg backdrop-blur-sm sm:max-w-[280px] sm:gap-3 sm:p-2">
             <img
               src={mondayAgentHeadshotUrl}
-              alt="PMO agent, monday.com AI agent"
+              alt="Project management agent, monday.com AI agent"
               width={128}
               height={128}
               className="h-12 w-12 shrink-0 rounded-lg object-cover object-top sm:h-14 sm:w-14"
               loading="eager"
             />
             <div className="min-w-0">
-              <p className="text-[12px] font-bold leading-tight text-white sm:text-[13px]">PMO agent</p>
+              <p className="text-[12px] font-bold leading-tight text-white sm:text-[13px]">Project management agent</p>
               <p className="text-[10px] leading-snug text-white/80 sm:text-[11px]">monday.com</p>
             </div>
           </div>
@@ -322,7 +322,7 @@ function HeroCompositeShell({
   )
 }
 
-/** Optional carousel variant (docs → monday, boards, …) — not used when the hero video shell is active. */
+/** Optional carousel variant (docs → monday, boards, …): not used when the hero video shell is active. */
 export function HeroStoryShell({ step, setStep }: { step: number; setStep: (i: number) => void }) {
   const active = steps[step]
 
@@ -363,14 +363,14 @@ export function HeroStoryShell({ step, setStep }: { step: number; setStep: (i: n
           <div className="pointer-events-auto flex max-w-[min(100%,240px)] items-center gap-2 rounded-xl border border-white/20 bg-[rgba(12,12,15,0.45)] p-1.5 pr-3 shadow-lg backdrop-blur-sm sm:max-w-[280px] sm:gap-3 sm:p-2">
             <img
               src={mondayAgentHeadshotUrl}
-              alt="PMO agent, monday.com AI agent"
+              alt="Project management agent, monday.com AI agent"
               width={128}
               height={128}
               className="h-12 w-12 shrink-0 rounded-lg object-cover object-top sm:h-14 sm:w-14"
               loading="eager"
             />
             <div className="min-w-0">
-              <p className="text-[12px] font-bold leading-tight text-white sm:text-[13px]">PMO agent</p>
+              <p className="text-[12px] font-bold leading-tight text-white sm:text-[13px]">Project management agent</p>
               <p className="text-[10px] leading-snug text-white/80 sm:text-[11px]">monday.com</p>
             </div>
           </div>
@@ -417,7 +417,7 @@ export function HeroShowcase() {
     return (
       <div
         role="region"
-        aria-label="monday.com AI agents and PMO workflows"
+        aria-label="monday.com AI agents and project management workflows"
         className="relative w-full overflow-hidden rounded-2xl border border-[rgba(15,15,20,0.1)] bg-white shadow-[0_24px_80px_rgba(15,15,20,0.1)] ring-1 ring-[rgba(15,15,20,0.05)]"
       >
         <WindowChrome />
@@ -431,13 +431,13 @@ export function HeroShowcase() {
           <div className="flex shrink-0 items-center gap-3 sm:flex-col sm:items-stretch">
             <img
               src={mondayAgentHeadshotUrl}
-              alt="PMO agent, monday.com AI agent"
+              alt="Project management agent, monday.com AI agent"
               width={160}
               height={160}
               className="h-20 w-20 rounded-2xl object-cover object-top shadow-md ring-2 ring-[rgba(97,97,255,0.25)] sm:h-24 sm:w-24"
             />
             <div>
-              <p className="text-[13px] font-bold text-[#0f0f14]">PMO agent</p>
+              <p className="text-[13px] font-bold text-[#0f0f14]">Project management agent</p>
               <p className="text-[11px] text-[rgba(15,15,20,0.55)]">Agents in monday.com</p>
             </div>
           </div>

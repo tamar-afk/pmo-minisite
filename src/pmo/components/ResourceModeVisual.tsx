@@ -1,10 +1,9 @@
-type ModeId = 'planning' | 'allocation' | 'capacity' | 'decision'
+type ModeId = 'planning' | 'allocation' | 'capacity'
 
 const MODE_LABEL: Record<ModeId, string> = {
   planning: 'Planning',
   allocation: 'Allocation',
   capacity: 'Capacity',
-  decision: 'Decisions',
 }
 
 /**
@@ -18,7 +17,6 @@ export function ResourceModeVisual({ mode }: { mode: ModeId }) {
         {mode === 'planning' && <PlanningVisual />}
         {mode === 'allocation' && <AllocationVisual />}
         {mode === 'capacity' && <CapacityVisual />}
-        {mode === 'decision' && <DecisionVisual />}
       </div>
     </div>
   )
@@ -102,27 +100,6 @@ function CapacityVisual() {
         <span>At cap</span>
         <span>Over</span>
       </div>
-    </>
-  )
-}
-
-function DecisionVisual() {
-  return (
-    <>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[rgba(15,15,20,0.4)]">
-        {MODE_LABEL.decision}
-      </p>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <div className="rounded-lg border border-[rgba(15,15,20,0.08)] bg-[#fafafa] p-2">
-          <p className="text-[9px] font-semibold text-[#0f0f14]">Hold scope</p>
-          <p className="mt-1 text-[8px] leading-relaxed text-[rgba(15,15,20,0.55)]">Protect date</p>
-        </div>
-        <div className="rounded-lg border border-[rgba(97,97,255,0.25)] bg-[rgba(97,97,255,0.06)] p-2">
-          <p className="text-[9px] font-semibold text-[#6161FF]">Slip date</p>
-          <p className="mt-1 text-[8px] leading-relaxed text-[rgba(15,15,20,0.55)]">Keep quality bar</p>
-        </div>
-      </div>
-      <p className="mt-3 text-center text-[8px] text-[rgba(15,15,20,0.4)]">PM picks with full portfolio context</p>
     </>
   )
 }

@@ -3,7 +3,7 @@ import { mondayAiPmFeatureTabImages } from '../constants/mondayVisuals'
 export type FeatureTabId = 'plan' | 'align' | 'execute' | 'track' | 'report'
 
 const ALT: Record<FeatureTabId, string> = {
-  plan: 'Plan projects with AI — timelines, owners, and dependencies',
+  plan: 'Plan projects with AI: timelines, owners, and dependencies',
   align: 'Keep teams aligned with automated nudges and real-time updates',
   execute: 'Execute work with monday agents across teams',
   track: 'Track risk, progress, and capacity across projects',

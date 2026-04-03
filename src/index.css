@@ -72,4 +72,28 @@
     animation-play-state: paused;
   }
 
+  @keyframes outcomes-carousel-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-outcomes-carousel {
+    animation: outcomes-carousel-scroll 55s linear infinite;
+  }
+
+  .group:hover .animate-outcomes-carousel {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-outcomes-carousel {
+      animation: none;
+      transform: none;
+    }
+  }
+
 }

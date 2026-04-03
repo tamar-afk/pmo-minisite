@@ -119,16 +119,8 @@ export function BuildProjectAppSection() {
                 <span className="text-[11px] font-medium text-[rgba(15,15,20,0.45)]">monday vibe · prompt</span>
               </div>
               <div className="flex flex-1 flex-col bg-gradient-to-b from-[#fafbff] to-white p-4 md:p-5">
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(15,15,20,0.4)]">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[rgba(97,97,255,0.12)] text-[#6161FF]">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                    </svg>
-                  </span>
-                  Example prompt
-                </div>
                 <p
-                  className="mt-3 min-h-[6rem] flex-1 text-[15px] leading-relaxed text-[#0f0f14] md:text-[16px]"
+                  className="min-h-[6rem] flex-1 text-[15px] leading-relaxed text-[#0f0f14] md:text-[16px]"
                   aria-live={prefersReducedMotion ? 'off' : 'polite'}
                 >
                   {display}
