@@ -1,8 +1,5 @@
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 
-/**
- * Fixed top bar that fills with scroll progress: gives continuous motion feedback while reading.
- */
 export function ScrollProgress() {
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -19,7 +16,7 @@ export function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 right-0 top-0 z-[500] h-[2px] origin-left rounded-none bg-[#6161FF]"
+      className="pointer-events-none fixed left-0 right-0 top-0 z-[500] h-[1.5px] origin-left bg-[#6161ff]"
       style={{ scaleX, transformOrigin: '0%' }}
     />
   )

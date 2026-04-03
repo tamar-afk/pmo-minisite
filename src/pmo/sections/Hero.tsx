@@ -2,147 +2,120 @@ import { motion } from 'framer-motion'
 import { HeroShowcase } from '../components/HeroShowcase'
 import { pageEase } from '../motion'
 
-/** Two fixed lines: never reflow to a single line at any viewport width. */
-const HEADLINE_LINES = ['All your projects.', 'Fully staffed.'] as const
+const HEADLINE_LINE1 = ['All', 'your', 'projects.']
+const HEADLINE_LINE2 = ['Fully', 'staffed.']
 
-const wordStagger = 0.03
+const wordStagger = 0.025
 const headlineDuration = 0.4
-const headlineWordCount = HEADLINE_LINES.reduce((n, line) => n + line.split(' ').length, 0)
-const subheadDelay = headlineWordCount * wordStagger + 0.15
-/** Primary CTAs: 100ms after subhead (master spec). */
-const ctaDelay = subheadDelay + 0.1
-const showcaseDelay = ctaDelay + 0.2
+const subheadDelay = 0.18
+const ctaDelay = subheadDelay + 0.08
 
 export function Hero() {
-  const headlineLine1 = HEADLINE_LINES[0].split(' ')
-  const headlineLine2 = HEADLINE_LINES[1].split(' ')
-
   return (
-    <section
-      id="overview"
-      className="relative scroll-mt-24 overflow-hidden border-b border-[#e8e8f0]/90 bg-transparent py-24 backdrop-blur-[1px]"
-    >
+    <section id="overview" className="relative scroll-mt-24 overflow-hidden bg-[#ffffff] pb-10 pt-16 md:pb-12 md:pt-20">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-8%,rgba(97,97,255,0.11),transparent_52%)]"
+        className="pointer-events-none absolute inset-0 opacity-[0.5]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at center, rgba(0,0,0,0.045) 1px, transparent 1px)',
+          backgroundSize: '22px 22px',
+        }}
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute left-1/2 top-[18%] h-[min(420px,55vw)] w-[min(900px,110vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(97,97,255,0.06),transparent_68%)] blur-3xl"
-        aria-hidden
-      />
-
       <div className="pmo-container relative text-center">
-        <div className="relative mx-auto max-w-[900px]">
-        <h1 className="mx-auto max-w-[min(100%,42rem)] px-1 text-[clamp(2.5rem,6vw+1rem,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-[#0a0a0f] antialiased md:text-[64px] lg:text-[72px]">
-          {headlineLine1.map((word, wi) => (
-            <motion.span
-              key={`l1-${wi}-${word}`}
-              className={`inline-block ${wi < headlineLine1.length - 1 ? 'pr-[0.2em]' : ''}`}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: headlineDuration,
-                ease: pageEase,
-                delay: 0.03 + wi * wordStagger,
-              }}
+        <div className="relative mx-auto max-w-[42rem]">
+          <h1 className="mx-auto max-w-[min(100%,40rem)] px-1 text-[clamp(1.875rem,4vw+0.75rem,3.25rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[#111118] md:text-[52px]">
+            <span className="block">
+              {HEADLINE_LINE1.map((word, wi) => (
+                <motion.span
+                  key={`l1-${wi}-${word}`}
+                  className={`inline-block ${wi < HEADLINE_LINE1.length - 1 ? 'pr-[0.2em]' : ''}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: headlineDuration,
+                    ease: pageEase,
+                    delay: 0.03 + wi * wordStagger,
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+            <br />
+            <span className="mt-2 inline-block">
+              {HEADLINE_LINE2.map((word, wi) => {
+                const globalIndex = HEADLINE_LINE1.length + wi
+                return (
+                  <motion.span
+                    key={`l2-${wi}-${word}`}
+                    className={`inline-block ${wi < HEADLINE_LINE2.length - 1 ? 'pr-[0.2em]' : ''}`}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: headlineDuration,
+                      ease: pageEase,
+                      delay: 0.03 + globalIndex * wordStagger,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                )
+              })}
+            </span>
+          </h1>
+
+          <motion.p
+            className="mx-auto mt-4 max-w-[480px] text-pretty text-[15px] font-normal leading-[1.7] text-[#6b7280]"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: subheadDelay, duration: 0.4, ease: pageEase }}
+          >
+            One platform for every project. Agents that keep it all moving.
+          </motion.p>
+
+          <motion.div
+            className="mt-7 flex flex-wrap items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: ctaDelay, duration: 0.4, ease: pageEase }}
+          >
+            <motion.a
+              href="#pricing"
+              className="inline-flex items-center justify-center rounded-lg bg-[#6161ff] px-5 py-2 text-[13px] font-medium text-white"
+              whileHover={{ backgroundColor: '#5050ee' }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15, ease: pageEase }}
             >
-              {word}
-            </motion.span>
-          ))}
-          <br />
-          {headlineLine2.map((word, wi) => {
-            const globalIndex = headlineLine1.length + wi
-            return (
-              <motion.span
-                key={`l2-${wi}-${word}`}
-                className={`inline-block ${wi < headlineLine2.length - 1 ? 'pr-[0.2em]' : ''}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: headlineDuration,
-                  ease: pageEase,
-                  delay: 0.03 + globalIndex * wordStagger,
-                }}
-              >
-                {word}
-              </motion.span>
-            )
-          })}
-        </h1>
+              Get started free
+            </motion.a>
+            <motion.a
+              href="#features"
+              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#111118] transition-colors duration-150 hover:text-[#6161ff]"
+              whileTap={{ scale: 0.98 }}
+            >
+              See it in action <span aria-hidden>→</span>
+            </motion.a>
+          </motion.div>
 
-        <motion.div
-          className="mx-auto mt-5 flex justify-center md:mt-6"
-          aria-hidden
-          initial={{ opacity: 0, scaleX: 0.3 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ delay: subheadDelay * 0.4, duration: 0.35, ease: pageEase }}
-        >
-          <span className="h-1 w-14 rounded-full bg-gradient-to-r from-[#6161FF] via-[#7c7cff] to-[#6161FF] opacity-90 shadow-[0_0_24px_rgba(97,97,255,0.35)]" />
-        </motion.div>
-
-        <motion.p
-          className="pmo-body mx-auto mt-5 max-w-[520px] text-pretty antialiased md:mt-6 md:text-[18px]"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: subheadDelay, duration: 0.4, ease: pageEase }}
-        >
-          One platform for every project. Agents that keep it all moving.
-        </motion.p>
-
-        <motion.div
-          className="mt-6 flex flex-wrap items-center justify-center gap-3"
-          initial={{ opacity: 0, y: 16, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: ctaDelay, duration: 0.4, ease: pageEase }}
-        >
-          <motion.a
-            href="#pricing"
-            className="hero-cta-pulse inline-flex items-center justify-center rounded-full bg-[#6161FF] px-8 py-3.5 text-[15px] font-semibold text-white"
-            style={{ padding: '14px 28px' }}
-            whileHover={{ backgroundColor: '#7272FF', scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15, ease: pageEase }}
+          <motion.p
+            className="mt-3 text-[11px] text-[#9ca3af]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: ctaDelay + 0.05, duration: 0.35, ease: pageEase }}
           >
-            Get started free
-          </motion.a>
-          <motion.a
-            href="#features"
-            className="inline-flex items-center justify-center gap-1 rounded-full border border-[#e8e8f0] bg-white px-8 py-3.5 text-[15px] font-semibold text-[#0a0a0f] shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-            whileHover={{ borderColor: 'rgba(97,97,255,0.3)', y: -2, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15, ease: pageEase }}
+            Free forever. No credit card needed.
+          </motion.p>
+
+          <motion.div
+            className="mx-auto mt-6 w-full max-w-[min(100%,var(--section-max))] md:mt-7"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: ctaDelay + 0.15, duration: 0.45, ease: pageEase }}
           >
-            See it in action <span aria-hidden>→</span>
-          </motion.a>
-        </motion.div>
-
-        <motion.p
-          className="mt-3 text-[12px] text-[rgba(12,12,15,0.42)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: ctaDelay + 0.1, duration: 0.35, ease: pageEase }}
-        >
-          Free forever. No credit card needed.
-        </motion.p>
-      </div>
-
-      <div className="mx-auto mt-10 w-full max-w-[min(100%,1120px)] px-0">
-        <motion.p
-          className="mb-5 text-center text-[13px] font-medium leading-snug tracking-[-0.01em] text-[rgba(12,12,15,0.52)] antialiased md:mb-6 md:text-[14px]"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: showcaseDelay, duration: 0.4, ease: pageEase }}
-        >
-          Ranked a top 5 project management platform on G2, backed by 14K+ customer reviews
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: showcaseDelay + 0.08, duration: 0.45, ease: pageEase }}
-        >
-          <HeroShowcase />
-        </motion.div>
-      </div>
+            <HeroShowcase />
+          </motion.div>
+        </div>
       </div>
     </section>
   )

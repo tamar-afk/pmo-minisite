@@ -1,18 +1,17 @@
-import { mondayAiPmFeatureTabImages } from '../constants/mondayVisuals'
+import { motion, useReducedMotion } from 'framer-motion'
+import { pageEase } from '../motion'
+import { AssetPlaceholder } from './AssetPlaceholder'
 
 export type FeatureTabId = 'plan' | 'align' | 'execute' | 'track' | 'report'
 
-const ALT: Record<FeatureTabId, string> = {
-  plan: 'Plan projects with AI: timelines, owners, and dependencies',
-  align: 'Keep teams aligned with automated nudges and real-time updates',
-  execute: 'Run phase: work moving with monday agents across teams',
-  track: 'Track risk, progress, and capacity across projects',
-  report: 'Generate project reports and leadership-ready insights',
+const PLACEHOLDER_LABEL: Record<FeatureTabId, string> = {
+  plan: 'Project planning view',
+  align: 'Status update view',
+  execute: 'Task board view',
+  track: 'Project health dashboard',
+  report: 'Executive report view',
 }
 
-/**
- * Official tab art from [monday AI PM](https://monday.com/ap/project-management/ai-var) (`mondayAiPmFeatureTabImages`).
- */
 export function FeatureTabVisual({
   tabId,
   'aria-labelledby': ariaLabelledBy,
@@ -20,20 +19,18 @@ export function FeatureTabVisual({
   tabId: FeatureTabId
   'aria-labelledby'?: string
 }) {
+  const reduce = useReducedMotion()
+
   return (
-    <div
-      className="overflow-hidden rounded-[12px] border border-[rgba(15,15,20,0.1)] bg-[#f4f4f5] shadow-[0_12px_40px_rgba(15,15,20,0.08)]"
-      aria-labelledby={ariaLabelledBy}
-    >
-      <div className="flex justify-center px-2 py-2 sm:px-4 sm:py-3 md:px-5 md:py-4">
-        <img
-          src={mondayAiPmFeatureTabImages[tabId]}
-          alt={ALT[tabId]}
-          className="h-auto w-full max-w-[min(100%,220px)] object-cover object-left-top sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px]"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+    <div className="w-full min-w-0" aria-labelledby={ariaLabelledBy}>
+      <motion.div
+        key={tabId}
+        initial={reduce ? false : { opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.32, ease: pageEase, delay: reduce ? 0 : 0.06 }}
+      >
+        <AssetPlaceholder label={PLACEHOLDER_LABEL[tabId]} className="h-[220px] w-full rounded-[10px] sm:h-[240px] md:h-[260px]" />
+      </motion.div>
     </div>
   )
 }

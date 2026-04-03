@@ -31,12 +31,11 @@ const VML_QUOTE = {
     "monday's AI helped us cut our project planning time in half.",
     'What used to take days now takes minutes, and that speed has directly translated into faster delivery for our clients.',
   ] as const,
-  statLabel: '50% faster project planning',
   attribution: 'Sarah Luxemberg, VML',
 }
 
 /**
- * Testimonial column + G2 column (stat lives on the quote card).
+ * Testimonial column + G2 column.
  */
 export function CustomerProofBlock() {
   return (
@@ -58,13 +57,7 @@ export function CustomerProofBlock() {
             ))}
           </blockquote>
 
-          <div className="mt-6 border-t border-[rgba(15,15,20,0.08)] pt-5">
-            <p className="text-[56px] font-bold leading-[1.05] tracking-tight text-[#6161ff]">
-              50<span className="text-[34px] font-bold text-[#6161ff] opacity-90">%</span>
-            </p>
-            <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(15,15,20,0.6)]">{VML_QUOTE.statLabel}</p>
-            <p className="mt-3 text-[13px] font-medium text-[rgba(15,15,20,0.55)]">{VML_QUOTE.attribution}</p>
-          </div>
+          <p className="mt-5 text-[13px] font-medium text-[rgba(15,15,20,0.55)]">{VML_QUOTE.attribution}</p>
         </motion.article>
 
         <motion.div

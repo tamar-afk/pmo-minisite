@@ -1,18 +1,13 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { FeatureTabVisual } from '../components/FeatureTabVisual'
 import { SectionChip } from '../components/SectionChip'
-import { pageEase } from '../motion'
+import { pageEase, staggerContainer, staggerItem, tabFadeInMs, tabFadeOutMs } from '../motion'
 
 const SECTION_HEADLINE = 'From brief to done, without the manual work'
 const SECTION_INTRO =
-  'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.'
+  'Every stage of the project cycle, covered. You make the calls. Agents do the follow-through.'
 
-/**
- * Tab order (Plan → Align → Run → Track → Report) and visuals:
- * [monday.com/ap/project-management/ai-var](https://monday.com/ap/project-management/ai-var) via `mondayAiPmFeatureTabImages`.
- * Tab id `execute` maps to the Run step and uses the Run visual asset.
- */
 const tabs = [
   {
     id: 'plan' as const,
@@ -52,65 +47,80 @@ const tabs = [
 ] as const
 
 const tabPanelVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.3, ease: pageEase } },
-  exit: { opacity: 0, transition: { duration: 0.1, ease: pageEase } },
+  initial: { opacity: 0, y: 10 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: tabFadeInMs, ease: pageEase },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: tabFadeOutMs, ease: pageEase },
+  },
 }
 
 export function FeatureTabsSection() {
   const [active, setActive] = useState(0)
   const tab = tabs[active]
+  const reduce = useReducedMotion()
 
   return (
-    <section id="features" className="relative z-10 scroll-mt-24 bg-transparent py-24">
+    <section id="features" className="scroll-mt-24 pmo-flow-section-top bg-[#ffffff] pmo-section-pad">
       <div className="pmo-container">
-        <header>
-          <SectionChip sentenceCase>Your projects, end to end</SectionChip>
-          <h2 className="pmo-section-title mt-4">{SECTION_HEADLINE}</h2>
-          <p className="pmo-body mt-5 max-w-[560px]">{SECTION_INTRO}</p>
-          <motion.a
-            href="#pricing"
-            className="mt-6 inline-flex items-center gap-1 text-[15px] font-semibold text-[#6161ff]"
-            whileHover={{ x: 4, color: '#6161ff' }}
-            transition={{ duration: 0.1, ease: pageEase }}
+        <motion.header
+          className="text-left"
+          variants={staggerContainer(0.06)}
+          initial={reduce ? false : 'hidden'}
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <motion.div variants={staggerItem}>
+            <SectionChip sentenceCase>Your projects, end to end</SectionChip>
+          </motion.div>
+          <motion.h2 variants={staggerItem} className="pmo-section-title">
+            {SECTION_HEADLINE}
+          </motion.h2>
+          <motion.p
+            variants={staggerItem}
+            className="mt-3 max-w-[480px] text-[15px] font-normal leading-[1.7] text-[#6b7280]"
           >
-            Get started <span aria-hidden>→</span>
-          </motion.a>
-        </header>
+            {SECTION_INTRO}
+          </motion.p>
+        </motion.header>
 
-        <div className="mt-12 flex flex-col gap-8">
-          <nav
-            className="relative border-b border-[#e8e8f0]"
+        <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-[260px_1fr] md:gap-8">
+          <motion.nav
+            className="relative flex flex-row gap-2 overflow-x-auto pb-1 md:flex-col md:gap-0 md:overflow-visible"
             aria-label="Project lifecycle stages"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.04, delayChildren: 0.05 } },
+            }}
+            initial={reduce ? false : 'hidden'}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <div className="-mb-px flex flex-wrap gap-x-1 gap-y-0">
-              {tabs.map((t, i) => {
-                const isActive = active === i
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    data-cursor-interactive
-                    onClick={() => setActive(i)}
-                    aria-current={isActive ? 'true' : undefined}
-                    className={`relative px-4 py-3 text-[14px] font-semibold transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                      isActive ? 'text-[#0a0a0f]' : 'text-[#6b6b8a] hover:text-[#0a0a0f]'
-                    }`}
-                  >
-                    {t.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="lifecycle-tab-underline"
-                        className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-[#6161ff]"
-                        transition={{ duration: 0.2, ease: pageEase }}
-                        aria-hidden
-                      />
-                    )}
-                  </button>
-                )
-              })}
-            </div>
-          </nav>
+            {tabs.map((t, i) => {
+              const isActive = active === i
+              return (
+                <motion.button
+                  key={t.id}
+                  type="button"
+                  data-cursor-interactive
+                  variants={staggerItem}
+                  onClick={() => setActive(i)}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`border-b-2 py-3 pl-0 text-left text-[13px] transition-colors duration-150 md:border-b-0 md:border-l-2 md:py-3 md:pl-3 ${
+                    isActive
+                      ? 'border-[#6161ff] font-medium text-[#111118]'
+                      : 'border-transparent font-normal text-[#6b7280] hover:border-[rgba(0,0,0,0.06)] hover:text-[#111118] md:hover:border-transparent'
+                  }`}
+                >
+                  {t.label}
+                </motion.button>
+              )
+            })}
+          </motion.nav>
 
           <div className="min-w-0">
             <AnimatePresence mode="wait">
@@ -120,25 +130,15 @@ export function FeatureTabsSection() {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="flex flex-col gap-4 md:gap-5"
+                className="flex flex-col gap-5"
               >
                 <div>
-                  <h3
-                    id={`feature-tab-${tab.id}-title`}
-                    className="text-[17px] font-semibold leading-[1.4] tracking-0 text-[#0a0a0f] md:text-[17px]"
-                  >
+                  <h3 id={`feature-tab-${tab.id}-title`} className="text-[19px] font-semibold text-[#111118]">
                     {tab.headline}
                   </h3>
-                  <p className="pmo-body mt-2 max-w-[560px]">{tab.body}</p>
+                  <p className="mt-3 max-w-[420px] text-[14px] leading-[1.75] text-[#6b7280]">{tab.body}</p>
                 </div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, ease: pageEase, delay: 0.1 }}
-                  className="mt-4"
-                >
-                  <FeatureTabVisual tabId={tab.id} aria-labelledby={`feature-tab-${tab.id}-title`} />
-                </motion.div>
+                <FeatureTabVisual tabId={tab.id} aria-labelledby={`feature-tab-${tab.id}-title`} />
               </motion.div>
             </AnimatePresence>
           </div>

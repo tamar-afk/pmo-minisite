@@ -1,25 +1,19 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { SectionChip } from '../components/SectionChip'
-import { pageEase } from '../motion'
+import { pageEase, staggerContainer, staggerItem } from '../motion'
 import { CaseStudiesProofCarousel } from './CustomerOutcomesSection'
 
 const G2_LABELS = ['Leader', 'Easiest to use', 'Best results', 'Highest adoption'] as const
 
 function G2BadgeRow() {
   return (
-    <div
-      className="flex flex-wrap items-stretch justify-center gap-6 md:gap-6"
-      style={{ gap: '24px' }}
-      aria-label="G2 recognition"
-    >
-      {G2_LABELS.map((label) => (
-        <div
-          key={label}
-          className="flex min-w-[120px] flex-1 flex-col items-center justify-center rounded-[12px] border border-[#e8e8f0] bg-white px-4 py-3 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)] sm:min-w-[140px]"
-        >
-          <span className="text-[15px] font-black tracking-tight text-[#ff492c]">G2</span>
-          <span className="mt-1.5 text-[11px] font-semibold leading-snug text-[#6b6b8a] md:text-[12px]">
-            {label}
+    <div className="flex flex-wrap items-center justify-center gap-0" aria-label="G2 recognition">
+      {G2_LABELS.map((label, i) => (
+        <div key={label} className="flex items-center">
+          {i > 0 ? <span className="mx-4 h-3 w-px bg-[rgba(0,0,0,0.07)]" aria-hidden /> : null}
+          <span className="inline-flex items-center gap-2">
+            <span className="text-[14px] font-black tracking-tight text-[#ff492c]">G2</span>
+            <span className="text-[11px] text-[#6b7280]">{label}</span>
           </span>
         </div>
       ))}
@@ -30,64 +24,61 @@ function G2BadgeRow() {
 function VmlQuoteCard() {
   return (
     <motion.figure
-      className="relative overflow-hidden rounded-[12px] border border-[#e8e8f0] bg-white p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:p-10 lg:p-10"
+      className="overflow-hidden rounded-[14px] border border-[rgba(0,0,0,0.07)] bg-white p-6 md:p-7"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, ease: pageEase }}
+      transition={{ duration: 0.45, ease: pageEase }}
     >
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-10">
-        <div className="flex shrink-0 flex-col justify-center border-[#e8e8f0] lg:border-r lg:pr-10">
-          <p className="text-[56px] font-bold leading-none tracking-[-0.02em] text-[#6161ff] md:text-[64px]">50%</p>
-          <p className="mt-2 text-[14px] font-normal leading-[1.5] text-[rgba(107,107,138,0.6)]">faster project planning</p>
-        </div>
-        <div className="min-w-0 flex-1">
-          <blockquote className="border-l-4 border-[#6161ff] pl-5 text-[16px] font-normal leading-[1.7] text-[#0a0a0f] md:text-[17px]">
-            <p className="m-0">
-              monday&apos;s AI helped us cut our project planning time in half. What used to take days now takes minutes,
-              and that speed has directly translated into faster delivery for our clients.
-            </p>
-          </blockquote>
-          <figcaption className="mt-5 text-[14px] leading-snug text-[#6b6b8a] md:text-[15px]">
-            <span className="font-semibold text-[#0a0a0f]">Sarah Luxemberg</span>, Operations Director, VML
-          </figcaption>
-        </div>
+      <div className="min-w-0">
+        <blockquote className="m-0 text-[15px] font-normal italic leading-[1.65] text-[#111118]">
+          <p className="m-0">
+            monday&apos;s AI helped us cut our project planning time in half. What used to take days now takes minutes,
+            and that speed has directly translated into faster delivery for our clients.
+          </p>
+        </blockquote>
+        <figcaption className="mt-3 text-[12px] text-[#6b7280]">
+          Sarah Luxemberg, Operations Director, VML
+        </figcaption>
       </div>
     </motion.figure>
   )
 }
 
-/**
- * Case studies band: VML quote, G2 badges, metrics carousel (before Why monday).
- */
 export function CaseStudiesSection() {
+  const reduce = useReducedMotion()
+
   return (
-    <section id="case-studies" className="scroll-mt-24 bg-transparent py-24">
+    <section id="case-studies" className="scroll-mt-24 pmo-flow-section-top bg-[#ffffff] pmo-section-pad">
       <div className="pmo-container">
         <motion.div
-          className="mb-12 text-left"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="mb-5 text-left md:mb-6"
+          variants={staggerContainer(0.06)}
+          initial={reduce ? false : 'hidden'}
+          whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: pageEase }}
         >
-          <SectionChip>Real customers</SectionChip>
-          <h2 className="pmo-section-title mt-4">Real customers. Real outcomes.</h2>
+          <motion.div variants={staggerItem}>
+            <SectionChip>Real customers</SectionChip>
+          </motion.div>
+          <motion.h2 variants={staggerItem} className="pmo-section-title">
+            Real customers. Real outcomes.
+          </motion.h2>
         </motion.div>
 
         <VmlQuoteCard />
 
+        <CaseStudiesProofCarousel className="mt-5" />
+
         <motion.div
-          className="mt-10 md:mt-12"
+          className="mt-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: pageEase, delay: 0.05 }}
+          transition={{ duration: 0.45, ease: pageEase, delay: 0.05 }}
         >
           <G2BadgeRow />
         </motion.div>
-
-        <CaseStudiesProofCarousel className="mt-12 md:mt-12" />
       </div>
     </section>
   )

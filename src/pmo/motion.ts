@@ -1,17 +1,17 @@
 /** Page-wide easing (Linear-style): smooth, no bounce */
 export const pageEase: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-/** Global scroll entrance: 500ms, 20px rise */
+/** Global scroll entrance: 450ms, 20px rise */
 export const pageRevealTransition = {
-  duration: 0.5,
+  duration: 0.45,
   ease: pageEase,
 } as const
 
 /** Tab / panel cross-fade */
-export const tabFadeOutMs = 0.25
-export const tabFadeInMs = 0.35
+export const tabFadeOutMs = 0.12
+export const tabFadeInMs = 0.28
 
-/** Shared Framer Motion presets — prefer pageEase over springs for hovers */
+/** Shared Framer Motion presets */
 export const springSnappy = { type: 'spring' as const, stiffness: 380, damping: 28 }
 export const springSoft = { type: 'spring' as const, stiffness: 120, damping: 22 }
 export const springGentle = { type: 'spring' as const, stiffness: 80, damping: 18 }
@@ -21,7 +21,7 @@ export const fadeUp = {
   show: { opacity: 1, y: 0 },
 }
 
-export const staggerContainer = (stagger = 0.06) => ({
+export const staggerContainer = (stagger = 0.05) => ({
   hidden: {},
   show: {
     transition: { staggerChildren: stagger, delayChildren: 0.04 },

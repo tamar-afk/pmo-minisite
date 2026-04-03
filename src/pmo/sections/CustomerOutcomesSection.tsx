@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
+import { AssetPlaceholder } from '../components/AssetPlaceholder'
 import { pageEase } from '../motion'
 
 type BrandId = 'mcd' | 'holt' | 'canva' | 'vistra' | 'umg'
@@ -145,23 +146,35 @@ function useCountUp(target: number, active: boolean, durationMs = 800) {
   return value
 }
 
+const brandLabel: Record<BrandId, string> = {
+  mcd: "McDonald's",
+  holt: 'Holt CAT',
+  canva: 'Canva',
+  vistra: 'Vistra',
+  umg: 'Universal Music Group',
+}
+
 export function OutcomeCard({
   outcome,
   className = '',
+  style,
 }: {
   outcome: Outcome
   className?: string
+  style?: CSSProperties
 }) {
   const ref = useRef<HTMLElement | null>(null)
   const inView = useInView(ref, { once: true, amount: 0.35 })
   const animated = useCountUp(outcome.target, inView)
   const metric = formatMetricValue(animated, outcome)
+  const [imgFailed, setImgFailed] = useState(false)
 
   return (
     <article
       ref={ref}
       data-cursor-interactive
-      className={`flex w-full max-w-[320px] shrink-0 flex-col overflow-hidden rounded-[12px] border border-[#e8e8f0] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[rgba(97,97,255,0.3)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] ${className}`}
+      style={style}
+      className={`flex shrink-0 flex-col overflow-hidden rounded-[10px] border border-[rgba(0,0,0,0.07)] bg-white transition-[transform,box-shadow,border-color] duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-[rgba(97,97,255,0.25)] hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] ${className}`}
     >
       <div className="flex items-center justify-between gap-3 px-4 pt-4">
         <div className="min-w-0">
@@ -179,29 +192,32 @@ export function OutcomeCard({
 
       <div className="mt-3 px-4">
         <div className="overflow-hidden rounded-[12px] bg-[#f0f0f2]">
-          <img
-            src={outcome.imageSrc}
-            alt={outcome.imageAlt}
-            className="aspect-[4/3] h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          {imgFailed ? (
+            <AssetPlaceholder label={brandLabel[outcome.brand]} className="aspect-[4/3] min-h-[140px] w-full border-0" />
+          ) : (
+            <img
+              src={outcome.imageSrc}
+              alt={outcome.imageAlt}
+              className="aspect-[4/3] h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+              onError={() => setImgFailed(true)}
+            />
+          )}
         </div>
       </div>
 
       <div className="flex flex-col gap-0 px-4 pt-4">
-        <span className="min-h-[1.1em] text-[56px] font-bold leading-[1] tracking-tight text-[#6161ff] tabular-nums md:text-[60px]">
+        <span className="min-h-[1.1em] text-[40px] font-semibold leading-[1] tracking-tight text-[#6161ff] tabular-nums">
           {inView ? metric : outcome.format === 'percent' ? '0%' : outcome.format === 'k' ? '0K' : '0'}
         </span>
-        <p className="mt-3 text-[14px] font-normal leading-[1.5] text-[rgba(107,107,138,0.6)]">
-          {outcome.headline}
-        </p>
+        <p className="mt-1.5 text-[12px] font-normal leading-[1.45] text-[#6b7280]">{outcome.headline}</p>
       </div>
 
-      <div className="mx-4 my-4 h-px bg-[rgba(15,15,20,0.08)]" />
+      <div className="mx-4 my-4 h-px bg-[rgba(0,0,0,0.07)]" />
 
       <div className="px-4 pb-4">
-        <span className="inline-block rounded-md bg-[#e8ebf2] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.04em] text-[rgba(15,15,20,0.65)]">
+        <span className="inline-block rounded-md bg-[rgba(0,0,0,0.05)] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.04em] text-[#6b7280]">
           {outcome.tag}
         </span>
       </div>
@@ -209,74 +225,81 @@ export function OutcomeCard({
   )
 }
 
+const GAP = 24
+const PEEK = 48
+
 /**
- * Manual carousel (no infinite loop): slides 300ms with global easing.
+ * Three cards visible with a peek of the fourth; arrow navigation, 400ms slide.
  */
 export function CaseStudiesProofCarousel({ className = '' }: { className?: string }) {
   const n = outcomes.length
   const [idx, setIdx] = useState(0)
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const [vpW, setVpW] = useState(0)
+
+  useLayoutEffect(() => {
+    const el = viewportRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setVpW(el.clientWidth))
+    ro.observe(el)
+    setVpW(el.clientWidth)
+    return () => ro.disconnect()
+  }, [])
+
+  const cardW = vpW > 0 ? (vpW - 2 * GAP - PEEK) / 3 : 0
+  const step = cardW + GAP
+  const maxIdx = Math.max(0, n - 3)
+
+  useEffect(() => {
+    setIdx((i) => Math.min(i, maxIdx))
+  }, [maxIdx])
 
   const go = (dir: -1 | 1) => {
     setIdx((i) => {
       const next = i + dir
-      if (next < 0) return n - 1
-      if (next >= n) return 0
+      if (next < 0) return maxIdx
+      if (next > maxIdx) return 0
       return next
     })
   }
 
+  const x = cardW > 0 ? -idx * step : 0
+
   return (
     <div className={`relative ${className}`}>
-      <div className="overflow-hidden rounded-[12px] py-1">
+      <div ref={viewportRef} className="w-full overflow-hidden rounded-[12px] py-1">
         <motion.div
           className="flex"
-          style={{ width: `${n * 100}%` }}
-          animate={{ x: `${-(idx * 100) / n}%` }}
-          transition={{ duration: 0.3, ease: pageEase }}
+          style={{ gap: GAP }}
+          animate={{ x }}
+          transition={{ duration: 0.4, ease: pageEase }}
         >
           {outcomes.map((o) => (
-            <div
+            <OutcomeCard
               key={o.id}
-              className="box-border flex shrink-0 justify-center px-3"
-              style={{ width: `${100 / n}%` }}
-            >
-              <OutcomeCard outcome={o} className="max-w-[min(320px,100%)]" />
-            </div>
+              outcome={o}
+              style={cardW > 0 ? { width: cardW, minWidth: cardW, flexShrink: 0 } : { minWidth: 280, flexShrink: 0 }}
+            />
           ))}
         </motion.div>
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-3">
+      <div className="mt-6 flex items-center justify-center gap-4">
         <button
           type="button"
           data-cursor-interactive
           aria-label="Previous case study"
           onClick={() => go(-1)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(12,12,15,0.12)] bg-white text-[#0c0c0f] shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[rgba(97,97,255,0.35)] hover:shadow-[0_4px_16px_rgba(97,97,255,0.12)]"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(0,0,0,0.1)] bg-white text-[#111118] transition-colors duration-150 hover:border-[rgba(97,97,255,0.25)]"
         >
           <ChevronLeft className="h-5 w-5" strokeWidth={2} aria-hidden />
         </button>
-        <div className="flex gap-1.5" aria-hidden>
-          {outcomes.map((o, i) => (
-            <button
-              key={o.id}
-              type="button"
-              data-cursor-interactive
-              aria-label={`Go to slide ${i + 1}`}
-              aria-current={i === idx}
-              onClick={() => setIdx(i)}
-              className={`h-2 w-2 rounded-full transition-colors duration-200 ${
-                i === idx ? 'bg-[#6161ff]' : 'bg-[rgba(12,12,15,0.2)] hover:bg-[rgba(12,12,15,0.35)]'
-              }`}
-            />
-          ))}
-        </div>
         <button
           type="button"
           data-cursor-interactive
           aria-label="Next case study"
           onClick={() => go(1)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(12,12,15,0.12)] bg-white text-[#0c0c0f] shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[rgba(97,97,255,0.35)] hover:shadow-[0_4px_16px_rgba(97,97,255,0.12)]"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(0,0,0,0.1)] bg-white text-[#111118] transition-colors duration-150 hover:border-[rgba(97,97,255,0.25)]"
         >
           <ChevronRight className="h-5 w-5" strokeWidth={2} aria-hidden />
         </button>

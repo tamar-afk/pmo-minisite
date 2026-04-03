@@ -19,10 +19,10 @@ export function MondayWMLogo({
       transition={springSnappy}
     >
       <span
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md"
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md"
         style={{ background: '#6161FF' }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path
             d="M6 18V6h3v12H6zm4.5 0V9h3v9h-3zm4.5-6V6h3v6h-3z"
             fill="white"
@@ -30,7 +30,7 @@ export function MondayWMLogo({
         </svg>
       </span>
       <span
-        className={`text-[15px] font-semibold leading-none tracking-[-0.03em] antialiased ${onDark ? 'text-white' : 'text-[#0f0f14]'}`}
+        className={`text-[14px] font-semibold leading-none tracking-[-0.03em] antialiased ${onDark ? 'text-white' : 'text-[#0f0f14]'}`}
       >
         monday.com
       </span>

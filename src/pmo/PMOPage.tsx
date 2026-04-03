@@ -4,7 +4,6 @@ import { PageChrome } from './components/PageChrome'
 import { Nav } from './components/Nav'
 import { PageScrollReveal } from './components/PageScrollReveal'
 import { ScrollProgress } from './components/ScrollProgress'
-import { SectionDivider } from './components/SectionDivider'
 import { AIAgents } from './sections/AIAgents'
 import { BuildProjectAppSection } from './sections/BuildProjectAppSection'
 import { CaseStudiesSection } from './sections/CaseStudiesSection'
@@ -19,54 +18,44 @@ import { McpSection } from './sections/McpSection'
 
 export function PMOPage() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-[#ffffff]">
       <PageChrome />
       <CustomCursor />
       <ScrollProgress />
       <Nav />
       <main className="relative z-10">
-        <Hero />
-        <LogoBarSection />
-        <SectionDivider />
-        <PageScrollReveal>
-          <AIAgents />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <FeatureTabsSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <CaseStudiesSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <PlatformBentoSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <BuildProjectAppSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <McpSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <PlatformFeatureMatrix />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <FAQSection />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
-          <FinalCta />
-        </PageScrollReveal>
-        <SectionDivider />
-        <PageScrollReveal>
+        <div className="pmo-main-flow">
+          <Hero />
+          <LogoBarSection />
+          <PageScrollReveal>
+            <AIAgents />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <FeatureTabsSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <PlatformFeatureMatrix />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <BuildProjectAppSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <PlatformBentoSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <CaseStudiesSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <McpSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <FAQSection />
+          </PageScrollReveal>
+          <PageScrollReveal>
+            <FinalCta />
+          </PageScrollReveal>
           <Footer />
-        </PageScrollReveal>
+        </div>
       </main>
     </div>
   )

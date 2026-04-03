@@ -7,13 +7,13 @@ import { ExternalLink, Plus, X } from 'lucide-react'
 import { ComplianceBadgeGrid } from '../components/ComplianceBadgeGrid'
 import { SectionChip } from '../components/SectionChip'
 import { mondayGartnerApmrGraphic } from '../constants/mondayVisuals'
-import { pageEase } from '../motion'
+import { pageEase, staggerContainer, staggerItem } from '../motion'
 
 /** Flip: rotateY 180deg, 400ms ease-in-out */
 const flipEase: [number, number, number, number] = [0.42, 0, 0.58, 1]
 const flipDuration = 0.4
 
-const bentoFlipMinHeightClass = 'min-h-[220px] md:min-h-[240px] lg:min-h-[260px]'
+const bentoFlipMinHeightClass = 'min-h-[190px] md:min-h-[210px] lg:min-h-[230px]'
 
 type FlipItem = {
   id: string
@@ -121,7 +121,7 @@ function IndependentFlipCard({ item, index }: { item: FlipItem; index: number })
             >
               <div>
                 <div className="flex items-start justify-between gap-2 md:gap-3">
-                  <h3 className="min-w-0 flex-1 text-left text-[17px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#1a1a2e] md:text-[18px]">
+                  <h3 className="min-w-0 flex-1 text-left text-[15px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#1a1a2e] md:text-[16px]">
                     {item.title}
                   </h3>
                   <span
@@ -131,7 +131,7 @@ function IndependentFlipCard({ item, index }: { item: FlipItem; index: number })
                     <Plus className="h-4 w-4" strokeWidth={2} />
                   </span>
                 </div>
-                <p className="mt-2.5 whitespace-pre-line text-[16px] leading-[1.6] text-[rgba(15,15,20,0.58)] md:mt-3">
+                <p className="mt-2 whitespace-pre-line text-[14px] leading-[1.55] text-[rgba(15,15,20,0.58)] md:mt-2.5">
                   {item.body}
                 </p>
               </div>
@@ -139,7 +139,7 @@ function IndependentFlipCard({ item, index }: { item: FlipItem; index: number })
 
             <div
               aria-hidden={!flipped}
-              className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(97,97,255,0.35)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.14)] [backface-visibility:hidden] md:p-5"
+              className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(0,0,0,0.07)] bg-white p-4 [backface-visibility:hidden] md:p-5"
               style={{ transform: 'rotateY(180deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
               <div className="flex shrink-0 justify-end">
@@ -222,7 +222,7 @@ function AnalystFlipCard({
               style={{ transform: 'rotateY(0deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="min-w-0 flex-1 text-[17px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#1a1a2e] md:text-[18px]">
+                <h3 className="min-w-0 flex-1 text-[15px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#1a1a2e] md:text-[16px]">
                   {title}
                 </h3>
                 <span
@@ -232,12 +232,12 @@ function AnalystFlipCard({
                   <Plus className="h-4 w-4" strokeWidth={2} />
                 </span>
               </div>
-              <div className="mt-2.5 flex-1 text-[16px] leading-[1.6] text-[rgba(15,15,20,0.58)]">{claimBody}</div>
+              <div className="mt-2 flex-1 text-[14px] leading-[1.55] text-[rgba(15,15,20,0.58)]">{claimBody}</div>
             </div>
 
             <div
               aria-hidden={!flipped}
-              className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(97,97,255,0.28)] bg-[#f9f8ff] p-4 shadow-[0_8px_40px_rgba(97,97,255,0.1)] [backface-visibility:hidden] md:p-5"
+              className="absolute inset-0 flex flex-col rounded-[12px] border border-[rgba(0,0,0,0.07)] bg-white p-4 [backface-visibility:hidden] md:p-5"
               style={{ transform: 'rotateY(180deg)', WebkitBackfaceVisibility: 'hidden' }}
             >
               <div className="flex shrink-0 justify-end">
@@ -265,41 +265,45 @@ function AnalystFlipCard({
 }
 
 export function PlatformBentoSection() {
-  return (
-    <section id="platform-bento" className="scroll-mt-24 bg-transparent py-24 backdrop-blur-[1px]">
-      <div className="pmo-container">
-        <div className="mb-12">
-          <div className="flex justify-start">
-            <SectionChip sentenceCase>Why monday.com</SectionChip>
-          </div>
-          <h2 className="pmo-section-title mt-4 max-w-[min(100%,40rem)] text-pretty text-left">
-            Why choose monday.com to run your projects?
-          </h2>
-        </div>
+  const reduce = useReducedMotion()
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  return (
+    <section id="platform-bento" className="scroll-mt-24 pmo-flow-section-top bg-[#ffffff] pmo-section-pad">
+      <div className="pmo-container">
+        <motion.div
+          className="mb-5 md:mb-6"
+          variants={staggerContainer(0.06)}
+          initial={reduce ? false : 'hidden'}
+          whileInView="show"
+          viewport={{ once: true, amount: 0.12 }}
+        >
+          <motion.div variants={staggerItem} className="flex justify-start">
+            <SectionChip sentenceCase>Why monday.com</SectionChip>
+          </motion.div>
+          <motion.h2 variants={staggerItem} className="pmo-section-title max-w-[min(100%,40rem)] text-pretty text-left">
+            Why choose monday.com to run your projects?
+          </motion.h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {interactiveItems.slice(0, 3).map((item, i) => (
             <IndependentFlipCard key={item.id} item={item} index={i} />
           ))}
 
           <motion.div
-            className="col-span-1 overflow-hidden rounded-[12px] md:col-span-2 lg:col-span-3"
+            className="col-span-1 my-5 overflow-hidden rounded-[10px] md:col-span-2 md:my-5 lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.45, ease: pageEase }}
           >
-            <div className="relative h-[min(320px,42vw)] min-h-[240px] w-full">
+            <div className="relative h-[220px] w-full">
               <img
                 src={COLLAB_IMAGE}
                 alt="Diverse team collaborating together at work"
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full rounded-[10px] object-cover object-center"
                 loading="lazy"
                 decoding="async"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 rounded-[12px] bg-[rgba(0,0,0,0.15)]"
-                aria-hidden
               />
             </div>
           </motion.div>

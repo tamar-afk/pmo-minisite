@@ -322,7 +322,7 @@ sections.push(
       ['H2', 'From brief to done, without the manual work'],
       [
         'Intro',
-        'Every stage of the project cycle, covered. Your team makes the calls. Agents do the follow-through.',
+        'Every stage of the project cycle, covered. You make the calls. Agents do the follow-through.',
       ],
       ['Link', 'Get started →'],
       ['Timeline labels', 'Plan · Align · Run · Track · Report'],

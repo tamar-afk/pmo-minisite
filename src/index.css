@@ -1,28 +1,12 @@
 @import 'tailwindcss';
 
 @layer base {
-  /**
-   * Linear-style PMO canvas: restrained palette, hairline borders, generous space.
-   */
   :root {
-    --canvas-light: #ffffff;
-    --canvas-tint: #f8f8ff;
-    --canvas-dark: #0a0a0f;
-    --surface-light: #ffffff;
-    --surface-dark: #13131a;
-    --border-light: #e8e8f0;
-    --border-dark: rgba(255, 255, 255, 0.08);
-    --ink: #0a0a0f;
-    --ink-muted: #6b6b8a;
-    --ink-on-dark: #ffffff;
-    --ink-muted-on-dark: rgba(255, 255, 255, 0.6);
+    --ink: #111118;
+    --ink-muted: #6b7280;
     --brand: #6161ff;
-    --pill-bg: rgba(97, 97, 255, 0.08);
-    --pill-border: rgba(97, 97, 255, 0.2);
-    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
-    --section-max: 1200px;
+    --border-hairline: rgba(0, 0, 0, 0.07);
+    --section-max: 1040px;
   }
 
   html {
@@ -33,19 +17,7 @@
   body {
     margin: 0;
     min-height: 100svh;
-    background-color: var(--canvas-tint);
-    background-image: linear-gradient(
-      180deg,
-      #f8f8ff 0%,
-      #f0f0fb 12%,
-      #d4d4ec 26%,
-      #5c5c72 40%,
-      #0f0f1a 50%,
-      #48485c 62%,
-      #e2e2f0 78%,
-      #f8f8ff 100%
-    );
-    background-attachment: fixed;
+    background-color: #ffffff;
     color: var(--ink);
     font-family:
       'Poppins',
@@ -83,45 +55,73 @@
   .group:hover .animate-build-strip {
     animation-play-state: paused;
   }
-
-  @keyframes hero-cta-shadow-pulse {
-    0%,
-    100% {
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.12) inset,
-        0 8px 28px rgba(97, 97, 255, 0.22);
-    }
-    50% {
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.12) inset,
-        0 12px 40px rgba(97, 97, 255, 0.34);
-    }
-  }
-
-  .hero-cta-pulse {
-    animation: hero-cta-shadow-pulse 2.5s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-cta-pulse {
-      animation: none;
-    }
-  }
 }
 
 @layer components {
-  /** Content column: max 1200px, 48px horizontal padding on md+ */
+  /** Content column — compact scale */
   .pmo-container {
-    @apply mx-auto w-full max-w-[1200px] px-6 md:px-12;
+    @apply mx-auto w-full max-w-[min(100%,var(--section-max))] px-3 sm:px-5 md:px-6;
   }
 
-  /** Section headline (Linear hierarchy) */
+  .pmo-section-pad {
+    @apply py-8 md:py-10;
+  }
+
   .pmo-section-title {
-    @apply text-pretty text-[40px] font-bold leading-[1.15] tracking-[-0.01em] text-[#0a0a0f] md:text-[44px] lg:text-[48px];
+    @apply text-pretty text-[30px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#111118] sm:text-[32px];
   }
 
-  /** Body / subhead on light */
   .pmo-body {
-    @apply text-[16px] font-normal leading-[1.7] text-[#6b6b8a];
+    @apply text-[13px] font-normal leading-[1.75] text-[#6b7280];
+  }
+
+  /** Full-width hairline divider */
+  .pmo-divider {
+    @apply h-px w-full bg-[rgba(0,0,0,0.07)];
+  }
+
+  /**
+   * Linear-style flow: continuous vertical guide on the content column + soft
+   * gradient junctions between major sections (use with pmo-main-flow wrapper).
+   */
+  .pmo-main-flow .pmo-container {
+    box-shadow: inset 1px 0 0 rgba(97, 97, 255, 0.1);
+  }
+
+  /** Replace flat border-t on stacked sections — gradient + center node */
+  .pmo-flow-section-top {
+    @apply relative border-t-0;
+  }
+
+  .pmo-flow-section-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(97, 97, 255, 0.16) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .pmo-flow-section-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    border: 1px solid rgba(97, 97, 255, 0.32);
+    background: #fff;
+    box-shadow: 0 0 0 3px #fff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
 }
