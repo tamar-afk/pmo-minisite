@@ -7,7 +7,7 @@ export function FinalCta() {
   return (
     <section id="pricing" className="relative pmo-flow-section-top bg-[#ffffff] pmo-section-pad">
       <motion.div
-        className="pmo-container relative max-w-[36rem] text-center"
+        className="pmo-container relative text-center"
         variants={staggerContainer(0.05)}
         initial={reduce ? false : 'hidden'}
         whileInView="show"
@@ -34,14 +34,14 @@ export function FinalCta() {
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15, ease: pageEase }}
           >
-            Get started free
+            Get started
           </motion.a>
           <motion.a
             href="#contact"
             className="inline-flex min-w-[160px] items-center justify-center rounded-lg border border-[rgba(0,0,0,0.15)] bg-transparent px-5 py-2 text-[13px] font-medium text-[#111118] transition-colors duration-150 hover:bg-[rgba(0,0,0,0.04)]"
             whileTap={{ scale: 0.98 }}
           >
-            Talk to sales
+            Contact sales
           </motion.a>
         </motion.div>
       </motion.div>

@@ -186,7 +186,7 @@ export function OutcomeCard({
           rel="noopener noreferrer"
           className="shrink-0 text-[12px] font-semibold text-[#0f0f14] underline decoration-[rgba(15,15,20,0.35)] underline-offset-2 transition-colors hover:text-[#6161FF] hover:decoration-[#6161FF]"
         >
-          See the case study
+          Get started
         </a>
       </div>
 

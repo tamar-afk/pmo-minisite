@@ -6,8 +6,6 @@ import {
   ChevronDown,
   ClipboardList,
   FileText,
-  Flag,
-  GitMerge,
   Inbox,
   Layers,
   LayoutGrid,
@@ -20,7 +18,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { SectionChip } from './SectionChip'
-import { staggerContainer, staggerItem } from '../motion'
+import { pageEase, staggerContainer, staggerItem } from '../motion'
 
 const easeInOut: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -89,14 +87,9 @@ const TIERS: {
         Icon: Inbox,
       },
       {
-        title: 'Gantt chart',
-        description: 'Visualise timelines, milestones, and dependencies at a glance.',
+        title: 'Gantt',
+        description: 'Visualise timelines, dependencies, and key checkpoints at a glance.',
         Icon: BarChart2,
-      },
-      {
-        title: 'Milestones',
-        description: 'Mark key checkpoints along your timeline.',
-        Icon: Flag,
       },
       {
         title: 'Baselines',
@@ -104,13 +97,8 @@ const TIERS: {
         Icon: TrendingUp,
       },
       {
-        title: 'Critical path',
-        description: 'See exactly which tasks determine your finish date.',
-        Icon: GitMerge,
-      },
-      {
         title: 'Dependencies',
-        description: 'Set task relationships and keep sequencing correct from start to finish.',
+        description: 'Set task relationships and see exactly which ones determine your finish date.',
         Icon: Link2,
       },
       {
@@ -337,7 +325,7 @@ function TierLayer({
 }
 
 const defaultOpen: Record<TierId, boolean> = {
-  portfolios: true,
+  portfolios: false,
   project: false,
   execution: false,
 }
@@ -364,7 +352,7 @@ export default function PlatformFeatureMatrix() {
           viewport={{ once: true, amount: 0.12 }}
         >
           <motion.div variants={staggerItem}>
-            <SectionChip sentenceCase>The platform</SectionChip>
+            <SectionChip sentenceCase>Your foundation</SectionChip>
           </motion.div>
           <motion.h2 variants={staggerItem} className="pmo-section-title max-w-[48rem]">
             Built for project management at every level.
@@ -373,8 +361,7 @@ export default function PlatformFeatureMatrix() {
             variants={staggerItem}
             className="mt-3 max-w-[480px] text-[15px] font-normal leading-[1.7] text-[#6b7280]"
           >
-            Out of the box project management capabilities for humans and agents that support any complexity and any
-            scale.
+            Out of the box project management for people and agents, at any scale.
           </motion.p>
         </motion.div>
 
@@ -396,14 +383,22 @@ export default function PlatformFeatureMatrix() {
                   stackSize={stackSize}
                 />
                 {stackIndex < stackSize - 1 ? (
-                  <div
+                  <motion.div
                     className="relative z-[5] flex w-full justify-center py-1"
                     aria-hidden
+                    initial={reducedMotion ? false : { opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: reducedMotion ? 0 : 0.4,
+                      ease: pageEase,
+                      delay: reducedMotion ? 0 : stackIndex * 0.06,
+                    }}
                   >
                     <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[rgba(97,97,255,0.25)] bg-white shadow-sm">
                       <div className="h-2 w-2 rounded-full bg-[#6161ff]/70" />
                     </div>
-                  </div>
+                  </motion.div>
                 ) : null}
               </Fragment>
             ))}

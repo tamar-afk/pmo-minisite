@@ -279,7 +279,7 @@ export function McpCardStack() {
   ]
 
   return (
-    <div className="relative mx-auto w-full max-w-[min(100%,720px)] px-0 sm:px-2">
+    <div className="relative w-full max-w-[min(100%,720px)] px-0 sm:px-2">
       <div className="overflow-hidden rounded-[16px] border border-[rgba(15,15,20,0.1)] bg-[#ebebef] shadow-[0_24px_60px_rgba(15,15,20,0.1)]">
         <div
           role="tablist"

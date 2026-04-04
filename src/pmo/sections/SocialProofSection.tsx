@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { CustomerProofBlock } from '../components/CustomerProofBlock'
-import { SectionChip } from '../components/SectionChip'
 import { pageEase } from '../motion'
 import { CaseStudiesProofCarousel } from './CustomerOutcomesSection'
 
@@ -18,10 +17,7 @@ export function SocialProofSection() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: pageEase }}
         >
-          <div className="flex justify-start">
-            <SectionChip>Real customers</SectionChip>
-          </div>
-          <h2 className="mt-4 text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
+          <h2 className="text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-[#0c0c0f] md:text-[44px] lg:text-[48px]">
             Real customers. Real outcomes.
           </h2>
         </motion.div>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { MondayWMLogo } from '../components/Logo'
 import { springSnappy, springSoft, staggerContainer, staggerItem } from '../motion'
 
@@ -22,14 +22,16 @@ const cols = [
 ]
 
 export function Footer() {
+  const reduce = useReducedMotion()
+
   return (
     <footer
       id="contact"
-      className="pmo-flow-section-top bg-white/82 px-3 py-6 backdrop-blur-[1px] md:px-6 md:py-7 lg:px-8"
+      className="pmo-flow-section-top bg-white/82 px-3 py-8 backdrop-blur-[1px] md:px-6 md:py-9 lg:px-8"
     >
       <motion.div
         className="pmo-container"
-        initial="hidden"
+        initial={reduce ? false : 'hidden'}
         whileInView="show"
         viewport={{ once: true, amount: 0.12 }}
         variants={staggerContainer(0.06)}

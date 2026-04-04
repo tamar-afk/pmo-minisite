@@ -7,10 +7,10 @@ export function LogoBarSection() {
   const reduce = useReducedMotion()
 
   return (
-    <section id="trusted-logos" className="relative border-t border-[rgba(0,0,0,0.07)] bg-[#ffffff] py-5 md:py-6">
+    <section id="trusted-logos" className="relative bg-[#ffffff] py-6 md:py-8">
       <div className="pmo-container">
         <motion.div
-          className="space-y-3 text-center md:space-y-4"
+          className="space-y-3 text-left md:space-y-3"
           variants={staggerContainer(0.05)}
           initial={reduce ? false : 'hidden'}
           whileInView="show"
@@ -24,7 +24,7 @@ export function LogoBarSection() {
               hidden: {},
               show: { transition: { staggerChildren: 0.035, delayChildren: 0.02 } },
             }}
-            className="flex flex-wrap justify-center gap-5 md:gap-6"
+            className="flex flex-wrap justify-start gap-5 md:gap-6"
           >
             {logos.map((name) => (
               <motion.span
@@ -36,12 +36,6 @@ export function LogoBarSection() {
               </motion.span>
             ))}
           </motion.div>
-          <motion.p
-            variants={staggerItem}
-            className="mx-auto max-w-[36rem] text-[11px] leading-relaxed text-[#9ca3af]"
-          >
-            Ranked a top 5 project management platform on G2, backed by 14K+ customer reviews
-          </motion.p>
         </motion.div>
       </div>
     </section>

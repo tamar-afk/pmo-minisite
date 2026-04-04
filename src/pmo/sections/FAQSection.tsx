@@ -39,7 +39,7 @@ export function FAQSection() {
       <div className="pmo-container">
         <div className="mx-auto w-full max-w-[720px]">
           <motion.h2
-            className="text-center text-[30px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#111118] sm:text-[32px]"
+            className="pmo-section-title text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}

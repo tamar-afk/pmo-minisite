@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { MondayWMLogo } from './Logo'
 import { pageEase } from '../motion'
 
@@ -11,39 +11,51 @@ const links = [
 ]
 
 function NavLink({ href, children }: { href: string; children: string }) {
+  const reduce = useReducedMotion()
   return (
-    <a
+    <motion.a
       href={href}
       className="shrink-0 text-[13px] font-normal text-[#6b7280] transition-colors duration-150 hover:text-[#111118]"
+      whileHover={{ y: -1 }}
+      whileTap={reduce ? undefined : { scale: 0.98 }}
+      transition={{ duration: 0.18, ease: pageEase }}
     >
       {children}
-    </a>
+    </motion.a>
   )
 }
 
 function PrimaryButton({ href, children, variant }: { href: string; children: string; variant: 'ghost' | 'solid' }) {
+  const reduce = useReducedMotion()
   if (variant === 'ghost') {
     return (
-      <a
+      <motion.a
         href={href}
         className="inline-flex items-center justify-center rounded-lg border border-[rgba(0,0,0,0.15)] bg-transparent px-5 py-2 text-[13px] font-medium text-[#111118] transition-colors duration-150 hover:bg-[rgba(0,0,0,0.04)]"
+        whileHover={{ y: -1, backgroundColor: 'rgba(0,0,0,0.04)' }}
+        whileTap={reduce ? undefined : { scale: 0.98 }}
+        transition={{ duration: 0.18, ease: pageEase }}
       >
         {children}
-      </a>
+      </motion.a>
     )
   }
   return (
-    <a
+    <motion.a
       href={href}
       className="inline-flex items-center justify-center rounded-lg bg-[#6161ff] px-5 py-2 text-[13px] font-medium text-white transition-colors duration-150 hover:bg-[#5050ee]"
+      whileHover={{ y: -1, backgroundColor: '#5050ee' }}
+      whileTap={reduce ? undefined : { scale: 0.98 }}
+      transition={{ duration: 0.18, ease: pageEase }}
     >
       {children}
-    </a>
+    </motion.a>
   )
 }
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -57,7 +69,7 @@ export function Nav() {
       className="sticky top-0 z-50 border-b border-[rgba(0,0,0,0.07)] transition-[background,backdrop-filter] duration-150"
       initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: pageEase }}
+      transition={{ duration: reduce ? 0 : 0.45, ease: pageEase }}
       style={{
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',

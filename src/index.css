@@ -64,7 +64,7 @@
   }
 
   .pmo-section-pad {
-    @apply py-8 md:py-10;
+    @apply py-10 md:py-12;
   }
 
   .pmo-section-title {
@@ -81,35 +81,23 @@
   }
 
   /**
-   * Linear-style flow: continuous vertical guide on the content column + soft
-   * gradient junctions between major sections (use with pmo-main-flow wrapper).
+   * Linear-style flow: vertical guide on the content column + thin connectors
+   * between major blocks (pmo-main-flow children).
    */
   .pmo-main-flow .pmo-container {
-    box-shadow: inset 1px 0 0 rgba(97, 97, 255, 0.1);
+    box-shadow: inset 1px 0 0 rgba(97, 97, 255, 0.2);
   }
 
-  /** Replace flat border-t on stacked sections — gradient + center node */
-  .pmo-flow-section-top {
-    @apply relative border-t-0;
+  /**
+   * Thin horizontal connectors + center node between each top-level block
+   * (Hero → logos → each scroll section → footer).
+   */
+  .pmo-main-flow > * + * {
+    position: relative;
+    border-top: 1px solid rgba(97, 97, 255, 0.14);
   }
 
-  .pmo-flow-section-top::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(97, 97, 255, 0.16) 50%,
-      transparent 100%
-    );
-    pointer-events: none;
-  }
-
-  .pmo-flow-section-top::after {
+  .pmo-main-flow > * + *::after {
     content: '';
     position: absolute;
     top: 0;
@@ -123,5 +111,10 @@
     box-shadow: 0 0 0 3px #fff;
     transform: translate(-50%, -50%);
     pointer-events: none;
+  }
+
+  /** Scroll-offset + stacking for section content (marker moved to main-flow siblings) */
+  .pmo-flow-section-top {
+    @apply relative border-t-0;
   }
 }

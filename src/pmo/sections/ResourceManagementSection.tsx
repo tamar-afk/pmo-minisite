@@ -85,9 +85,9 @@ export function ResourceManagementSection() {
         >
           <a
             href="#pricing"
-            className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#6161FF] hover:text-[#5050e6]"
+            className="inline-flex items-center justify-center text-[15px] font-semibold text-[#6161FF] hover:text-[#5050e6]"
           >
-            Get started <span aria-hidden>→</span>
+            Get started
           </a>
         </motion.div>
       </div>

@@ -5,7 +5,7 @@ import { pageEase, staggerContainer, staggerItem } from '../motion'
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-[rgba(0,0,0,0.07)] bg-white px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.08em] text-[#6b7280] transition-[border-color,box-shadow] duration-150 hover:border-[rgba(97,97,255,0.25)] hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:text-[11px]">
+    <span className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full border border-[rgba(0,0,0,0.07)] bg-white px-2.5 py-1.5 text-[9px] font-medium uppercase tracking-[0.08em] text-[#6b7280] transition-[border-color,box-shadow] duration-150 hover:border-[rgba(97,97,255,0.25)] hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] sm:px-3 sm:text-[10px] md:text-[11px]">
       {children}
     </span>
   )
@@ -16,7 +16,7 @@ export function McpSection() {
 
   return (
     <section id="mcp" className="relative scroll-mt-24 pmo-flow-section-top bg-[#ffffff] pmo-section-pad">
-      <div className="pmo-container max-w-[52rem]">
+      <div className="pmo-container">
         <motion.div
           variants={staggerContainer(0.06)}
           initial={reduce ? false : 'hidden'}
@@ -37,7 +37,7 @@ export function McpSection() {
       </div>
 
       <motion.div
-        className="relative z-[1] mt-6 w-full md:mt-8"
+        className="pmo-container relative z-[1] mt-6 md:mt-8"
         initial={reduce ? false : { opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.12 }}
@@ -47,7 +47,7 @@ export function McpSection() {
       </motion.div>
 
       <motion.div
-        className="pmo-container relative z-[1] mx-auto mt-5 flex max-w-[36rem] flex-wrap justify-start gap-2"
+        className="pmo-container relative z-[1] mt-5 flex max-w-full flex-nowrap items-center justify-center gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         initial={reduce ? false : 'hidden'}
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
@@ -57,16 +57,19 @@ export function McpSection() {
         }}
       >
         <motion.div
+          className="shrink-0"
           variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: pageEase } } }}
         >
           <Chip>Works with any AI tool</Chip>
         </motion.div>
         <motion.div
+          className="shrink-0"
           variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: pageEase } } }}
         >
           <Chip>Live project data, always in sync</Chip>
         </motion.div>
         <motion.div
+          className="shrink-0"
           variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: pageEase } } }}
         >
           <Chip>No IT setup required</Chip>

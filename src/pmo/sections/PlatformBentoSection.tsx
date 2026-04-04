@@ -5,7 +5,6 @@ const COLLAB_IMAGE =
   'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80'
 import { ExternalLink, Plus, X } from 'lucide-react'
 import { ComplianceBadgeGrid } from '../components/ComplianceBadgeGrid'
-import { SectionChip } from '../components/SectionChip'
 import { mondayGartnerApmrGraphic } from '../constants/mondayVisuals'
 import { pageEase, staggerContainer, staggerItem } from '../motion'
 
@@ -57,7 +56,7 @@ const interactiveItems: FlipItem[] = [
   },
   {
     id: 'enterprise-ready',
-    title: 'Enterprise-ready out of the box',
+    title: 'Enterprise-ready platform',
     body:
       'The security and governance controls your IT team will approve. Built in, not bolted on.',
     footer: <ComplianceBadgeGrid />,
@@ -277,10 +276,10 @@ export function PlatformBentoSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.12 }}
         >
-          <motion.div variants={staggerItem} className="flex justify-start">
-            <SectionChip sentenceCase>Why monday.com</SectionChip>
-          </motion.div>
-          <motion.h2 variants={staggerItem} className="pmo-section-title max-w-[min(100%,40rem)] text-pretty text-left">
+          <motion.h2
+            variants={staggerItem}
+            className="pmo-section-title max-w-none text-left whitespace-nowrap max-md:overflow-x-auto max-md:pb-1 max-md:[-webkit-overflow-scrolling:touch] max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden"
+          >
             Why choose monday.com to run your projects?
           </motion.h2>
         </motion.div>
@@ -314,11 +313,11 @@ export function PlatformBentoSection() {
 
           <AnalystFlipCard
             index={4}
-            title="Leader in the Gartner Magic Quadrant for Adaptive Project Management and Reporting"
+            title="Four years as a Gartner® Leader"
             claimBody={
               <p>
-                A Leader in the 2025 Gartner Magic Quadrant for Adaptive Project Management and Reporting, four years
-                running.
+                The 2025 Magic Quadrant™ for Adaptive Project Management and Reporting again places monday.com in the
+                Leaders quadrant — the fourth year in a row.
               </p>
             }
             proof={
@@ -338,7 +337,7 @@ export function PlatformBentoSection() {
                   className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-[#6161FF] hover:text-[#5050e6] md:text-[14px]"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Get the report <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                  Get started <ExternalLink className="h-3.5 w-3.5" aria-hidden />
                 </a>
               </>
             }

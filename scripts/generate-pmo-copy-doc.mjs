@@ -273,13 +273,13 @@ sections.push(
   h2('Hero'),
   tableCopy(
     [
-      ['H1', 'Your projects, fully staffed.'],
+      ['H1', 'Every project. Fully Staffed.'],
       [
         'Body',
-        'Status updates, risk flags, executive reports: your agents handle the follow-through so your team can focus on the work that actually moves things forward.',
+        'One platform for all of your projects. Agents that keep it all moving.',
       ],
-      ['Primary CTA', 'Get started free'],
-      ['Secondary CTA', 'See it in action →'],
+      ['Primary CTA', 'Get started'],
+      ['Secondary CTA', 'Contact sales'],
       ['Microcopy', 'Free forever. No credit card needed.'],
     ],
     ['Field', 'Copy'],
@@ -305,8 +305,14 @@ sections.push(
   h2('Hero showcase (placeholder)'),
   tableCopy(
     [
-      ['Placeholder', 'HERO IMAGE PLACEHOLDER (black box)'],
-      ['Region aria-label', 'Hero image placeholder'],
+      [
+        'Placeholder label',
+        'Gantt, Portfolio, and resource surface, with agents that flag risks and generate reports',
+      ],
+      [
+        'Region aria-label',
+        'Gantt, Portfolio, and resource surface, with agents that flag risks and generate reports',
+      ],
     ],
     ['Field', 'Copy'],
   ),
@@ -318,13 +324,13 @@ sections.push(
   h2('Feature tabs (How it works)'),
   tableCopy(
     [
-      ['Chip', 'Your projects, end to end'],
+      ['Chip', 'Your projects'],
       ['H2', 'From brief to done, without the manual work'],
       [
         'Intro',
-        'Every stage of the project cycle, covered. You make the calls. Agents do the follow-through.',
+        'Every stage of the project cycle, covered. People make the calls. Agents do the follow-through.',
       ],
-      ['Link', 'Get started →'],
+      ['Link', 'Get started'],
       ['Timeline labels', 'Plan · Align · Run · Track · Report'],
       ['Nav aria-label', 'Project lifecycle stages'],
     ],
@@ -339,64 +345,31 @@ sections.push(
   tableCopy(
     [
       ['Chip', 'Your agents'],
-      ['H2', 'A new kind of project team'],
+      ['H2', 'Meet your always-on project team'],
       [
         'Intro',
-        "Purpose-built agents that live inside monday, picking up the coordination work your team shouldn't have to do.",
+        'Working alongside your people and handling the around-the-clock coordination, bottlenecks, and follow-through that slow projects down.',
       ],
     ],
     ['Field', 'Copy'],
   ),
-  h3('project management agent'),
+  h3('Agent tiles (left to right)'),
   tableCopy(
     [
-      ['Bullet 1', 'Keeps your plan current as things change.'],
-      ['Bullet 2', 'Owners, dates, and priorities updated without anyone having to ask.'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Risk analyzer (New)'),
-  tableCopy(
-    [
-      ['Bullet 1', "Spots what's about to go wrong before it does."],
-      ['Bullet 2', 'So you can act while you still have options.'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Reporting manager'),
-  tableCopy(
-    [
-      ['Bullet 1', 'Your exec update, ready before the meeting.'],
-      ['Bullet 2', 'No prep, no manual pull, just send it.'],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Resource optimizer'),
-  tableCopy(
-    [
+      ['PMO agent', 'Manages portfolios and generates reports.'],
+      ['Risk analyzer', "Spots what's about to go wrong before it does, so you can act while you still have options."],
       [
-        'Bullet 1',
-        'Shows you where your people are stretched and where you have room, across every active project.',
+        'Meeting scheduler',
+        'Finds time, sends invites, and keeps agendas and prep tied to live project work.',
       ],
-      ['Bullet 2', 'Shift work before overload turns into missed dates.'],
+      ['Follow-up agent', 'Chases owners, reminders, and loose ends so nothing stalls waiting on a nudge.'],
+      [
+        'Task Coordinator',
+        'Coordinates handoffs and task flow across teams so the plan stays executable end to end.',
+      ],
+      ['Build your own', 'Build an agent for how your team actually works.'],
     ],
-    ['Field', 'Copy'],
-  ),
-  h3('Dependencies resolver'),
-  tableCopy(
-    [
-      ['Bullet 1', "Tracks what's blocking what."],
-      ["Bullet 2", "So one slipped task doesn't quietly derail everything downstream."],
-    ],
-    ['Field', 'Copy'],
-  ),
-  h3('Create your own'),
-  tableCopy(
-    [
-      ['Bullet 1', 'Build an agent for how your team actually works.'],
-      ['Bullet 2', 'Define custom instructions and iterate in monday without writing code.'],
-    ],
-    ['Field', 'Copy'],
+    ['Agent', 'Description'],
   ),
   new Paragraph({ spacing: { after: 200 } }),
 )
@@ -442,7 +415,7 @@ sections.push(
         'Balance capacity: body',
         'See planned vs. actual in the capacity manager, spot conflicts, and make changes instantly.',
       ],
-      ['CTA', 'Get started →'],
+      ['CTA', 'Get started'],
     ],
     ['Field', 'Copy'],
   ),
@@ -476,9 +449,9 @@ sections.push(
 
 // --- Platform bento ---
 sections.push(
-  h2('Platform bento (Why monday.com)'),
+  h2('Platform bento'),
   tableCopy(
-    [['H2', 'Not just another project management tool']],
+    [['H2', 'Why choose monday.com to run your projects?']],
     ['Field', 'Copy'],
   ),
   h3('Interactive cards'),
@@ -516,7 +489,7 @@ sections.push(
       ],
       [
         'Card 4 title',
-        'Enterprise-ready out of the box',
+        'Enterprise-ready platform',
       ],
       [
         'Card 4 body',
@@ -531,11 +504,11 @@ sections.push(
     [
       [
         'Gartner card title',
-        'Leader in the Gartner Magic Quadrant for Adaptive Project Management and Reporting',
+        'Four years as a Gartner® Leader',
       ],
       [
         'Gartner card body',
-        'A Leader in the 2025 Gartner® Magic Quadrant™ for Adaptive Project Management and Reporting, four years in a row.',
+        'The 2025 Magic Quadrant™ for Adaptive Project Management and Reporting again places monday.com in the Leaders quadrant — the fourth year in a row.',
       ],
       ['Gartner CTA', 'Get the report'],
       [
@@ -559,11 +532,11 @@ sections.push(
   h2('Platform capabilities (accordion)'),
   tableCopy(
     [
-      ['Chip', 'The platform'],
-      ['H2', 'One complete platform, built for every level of project work.'],
+      ['Chip', 'Your foundation'],
+      ['H2', 'Built for project management at every level.'],
       [
         'Subcopy',
-        'Everything you need to manage projects at scale. Agents included.',
+        'Out of the box project management for people and agents, at any scale.',
       ],
       [
         'Portfolios subtitle',
@@ -585,16 +558,18 @@ sections.push(
         'See every project in one place, status, health, and progress rolled up',
       ],
       [
-        'Gantt chart',
-        'Visualize timelines, milestones, and dependencies at a glance',
+        'Gantt',
+        'Visualise timelines, dependencies, and key checkpoints at a glance.',
       ],
       [
         'Cross-project dependencies',
         'Manage task relationships across multiple projects in one view',
       ],
-      ['Milestones', 'Mark key checkpoints along your timeline'],
       ['Baselines', 'Compare planned vs. actual to catch slippage early'],
-      ['Critical path', 'See the tasks that determine your finish date'],
+      [
+        'Dependencies',
+        'Set task relationships and see exactly which ones determine your finish date.',
+      ],
       [
         'Multiple views',
         'Switch between table, timeline, calendar, kanban, and more: same work, the view your team needs',
@@ -691,8 +666,8 @@ sections.push(
     [
       ['H2 line 1', 'Projects delivered. Team capacity protected.'],
       ['H2 line 2', 'Nothing falling through the cracks.'],
-      ['Primary', 'Get started free'],
-      ['Secondary', 'Talk to sales'],
+      ['Primary', 'Get started'],
+      ['Secondary', 'Contact sales'],
       ['Microcopy', 'Free forever. No credit card needed.'],
     ],
     ['Field', 'Copy'],

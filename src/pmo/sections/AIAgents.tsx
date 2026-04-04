@@ -8,16 +8,15 @@ type Agent = {
   id: string
   label: string
   description: string
-  /** Initial letter for gradient cards; build uses special layout */
   initial: string
   placeholder: { type: 'gradient'; css: string } | { type: 'build' }
 }
 
 const agents: Agent[] = [
   {
-    id: 'project',
-    label: 'Project agent',
-    description: 'Keeps your plan current. Owners, dates, and priorities updated as things change.',
+    id: 'pmo',
+    label: 'PMO agent',
+    description: 'Manages portfolios and generates reports.',
     initial: 'P',
     placeholder: {
       type: 'gradient',
@@ -26,7 +25,7 @@ const agents: Agent[] = [
   },
   {
     id: 'risk',
-    label: 'Risk agent',
+    label: 'Risk analyzer',
     description: "Spots what's about to go wrong before it does, so you can act while you still have options.",
     initial: 'R',
     placeholder: {
@@ -35,32 +34,30 @@ const agents: Agent[] = [
     },
   },
   {
-    id: 'reporting',
-    label: 'Reporting agent',
-    description: 'Your exec update, ready before the meeting. No prep, no manual pull, just send it.',
-    initial: 'R',
+    id: 'meeting',
+    label: 'Meeting scheduler',
+    description: 'Finds time, sends invites, and keeps agendas and prep tied to live project work.',
+    initial: 'M',
     placeholder: {
       type: 'gradient',
       css: 'linear-gradient(135deg, #0d1f2d, #1a3a4a)',
     },
   },
   {
-    id: 'resource',
-    label: 'Resource agent',
-    description:
-      'Shows you where your people are stretched and where you have room, across every active project.',
-    initial: 'R',
+    id: 'followup',
+    label: 'Follow-up agent',
+    description: 'Chases owners, reminders, and loose ends so nothing stalls waiting on a nudge.',
+    initial: 'F',
     placeholder: {
       type: 'gradient',
       css: 'linear-gradient(135deg, #1a2a1a, #2d4a2d)',
     },
   },
   {
-    id: 'deps',
-    label: 'Dependencies agent',
-    description:
-      "Tracks what's blocking what, so one slipped task doesn't quietly derail everything downstream.",
-    initial: 'D',
+    id: 'task-coordinator',
+    label: 'Task Coordinator',
+    description: 'Coordinates handoffs and task flow across teams so the plan stays executable end to end.',
+    initial: 'T',
     placeholder: {
       type: 'gradient',
       css: 'linear-gradient(135deg, #2a1a0d, #4a2d1a)',
@@ -171,7 +168,8 @@ export function AIAgents() {
             variants={staggerItem}
             className="mt-3 max-w-[520px] text-[15px] font-normal leading-[1.7] text-[#6b7280]"
           >
-            Handling the around-the-clock coordination, bottlenecks, and follow-through that slow projects down.
+            Working alongside your people and handling the around-the-clock coordination, bottlenecks, and
+            follow-through that slow projects down.
           </motion.p>
 
           <motion.div
@@ -181,7 +179,7 @@ export function AIAgents() {
             }}
             className="mt-5 w-full overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            <div className="mx-auto flex min-w-0 max-w-[920px] flex-nowrap justify-center gap-1 sm:gap-1.5 md:gap-2">
+            <div className="flex min-w-0 max-w-[920px] flex-nowrap justify-start gap-1 sm:gap-1.5 md:gap-2">
               {agents.map((a) => (
                 <AgentCard
                   key={a.id}
